@@ -5,12 +5,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const header = document.querySelector('.header');
     const nav = document.querySelector('.nav');
 
-    const closeMenu = () => {
+    const closeMenu = (returnFocus = false) => {
         if (!navToggle || !navList) return;
         navList.classList.remove('open');
         nav?.classList.remove('open');
+        document.body.classList.remove('menu-open');
         navToggle.setAttribute('aria-expanded', 'false');
         navToggle.setAttribute('aria-label', 'Abrir menú');
+        if (returnFocus) navToggle.focus();
     };
 
     // Menú móvil
@@ -20,6 +22,10 @@ document.addEventListener('DOMContentLoaded', () => {
         navToggle.setAttribute('aria-label', expanded ? 'Abrir menú' : 'Cerrar menú');
         navList.classList.toggle('open', !expanded);
         nav?.classList.toggle('open', !expanded);
+        document.body.classList.toggle('menu-open', !expanded);
+        if (!expanded) {
+            requestAnimationFrame(() => navList.querySelector('.nav-link')?.focus());
+        }
     });
 
     // Cerrar menú al pulsar un enlace
@@ -29,7 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Cerrar menú con Escape
     document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') closeMenu();
+        if (e.key === 'Escape' && navList?.classList.contains('open')) closeMenu(true);
     });
 
     // Cerrar menú al hacer clic fuera
@@ -37,6 +43,12 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!navList?.classList.contains('open')) return;
         if (nav?.contains(e.target) || navToggle?.contains(e.target)) return;
         closeMenu();
+    });
+
+    // Cerrar el menú si la pantalla vuelve a escritorio
+    const mobileQuery = window.matchMedia('(max-width: 768px)');
+    mobileQuery.addEventListener('change', (e) => {
+        if (!e.matches) closeMenu();
     });
 
     // Header con sombra al hacer scroll

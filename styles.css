@@ -4,6 +4,7 @@
     --azul-claro: #1a2d4a;
     --rojo: #c00;
     --rojo-brillante: #e00;
+    --rojo-texto: #ff6b6b;
     --dorado: #c9a84c;
     --blanco: #ffffff;
     --blanco-suave: #e8eef4;
@@ -56,6 +57,9 @@ a { color: inherit; text-decoration: none; }
 img { max-width: 100%; height: auto; display: block; }
 ul { list-style: none; }
 button { background: none; border: none; cursor: pointer; font-family: inherit; }
+
+.skip-link { position: absolute; top: -100px; left: 1rem; z-index: 2000; padding: 0.75rem 1rem; background: var(--blanco); color: var(--azul-oscuro); font-family: var(--fuente-ui); font-weight: 600; border-radius: 4px; transition: top 0.2s ease; }
+.skip-link:focus { top: 1rem; }
 
 .stripe-bg {
     position: fixed;
@@ -231,7 +235,7 @@ button { background: none; border: none; cursor: pointer; font-family: inherit; 
 .btn { display: inline-block; padding: 0.875rem 2rem; border-radius: 8px; font-weight: 600; font-size: 0.9rem; transition: var(--transition); text-align: center; }
 .btn-primary { background: linear-gradient(135deg, var(--rojo), #a00); color: var(--blanco); border: none; }
 .btn-primary:hover { background: linear-gradient(135deg, var(--rojo-brillante), var(--rojo)); transform: translateY(-2px); box-shadow: 0 10px 30px rgba(204,0,0,0.3); }
-.btn-secondary { background: transparent; color: var(--rojo); border: 2px solid var(--rojo); margin-right: 1rem; }
+.btn-secondary { background: transparent; color: var(--rojo-texto); border: 2px solid var(--rojo-texto); margin-right: 1rem; }
 .btn-secondary:hover { background: var(--rojo); color: var(--blanco); }
 .btn-outline { background: transparent; color: var(--blanco); border: 2px solid var(--gris-claro); }
 .btn-outline:hover { border-color: var(--rojo); color: var(--rojo); }
@@ -265,8 +269,9 @@ button { background: none; border: none; cursor: pointer; font-family: inherit; 
 
 @media (max-width: 768px) {
     .nav-toggle { display: flex; z-index: 1001; }
-    .nav { position: fixed; top: 0; right: 0; height: 100vh; width: 280px; background: var(--azul-oscuro); border-left: 1px solid rgba(204,0,0,0.2); padding: calc(var(--header-height) + 2rem) 2rem 2rem; transform: translateX(100%); transition: var(--transition); }
-    .nav.open { transform: translateX(0); }
+    .nav { position: fixed; top: 0; right: 0; height: 100vh; width: 280px; background: var(--azul-oscuro); border-left: 1px solid rgba(204,0,0,0.2); padding: calc(var(--header-height) + 2rem) 2rem 2rem; transform: translateX(100%); visibility: hidden; overflow-y: auto; overscroll-behavior: contain; transition: transform var(--transition), visibility 0s linear 0.3s; }
+    .nav.open { transform: translateX(0); visibility: visible; transition: transform var(--transition), visibility 0s linear 0s; }
+    body.menu-open { overflow: hidden; }
     .nav-list { flex-direction: column; align-items: stretch; gap: 0.25rem; }
     .nav-link { padding: 1rem; text-align: left; }
     .nav-link::after { display: none; }
@@ -305,14 +310,15 @@ button { background: none; border: none; cursor: pointer; font-family: inherit; 
 .card:hover::before { transform: scaleX(1); }
 .card h3 { font-family: var(--fuente-titulos); font-size: 1.4rem; margin-bottom: 0.75rem; color: var(--blanco); font-weight: 500; }
 .card p { color: var(--blanco-suave); font-size: 1.05rem; margin-bottom: 1.5rem; line-height: 1.8; }
-.card-link { font-weight: 500; color: var(--rojo); transition: var(--transition); font-size: 1rem; }
-.card-link:hover { color: var(--rojo-brillante); }
+.card-link { font-weight: 500; color: var(--rojo-texto); transition: var(--transition); font-size: 1rem; }
+.card-link:hover { color: var(--blanco); }
 
 /* CTA section */
 .section-cta { background: linear-gradient(135deg, rgba(204,0,0,0.1), rgba(201,168,76,0.05)); }
 .cta-content { text-align: center; max-width: 800px; margin: 0 auto; padding: 4rem 1.5rem; }
 .cta-content .section-title { margin-bottom: 1rem; }
 .cta-content p { color: var(--blanco-suave); margin-bottom: 2rem; font-size: 1.1rem; }
+.cta-content .hero-buttons { justify-content: center; }
 
 /* Gallery uniformidad */
 .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
@@ -362,8 +368,8 @@ button { background: none; border: none; cursor: pointer; font-family: inherit; 
 .contacto-icon { font-size: 1.5rem; }
 .contacto-item h3 { font-family: var(--fuente-titulos); font-size: 1.2rem; margin-bottom: 0.5rem; color: var(--blanco); }
 .contacto-item p { color: var(--blanco-suave); line-height: 1.7; font-size: 1.05rem; }
-.contacto-item a { color: var(--rojo); transition: var(--transition); }
-.contacto-item a:hover { color: var(--rojo-brillante); }
+.contacto-item a { color: var(--rojo-texto); transition: var(--transition); }
+.contacto-item a:hover { color: var(--blanco); }
 
 .contacto-redes h3 { font-family: var(--fuente-titulos); font-size: 1.5rem; margin-bottom: 0.5rem; color: var(--blanco); }
 .contacto-redes-texto { color: var(--gris-claro); margin-bottom: 2rem; }
