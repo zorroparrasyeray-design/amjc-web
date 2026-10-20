@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Animaciones al aparecer
     const animatedElements = document.querySelectorAll(
-        '.historia-card, .concierto-card, .actualidad-card, .uniformidad-content > *, ' +
+        '.timeline-item, .historia-card, .concierto-card, .actualidad-card, .uniformidad-content > *, ' +
         '.acompanamiento-col, .repertorio-text, .contacto-info, .contacto-cta, ' +
         '.card, .marcha-card, .estreno-card, .marcha-item, .historial-list li, ' +
         '.gallery-item, .contacto-item, .red-social, .formulario, .cta-content'
@@ -60,6 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (entry.isIntersecting) {
                 entry.target.style.opacity = '1';
                 entry.target.style.transform = 'translateY(0)';
+                entry.target.classList.add('visible');
                 animateObserver.unobserve(entry.target);
             }
         });
