@@ -220,8 +220,6 @@ button { background: none; border: none; cursor: pointer; font-family: inherit; 
 .repertorio-text p { margin-bottom: 1rem; color: var(--blanco-suave); line-height: 1.8; }
 .marchas-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0.75rem; margin: 1rem 0; }
 .marchas-list li { background: rgba(204,0,0,0.1); border: 1px solid rgba(204,0,0,0.2); padding: 0.75rem 1rem; border-radius: 8px; font-style: italic; color: var(--rojo-brillante); text-align: center; }
-.repertorio-quote { margin-top: 2rem; padding: 2rem; background: linear-gradient(135deg, rgba(204,0,0,0.15), rgba(201,168,76,0.1)); border-left: 4px solid var(--rojo); border-radius: 0 12px 12px 0; font-style: italic; color: var(--blanco); font-size: 1.1rem; line-height: 1.7; }
-
 .contacto-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; }
 .contacto-info h3 { font-family: var(--fuente-titulos); font-size: 1.75rem; margin-bottom: 1rem; color: var(--blanco); }
 .contacto-location { color: var(--gris-claro); margin-bottom: 2rem; }
