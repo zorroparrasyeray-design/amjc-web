@@ -3,21 +3,26 @@ document.addEventListener('DOMContentLoaded', () => {
     const navList = document.querySelector('.nav-list');
     const navLinks = document.querySelectorAll('.nav-link');
     const header = document.querySelector('.header');
-    const sections = document.querySelectorAll('section[id]');
+    const nav = document.querySelector('.nav');
 
+    // Menú móvil
     navToggle?.addEventListener('click', () => {
         const expanded = navToggle.getAttribute('aria-expanded') === 'true';
         navToggle.setAttribute('aria-expanded', !expanded);
         navList.classList.toggle('open');
+        nav?.classList.toggle('open');
     });
 
+    // Cerrar menú al clickar enlace
     navLinks.forEach(link => {
         link.addEventListener('click', () => {
             navList.classList.remove('open');
+            nav?.classList.remove('open');
             navToggle.setAttribute('aria-expanded', 'false');
         });
     });
 
+    // Header scroll effect
     let lastScroll = 0;
     window.addEventListener('scroll', () => {
         const currentScroll = window.pageYOffset;
@@ -31,21 +36,25 @@ document.addEventListener('DOMContentLoaded', () => {
         lastScroll = currentScroll;
     }, { passive: true });
 
-    const observerOptions = { rootMargin: '-20% 0px -60% 0px', threshold: 0 };
-    const sectionObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const id = entry.target.getAttribute('id');
-                navLinks.forEach(link => {
-                    link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
-                });
-            }
-        });
-    }, observerOptions);
+    // Marcar enlace activo según página actual
+    const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+    navLinks.forEach(link => {
+        const href = link.getAttribute('href');
+        if (href === currentPage || (currentPage === '' && href === 'index.html')) {
+            link.classList.add('active');
+        } else {
+            link.classList.remove('active');
+        }
+    });
 
-    sections.forEach(section => sectionObserver.observe(section));
+    // Animaciones al aparecer
+    const animatedElements = document.querySelectorAll(
+        '.historia-card, .concierto-card, .actualidad-card, .uniformidad-content > *, ' +
+        '.acompanamiento-col, .repertorio-text, .contacto-info, .contacto-cta, ' +
+        '.card, .marcha-card, .estreno-card, .marcha-item, .historial-list li, ' +
+        '.gallery-item, .contacto-item, .red-social, .formulario, .cta-content'
+    );
 
-    const animatedElements = document.querySelectorAll('.historia-card, .concierto-card, .actualidad-card, .uniformidad-content > *, .acompanamiento-col, .repertorio-text, .contacto-info, .contacto-cta');
     const animateObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -59,10 +68,11 @@ document.addEventListener('DOMContentLoaded', () => {
     animatedElements.forEach((el, i) => {
         el.style.opacity = '0';
         el.style.transform = 'translateY(30px)';
-        el.style.transition = `opacity 0.6s ease ${i * 0.1}s, transform 0.6s ease ${i * 0.1}s`;
+        el.style.transition = `opacity 0.6s ease ${i * 0.08}s, transform 0.6s ease ${i * 0.08}s`;
         animateObserver.observe(el);
     });
 
+    // Hero escudo hover pause
     const heroEscudo = document.querySelector('.hero-escudo-img');
     if (heroEscudo) {
         heroEscudo.addEventListener('mouseenter', () => {
@@ -73,6 +83,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // Smooth scroll para anclas internas
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
             const targetId = this.getAttribute('href');
@@ -87,7 +98,14 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    const currentYear = new Date().getFullYear();
-    const yearElements = document.querySelectorAll('[data-year]');
-    yearElements.forEach(el => el.textContent = currentYear);
+    // Cerrar menú al clickar fuera
+    document.addEventListener('click', (e) => {
+        if (navList.classList.contains('open') && 
+            !nav.contains(e.target) && 
+            !navToggle.contains(e.target)) {
+            navList.classList.remove('open');
+            nav?.classList.remove('open');
+            navToggle.setAttribute('aria-expanded', 'false');
+        }
+    });
 });
