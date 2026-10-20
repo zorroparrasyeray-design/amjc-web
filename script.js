@@ -5,108 +5,136 @@ document.addEventListener('DOMContentLoaded', () => {
     const header = document.querySelector('.header');
     const nav = document.querySelector('.nav');
 
+    const closeMenu = () => {
+        if (!navToggle || !navList) return;
+        navList.classList.remove('open');
+        nav?.classList.remove('open');
+        navToggle.setAttribute('aria-expanded', 'false');
+        navToggle.setAttribute('aria-label', 'Abrir menú');
+    };
+
     // Menú móvil
     navToggle?.addEventListener('click', () => {
         const expanded = navToggle.getAttribute('aria-expanded') === 'true';
-        navToggle.setAttribute('aria-expanded', !expanded);
-        navList.classList.toggle('open');
-        nav?.classList.toggle('open');
+        navToggle.setAttribute('aria-expanded', String(!expanded));
+        navToggle.setAttribute('aria-label', expanded ? 'Abrir menú' : 'Cerrar menú');
+        navList.classList.toggle('open', !expanded);
+        nav?.classList.toggle('open', !expanded);
     });
 
-    // Cerrar menú al clickar enlace
+    // Cerrar menú al pulsar un enlace
     navLinks.forEach(link => {
-        link.addEventListener('click', () => {
-            navList.classList.remove('open');
-            nav?.classList.remove('open');
-            navToggle.setAttribute('aria-expanded', 'false');
-        });
+        link.addEventListener('click', closeMenu);
     });
 
-    // Header scroll effect
-    let lastScroll = 0;
-    window.addEventListener('scroll', () => {
-        const currentScroll = window.pageYOffset;
-        if (currentScroll > 100) {
-            header.style.background = 'rgba(10, 22, 40, 0.98)';
-            header.style.boxShadow = '0 4px 20px rgba(0,0,0,0.3)';
-        } else {
-            header.style.background = 'rgba(10, 22, 40, 0.95)';
-            header.style.boxShadow = 'none';
-        }
-        lastScroll = currentScroll;
-    }, { passive: true });
+    // Cerrar menú con Escape
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeMenu();
+    });
 
-    // Marcar enlace activo según página actual
+    // Cerrar menú al hacer clic fuera
+    document.addEventListener('click', (e) => {
+        if (!navList?.classList.contains('open')) return;
+        if (nav?.contains(e.target) || navToggle?.contains(e.target)) return;
+        closeMenu();
+    });
+
+    // Header con sombra al hacer scroll
+    if (header) {
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 100) {
+                header.style.background = 'rgba(10, 22, 40, 0.98)';
+                header.style.boxShadow = '0 4px 20px rgba(0,0,0,0.3)';
+            } else {
+                header.style.background = 'rgba(10, 22, 40, 0.95)';
+                header.style.boxShadow = 'none';
+            }
+        }, { passive: true });
+    }
+
+    // Marcar enlace activo según la página actual
     const currentPage = window.location.pathname.split('/').pop() || 'index.html';
     navLinks.forEach(link => {
         const href = link.getAttribute('href');
-        if (href === currentPage || (currentPage === '' && href === 'index.html')) {
-            link.classList.add('active');
+        const isActive = href === currentPage;
+        link.classList.toggle('active', isActive);
+        if (isActive) {
+            link.setAttribute('aria-current', 'page');
         } else {
-            link.classList.remove('active');
+            link.removeAttribute('aria-current');
         }
     });
 
-    // Animaciones al aparecer
-    const animatedElements = document.querySelectorAll(
-        '.timeline-item, .historia-card, .concierto-card, .actualidad-card, .uniformidad-content > *, ' +
-        '.acompanamiento-col, .repertorio-text, .contacto-info, .contacto-cta, ' +
-        '.card, .marcha-card, .estreno-card, .marcha-item, .historial-list li, ' +
-        '.gallery-item, .contacto-item, .red-social, .formulario, .cta-content'
-    );
+    // Animaciones al aparecer, respetando prefers-reduced-motion
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    const animateObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
-                entry.target.classList.add('visible');
-                animateObserver.unobserve(entry.target);
-            }
-        });
-    }, { rootMargin: '0px 0px -50px 0px' });
+    if (!reduceMotion && 'IntersectionObserver' in window) {
+        const animatedElements = document.querySelectorAll(
+            '.timeline-item, .historia-card, .concierto-card, .actualidad-card, .uniformidad-content > *, ' +
+            '.acompanamiento-col, .repertorio-text, .contacto-info, .contacto-cta, ' +
+            '.card, .marcha-card, .estreno-card, .marcha-item, .historial-list li, ' +
+            '.gallery-item, .contacto-item, .red-social, .formulario, .cta-content, .repertorio-quote'
+        );
 
-    animatedElements.forEach((el, i) => {
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(30px)';
-        el.style.transition = `opacity 0.6s ease ${i * 0.08}s, transform 0.6s ease ${i * 0.08}s`;
-        animateObserver.observe(el);
-    });
+        const animateObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                    entry.target.classList.add('visible');
+                    animateObserver.unobserve(entry.target);
+                }
+            });
+        }, { rootMargin: '0px 0px -50px 0px' });
 
-    // Hero escudo hover pause
-    const heroEscudo = document.querySelector('.hero-escudo-img');
-    if (heroEscudo) {
-        heroEscudo.addEventListener('mouseenter', () => {
-            heroEscudo.style.animationPlayState = 'paused';
-        });
-        heroEscudo.addEventListener('mouseleave', () => {
-            heroEscudo.style.animationPlayState = 'running';
+        animatedElements.forEach((el, i) => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = `opacity 0.6s ease ${i * 0.08}s, transform 0.6s ease ${i * 0.08}s`;
+            animateObserver.observe(el);
         });
     }
 
-    // Smooth scroll para anclas internas
+    // Scroll suave para anclas internas
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
+        anchor.addEventListener('click', function (e) {
             const targetId = this.getAttribute('href');
             if (targetId === '#') return;
             const target = document.querySelector(targetId);
-            if (target) {
-                e.preventDefault();
-                const headerHeight = header.offsetHeight;
-                const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - headerHeight;
-                window.scrollTo({ top: targetPosition, behavior: 'smooth' });
-            }
+            if (!target) return;
+            e.preventDefault();
+            const headerHeight = header ? header.offsetHeight : 0;
+            const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+            window.scrollTo({ top: targetPosition, behavior: reduceMotion ? 'auto' : 'smooth' });
         });
     });
 
-    // Cerrar menú al clickar fuera
-    document.addEventListener('click', (e) => {
-        if (navList.classList.contains('open') && 
-            !nav.contains(e.target) && 
-            !navToggle.contains(e.target)) {
-            navList.classList.remove('open');
-            nav?.classList.remove('open');
-            navToggle.setAttribute('aria-expanded', 'false');
-        }
-    });
+    // Formulario de contacto: prepara el email con los datos introducidos
+    const form = document.querySelector('.formulario');
+    if (form) {
+        form.addEventListener('submit', (event) => {
+            const data = new FormData(form);
+            const get = (key) => (data.get(key) || '').toString().trim();
+            const tipoSelect = form.querySelector('#tipo');
+            const tipo = tipoSelect?.selectedOptions[0]?.textContent.trim() || get('tipo');
+            const subject = `Contacto web · ${tipo || 'Consulta'}`;
+            const body = [
+                `Nombre: ${get('nombre')}`,
+                `Email: ${get('email')}`,
+                `Teléfono: ${get('telefono') || 'No indicado'}`,
+                `Tipo de consulta: ${tipo}`,
+                '',
+                'Mensaje:',
+                get('mensaje')
+            ].join('\n');
+
+            event.preventDefault();
+            window.location.href = `mailto:amusicaljesuscaido@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+            const nota = form.querySelector('.form-nota');
+            if (nota) {
+                nota.textContent = 'Gracias. Se ha abierto tu cliente de correo con el mensaje preparado. Si no ocurre, escríbenos a amusicaljesuscaido@gmail.com.';
+            }
+        });
+    }
 });
