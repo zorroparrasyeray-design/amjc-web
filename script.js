@@ -85,7 +85,7 @@ document.addEventListener('DOMContentLoaded', () => {
             '.timeline-item, .historia-card, .concierto-card, .actualidad-card, .uniformidad-content > *, ' +
             '.acompanamiento-col, .repertorio-text, .contacto-info, .contacto-cta, ' +
             '.card, .marcha-card, .estreno-card, .marcha-item, .historial-list li, ' +
-            '.gallery-item, .contacto-item, .red-social, .formulario, .cta-content'
+            '.gallery-item, .historia-foto, .contacto-item, .red-social, .formulario, .cta-content'
         );
 
         const animateObserver = new IntersectionObserver((entries) => {
