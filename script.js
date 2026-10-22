@@ -121,6 +121,77 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    // Vídeo de fondo de la sección CTA: cubre la sección y empieza silenciado
+    const ctaSection = document.querySelector('.section-cta');
+    const ctaVideoBg = ctaSection?.querySelector('.cta-video-bg');
+    if (ctaSection && ctaVideoBg) {
+        const iframe = ctaVideoBg.querySelector('iframe');
+        const soundToggle = ctaSection.querySelector('.cta-video-sound');
+        const soundLabel = soundToggle?.querySelector('.cta-video-sound-label');
+        let player = null;
+        let soundOn = false;
+
+        const resizeCtaVideo = () => {
+            if (!iframe) return;
+            const width = ctaSection.clientWidth;
+            const height = ctaSection.clientHeight;
+            const videoWidth = Math.max(width, height * (16 / 9));
+            const videoHeight = videoWidth / (16 / 9);
+            iframe.style.width = `${videoWidth}px`;
+            iframe.style.height = `${videoHeight}px`;
+        };
+
+        resizeCtaVideo();
+        window.addEventListener('resize', resizeCtaVideo, { passive: true });
+        window.addEventListener('load', resizeCtaVideo);
+        if ('ResizeObserver' in window) {
+            new ResizeObserver(resizeCtaVideo).observe(ctaSection);
+        }
+
+        const initCtaPlayer = () => {
+            if (!iframe || !window.YT?.Player) return;
+
+            player = new YT.Player(iframe, {
+                events: {
+                    onReady: (event) => {
+                        event.target.mute();
+                        if (reduceMotion) {
+                            event.target.pauseVideo();
+                        } else {
+                            event.target.playVideo();
+                        }
+                        soundToggle?.removeAttribute('disabled');
+                    }
+                }
+            });
+        };
+
+        if (window.YT?.Player) {
+            initCtaPlayer();
+        } else {
+            window.onYouTubeIframeAPIReady = initCtaPlayer;
+            const apiScript = document.createElement('script');
+            apiScript.src = 'https://www.youtube.com/iframe_api';
+            document.head.appendChild(apiScript);
+        }
+
+        soundToggle?.addEventListener('click', () => {
+            if (!player) return;
+
+            if (soundOn) {
+                player.mute();
+            } else {
+                player.unMute();
+                player.setVolume(100);
+                player.playVideo();
+            }
+
+            soundOn = !soundOn;
+            soundToggle.setAttribute('aria-pressed', String(soundOn));
+            if (soundLabel) soundLabel.textContent = soundOn ? 'Silenciar' : 'Activar sonido';
+        });
+    }
+
     // Formulario de contacto: prepara el email con los datos introducidos
     const form = document.querySelector('.formulario');
     if (form) {
