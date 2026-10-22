@@ -192,6 +192,14 @@ button { background: none; border: none; cursor: pointer; font-family: inherit; 
 .bandas-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 0.5rem; }
 .bandas-list li { background: var(--azul-medio); padding: 0.85rem 1rem; border-radius: 8px; border-left: 3px solid var(--rojo); font-size: 0.95rem; color: var(--blanco-suave); transition: var(--transition); }
 .bandas-list li:hover { background: var(--azul-claro); transform: translateX(4px); }
+.bandas-list--logos { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 0.75rem; }
+.bandas-list--logos .banda-item { display: flex; align-items: center; gap: 0.9rem; padding: 0.75rem 0.9rem; }
+.banda-logo { width: 84px; height: 84px; flex: 0 0 84px; object-fit: contain; filter: drop-shadow(0 6px 12px rgba(0,0,0,0.35)); transition: transform 0.35s ease; }
+.banda-logo-frame { width: 84px; height: 84px; flex: 0 0 84px; display: flex; align-items: center; justify-content: center; overflow: hidden; border-radius: 50%; background: #efe6d2; border: 2px solid rgba(201,168,76,0.55); box-shadow: 0 6px 12px rgba(0,0,0,0.35); }
+.banda-logo-frame .banda-logo { width: 100%; height: 100%; filter: none; mix-blend-mode: multiply; }
+.banda-item:hover .banda-logo { transform: scale(1.04); }
+.banda-name { font-size: 0.92rem; line-height: 1.35; }
+.banda-place { display: block; margin-top: 0.2rem; font-size: 0.72rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gris-claro); }
 
 .uniformidad-content { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; }
 .uniformidad-text p { margin-bottom: 1rem; color: var(--blanco-suave); line-height: 1.8; }
@@ -291,6 +299,10 @@ button { background: none; border: none; cursor: pointer; font-family: inherit; 
     .hero-title-main { font-size: 3rem; }
     .historia-year { font-size: 2rem; }
     .concierto-year { font-size: 1.5rem; min-width: 60px; }
+    .bandas-list--logos .banda-item { gap: 0.75rem; padding: 0.7rem 0.8rem; }
+    .banda-logo,
+    .banda-logo-frame { width: 72px; height: 72px; flex-basis: 72px; }
+    .banda-name { font-size: 0.85rem; }
 }
 
 /* === NUEVOS ESTILOS MULTI-PÁGINA === */
