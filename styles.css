@@ -26,6 +26,8 @@
 
 html {
     scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -156,12 +158,12 @@ button { background: none; border: none; cursor: pointer; font-family: inherit; 
 
 /* === TIMELINE === */
 .timeline { position: relative; max-width: 800px; margin: 0 auto; }
-.timeline::before { content: ''; position: absolute; left: 80px; top: 0; bottom: 0; width: 2px; background: linear-gradient(180deg, transparent, var(--rojo), transparent); }
+.timeline::before { content: ''; position: absolute; left: 116px; top: 0; bottom: 0; width: 2px; background: linear-gradient(180deg, transparent, var(--rojo), transparent); }
 .timeline-item { display: flex; gap: 2rem; padding: 2rem 0; position: relative; opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease, transform 0.6s ease; }
 .timeline-item.visible { opacity: 1; transform: translateY(0); }
-.timeline-marker { flex: 0 0 80px; display: flex; flex-direction: column; align-items: flex-end; position: relative; z-index: 1; }
-.timeline-year { font-family: var(--fuente-titulos); font-size: 1.5rem; font-weight: 500; color: var(--rojo); white-space: nowrap; margin-bottom: 0.5rem; }
-.timeline-dot { width: 16px; height: 16px; border-radius: 50%; background: var(--azul-oscuro); border: 3px solid var(--rojo); box-shadow: 0 0 0 4px var(--azul-oscuro); transition: var(--transition); }
+.timeline-marker { flex: 0 0 116px; min-width: 0; display: flex; flex-direction: column; align-items: flex-end; position: relative; z-index: 1; }
+.timeline-year { font-family: var(--fuente-titulos); font-size: 1.5rem; font-weight: 500; color: var(--rojo); white-space: nowrap; margin-bottom: 0.5rem; margin-right: 8px; }
+.timeline-dot { width: 16px; height: 16px; margin-right: -8px; border-radius: 50%; background: var(--azul-oscuro); border: 3px solid var(--rojo); box-shadow: 0 0 0 4px var(--azul-oscuro); transition: var(--transition); }
 .timeline-item:hover .timeline-dot { background: var(--rojo); box-shadow: 0 0 0 4px var(--azul-oscuro), 0 0 15px rgba(204,0,0,0.5); transform: scale(1.2); }
 .timeline-content { flex: 1; background: linear-gradient(145deg, var(--azul-medio), var(--azul-oscuro)); border: 1px solid rgba(255,255,255,0.05); border-radius: 8px; padding: 1.75rem 2rem; position: relative; overflow: hidden; transition: var(--transition); }
 .timeline-content::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, transparent, var(--rojo), transparent); transform: scaleX(0); transform-origin: left; transition: var(--transition); }
@@ -335,6 +337,53 @@ button { background: none; border: none; cursor: pointer; font-family: inherit; 
 .card-link { font-weight: 500; color: var(--rojo-texto); transition: var(--transition); font-size: 1rem; }
 .card-link:hover { color: var(--blanco); }
 
+/* Agenda 2027 */
+.agenda-grid { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); gap: 2rem; align-items: start; }
+.agenda-calendar { position: relative; overflow: hidden; background: linear-gradient(145deg, var(--azul-medio), var(--azul-oscuro)); border: 1px solid rgba(255,255,255,0.06); border-radius: 14px; padding: 1.5rem; box-shadow: 0 20px 50px rgba(0,0,0,0.18); }
+.agenda-calendar::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, transparent, var(--dorado), transparent); background-size: 200% 100%; animation: agendaShimmer 7s linear infinite; }
+.agenda-calendar-head { display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; flex-wrap: wrap; margin-bottom: 1.1rem; }
+.agenda-month { font-family: var(--fuente-titulos); font-size: 1.35rem; font-weight: 500; color: var(--blanco); }
+.agenda-countdown { font-family: var(--fuente-ui); font-size: 0.72rem; font-weight: 500; letter-spacing: 0.04em; color: var(--dorado); background: rgba(201,168,76,0.08); border: 1px solid rgba(201,168,76,0.28); border-radius: 100px; padding: 0.3rem 0.65rem; white-space: nowrap; }
+.calendar-weekdays { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; margin-bottom: 0.45rem; font-family: var(--fuente-ui); font-size: 0.68rem; font-weight: 500; letter-spacing: 0.08em; color: var(--gris-claro); text-align: center; }
+.calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; }
+.calendar-day { position: relative; aspect-ratio: 1; display: flex; align-items: center; justify-content: center; border: 1px solid transparent; border-radius: 7px; font-family: var(--fuente-ui); font-size: 0.8rem; color: var(--gris-claro); transition: var(--transition); }
+.calendar-day.is-event { color: var(--blanco); font-weight: 600; background: rgba(204,0,0,0.14); border-color: rgba(204,0,0,0.35); }
+.calendar-day.is-event:hover { background: rgba(204,0,0,0.28); border-color: rgba(204,0,0,0.6); transform: translateY(-2px); }
+.calendar-day.is-double { background: rgba(201,168,76,0.1); border-color: rgba(201,168,76,0.42); }
+.calendar-day.is-double:hover { background: rgba(201,168,76,0.2); border-color: rgba(201,168,76,0.7); }
+.calendar-day-dot { position: absolute; bottom: 5px; width: 4px; height: 4px; border-radius: 50%; background: var(--rojo-brillante); }
+.calendar-day.is-double .calendar-day-dot { background: var(--dorado); }
+.calendar-day.is-empty { visibility: hidden; }
+.agenda-legend { display: flex; align-items: center; gap: 0.45rem; margin-top: 1rem; font-family: var(--fuente-ui); font-size: 0.72rem; color: var(--gris-claro); }
+.legend-dot { width: 7px; height: 7px; flex: 0 0 7px; border-radius: 50%; background: var(--rojo-brillante); }
+.agenda-events { display: flex; flex-direction: column; gap: 0.75rem; }
+.agenda-event { display: flex; align-items: center; gap: 1rem; padding: 0.85rem 1rem; background: var(--azul-medio); border: 1px solid rgba(255,255,255,0.05); border-left: 3px solid var(--rojo); border-radius: 10px; transition: var(--transition); }
+.agenda-event:hover { border-color: rgba(255,255,255,0.12); border-left-color: var(--rojo-brillante); transform: translateX(3px); }
+.agenda-event.is-next { border-left-color: var(--dorado); background: linear-gradient(90deg, rgba(201,168,76,0.08), var(--azul-medio)); box-shadow: 0 0 0 1px rgba(201,168,76,0.14); animation: agendaGlow 3.6s ease-in-out infinite; }
+.agenda-date { flex: 0 0 58px; padding: 0.35rem 0.25rem; text-align: center; background: rgba(204,0,0,0.12); border: 1px solid rgba(204,0,0,0.25); border-radius: 8px; }
+.agenda-date time { display: block; }
+.agenda-date span { display: block; font-family: var(--fuente-titulos); font-size: 1.5rem; line-height: 1; color: var(--blanco); }
+.agenda-date small { display: block; margin-top: 0.15rem; font-family: var(--fuente-ui); font-size: 0.62rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gris-claro); }
+.agenda-event.is-next .agenda-date { background: rgba(201,168,76,0.16); border-color: rgba(201,168,76,0.4); }
+.agenda-event.is-next .agenda-date span { color: var(--dorado); }
+.agenda-info { min-width: 0; }
+.agenda-day { display: block; margin-bottom: 0.15rem; font-family: var(--fuente-ui); font-size: 0.68rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--rojo-texto); }
+.agenda-info h3 { font-family: var(--fuente-titulos); font-size: 1.05rem; font-weight: 500; line-height: 1.3; color: var(--blanco); margin-bottom: 0.15rem; }
+.agenda-info p { font-family: var(--fuente-ui); font-size: 0.8rem; line-height: 1.4; color: var(--gris-claro); }
+.agenda-logos { display: flex; gap: 0.35rem; margin-top: 0.4rem; }
+.agenda-logo { width: 34px; height: 34px; object-fit: contain; filter: drop-shadow(0 4px 8px rgba(0,0,0,0.35)); }
+.agenda-cta { text-align: center; margin-top: 2rem; }
+
+@keyframes agendaShimmer {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+}
+
+@keyframes agendaGlow {
+    0%, 100% { box-shadow: 0 0 0 1px rgba(201,168,76,0.14); }
+    50% { box-shadow: 0 0 0 1px rgba(201,168,76,0.36), 0 0 22px rgba(201,168,76,0.12); }
+}
+
 /* CTA section */
 .section-cta { position: relative; overflow: hidden; background: var(--azul-oscuro); }
 .cta-video-bg { position: absolute; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; }
@@ -449,4 +498,174 @@ button { background: none; border: none; cursor: pointer; font-family: inherit; 
 @media (max-width: 480px) {
     .historia-galeria,
     .historia-galeria--misericordia { grid-template-columns: 1fr; }
+}
+
+/* === OPTIMIZACIÓN MÓVIL === */
+@media (max-width: 768px) {
+    :root { --header-height: 64px; }
+    body { font-size: 1rem; line-height: 1.65; }
+    .container { padding: 0 1rem; }
+
+    .logo { gap: 0.55rem; }
+    .logo-img { width: 40px; height: 40px; }
+    .logo-title { font-size: 1rem; }
+    .logo-subtitle { font-size: 0.62rem; }
+    .nav { width: min(280px, 86vw); padding: calc(var(--header-height) + 1.5rem) 1.5rem 1.5rem; }
+    .nav-link { padding: 0.85rem 0.75rem; font-size: 0.95rem; }
+    .nav-toggle { width: 40px; height: 40px; }
+
+    .hero { min-height: auto; padding: calc(var(--header-height) + 1.25rem) 0 2rem; }
+    .hero .container { gap: 1.5rem; }
+    .hero-escudo-img { width: 220px; height: 220px; }
+    .hero-title { margin-bottom: 0.75rem; }
+    .hero-title-line { font-size: 1.9rem; }
+    .hero-title-main { font-size: 2.6rem; }
+    .hero-subtitle { font-size: 1rem; margin-bottom: 1.25rem; }
+    .hero-badges { gap: 0.5rem; margin-bottom: 1.25rem; }
+    .hero-buttons { gap: 0.75rem; }
+    .btn { padding: 0.75rem 1.25rem; font-size: 0.85rem; }
+
+    .section { padding: 2.5rem 0; }
+    .section-header { margin-bottom: 1.75rem; }
+    .section-tag { font-size: 0.72rem; letter-spacing: 0.12em; margin-bottom: 0.45rem; }
+    .section-title { font-size: 1.8rem; line-height: 1.15; margin-bottom: 0.6rem; }
+    .section-divider span { max-width: 60px; }
+    .page-hero { padding: calc(var(--header-height) + 1.5rem) 0 1.5rem; }
+    .page-title { font-size: 1.9rem; line-height: 1.12; margin-bottom: 0.4rem; }
+    .page-subtitle { font-size: 0.98rem; line-height: 1.5; }
+
+    .cards-grid, .actualidad-grid, .conciertos-grid, .gallery-grid, .historia-galeria,
+    .marchas-grid, .marchas-list-grid, .estrenos-grid, .historial-list, .redes-grid { gap: 1rem; }
+    .card, .actualidad-card, .estreno-card, .repertorio-nota-box, .contacto-cta, .formulario { padding: 1.25rem; }
+    .card h3, .actualidad-card h3 { font-size: 1.2rem; }
+    .card p, .actualidad-card p, .estreno-card p { font-size: 0.98rem; line-height: 1.65; }
+    .card p { margin-bottom: 1rem; }
+    .card-link { font-size: 0.92rem; }
+
+    .concierto-card { padding: 1rem; gap: 0.75rem; }
+    .concierto-year { font-size: 1.4rem; min-width: 54px; }
+    .concierto-info h3 { font-size: 1rem; }
+    .concierto-info p { font-size: 0.9rem; }
+
+    .timeline::before { left: 76px; }
+    .timeline-item { gap: 1rem; padding: 1.25rem 0; }
+    .timeline-marker { flex: 0 0 76px; }
+    .timeline-year { font-size: 0.95rem; margin-bottom: 0.35rem; margin-right: 6px; }
+    .timeline-dot { width: 12px; height: 12px; margin-right: -6px; border-width: 2px; }
+    .timeline-content { padding: 1.15rem 1.25rem; }
+    .timeline-content h3 { font-size: 1.15rem; margin-bottom: 0.5rem; }
+    .timeline-content p { font-size: 0.98rem; line-height: 1.65; }
+
+    .nombre-content { gap: 1.5rem; }
+    .nombre-escudo-img { width: 220px; max-width: 100%; margin: 0 auto; }
+    .uniformidad-content { gap: 1.5rem; }
+    .uniformidad-text p { font-size: 0.98rem; line-height: 1.65; }
+    .guion-subtitle { font-size: 1.25rem; margin: 1.5rem 0 0.75rem; }
+    .detail-item { padding: 1rem; }
+    .detail-item div { font-size: 0.88rem; }
+    .gallery-img { height: 240px; }
+    .historia-relato p, .repertorio-text p, .historial-content p, .contacto-item p { font-size: 0.98rem; line-height: 1.65; }
+    .historia-foto figcaption { padding: 0.8rem; font-size: 0.85rem; }
+    .historial-list li { padding: 1rem; font-size: 0.95rem; line-height: 1.6; }
+
+    .marcha-card { padding: 1.1rem; }
+    .marcha-card h3 { font-size: 1.05rem; }
+    .marcha-type { font-size: 0.88rem; }
+    .marcha-item { padding: 1.1rem; }
+    .marcha-item h3 { font-size: 1rem; }
+    .marcha-item p { font-size: 0.85rem; }
+    .repertorio-nota { margin-top: 1.5rem; font-size: 0.9rem; }
+    .repertorio-categorias li { font-size: 0.95rem; }
+
+    .contacto-grid { gap: 1.5rem; }
+    .contacto-item { margin-bottom: 1.5rem; }
+    .contacto-item h3 { font-size: 1.1rem; }
+    .contacto-redes h3 { font-size: 1.25rem; }
+    .red-social { padding: 1rem; }
+    .contacto-cta h3 { font-size: 1.25rem; }
+    .contacto-cta p { font-size: 0.95rem; }
+    .formulario { padding: 1.25rem; }
+    .form-group { margin-bottom: 1.1rem; }
+    .form-group label { font-size: 0.95rem; }
+    .form-group input, .form-group select, .form-group textarea { padding: 0.75rem 0.85rem; font-size: 0.95rem; }
+
+    .footer { padding: 2.5rem 0 1.5rem; margin-top: 1rem; }
+    .footer-grid { gap: 1.5rem; margin-bottom: 2rem; }
+    .footer-escudo { width: 64px; height: 64px; }
+    .footer-tagline { font-size: 0.88rem; }
+    .footer-nav a, .footer-legal a { font-size: 0.9rem; }
+    .footer-bottom { padding-top: 1.5rem; }
+    .footer-bottom p { font-size: 0.82rem; }
+
+    .cta-content { padding: 2.5rem 1rem; }
+    .cta-content p { font-size: 0.98rem; line-height: 1.65; margin-bottom: 1.5rem; }
+    .cta-video-sound { font-size: 0.82rem; padding: 0.5rem 0.9rem; }
+
+    .agenda-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+    .agenda-calendar { width: 100%; max-width: 430px; margin: 0 auto; padding: 1.15rem; }
+    .agenda-event { padding: 0.75rem 0.85rem; }
+    .agenda-info h3 { font-size: 1rem; }
+    .agenda-cta { margin-top: 1.5rem; }
+}
+
+@media (max-width: 480px) {
+    .hero-escudo-img { width: 190px; height: 190px; }
+    .hero-title-line { font-size: 1.75rem; }
+    .hero-title-main { font-size: 2.4rem; }
+    .hero-subtitle { font-size: 0.95rem; }
+    .btn { padding: 0.7rem 1.1rem; font-size: 0.82rem; }
+
+    .section { padding: 2rem 0; }
+    .section-header { margin-bottom: 1.5rem; }
+    .section-title { font-size: 1.65rem; }
+    .page-hero { padding: calc(var(--header-height) + 1.25rem) 0 1.25rem; }
+    .page-title { font-size: 1.75rem; }
+    .page-subtitle { font-size: 0.92rem; }
+
+    .card, .actualidad-card, .estreno-card, .repertorio-nota-box, .contacto-cta, .formulario { padding: 1.1rem; }
+    .card p, .actualidad-card p, .estreno-card p { font-size: 0.94rem; }
+    .concierto-card { padding: 0.9rem; gap: 0.65rem; }
+    .concierto-year { font-size: 1.25rem; min-width: 48px; }
+
+    .timeline::before { left: 72px; }
+    .timeline-item { gap: 0.85rem; padding: 1rem 0; }
+    .timeline-marker { flex: 0 0 72px; }
+    .timeline-year { font-size: 0.9rem; margin-right: 5px; }
+    .timeline-content { padding: 1rem; }
+    .timeline-content h3 { font-size: 1.05rem; }
+    .timeline-content p { font-size: 0.94rem; }
+
+    .gallery-img { height: 210px; }
+    .historia-foto figcaption { font-size: 0.82rem; }
+    .contacto-cta { padding: 1.1rem; }
+    .formulario { padding: 1.1rem; }
+    .footer { padding: 2rem 0 1.25rem; }
+
+    .cta-content { padding: 2rem 1rem; }
+    .cta-content p { font-size: 0.94rem; }
+    .cta-video-sound { font-size: 0.78rem; padding: 0.45rem 0.8rem; }
+
+    .agenda-calendar { padding: 1rem; }
+    .agenda-month { font-size: 1.15rem; }
+    .agenda-countdown { font-size: 0.65rem; padding: 0.25rem 0.55rem; }
+    .calendar-weekdays { font-size: 0.62rem; }
+    .calendar-day { font-size: 0.75rem; }
+    .calendar-day-dot { bottom: 4px; }
+    .agenda-event { gap: 0.65rem; padding: 0.7rem 0.75rem; }
+    .agenda-date { flex-basis: 48px; }
+    .agenda-date span { font-size: 1.25rem; }
+    .agenda-date small { font-size: 0.58rem; }
+    .agenda-day { font-size: 0.62rem; }
+    .agenda-info h3 { font-size: 0.95rem; }
+    .agenda-info p { font-size: 0.75rem; }
+    .agenda-logo { width: 28px; height: 28px; }
+    .agenda-legend { font-size: 0.68rem; }
+
+    .acompanamiento-col { padding: 1rem; }
+    .acompanamiento-list--logos li { gap: 0.65rem; padding: 0.6rem 0.7rem; }
+    .acompanamiento-logo { width: 60px; height: 60px; flex-basis: 60px; }
+    .acompanamiento-text { font-size: 0.9rem; }
+    .bandas-list--logos .banda-item { gap: 0.7rem; padding: 0.65rem 0.75rem; }
+    .banda-logo,
+    .banda-logo-frame { width: 64px; height: 64px; flex-basis: 64px; }
 }

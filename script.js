@@ -85,7 +85,7 @@ document.addEventListener('DOMContentLoaded', () => {
             '.timeline-item, .historia-card, .concierto-card, .actualidad-card, .uniformidad-content > *, ' +
             '.acompanamiento-col, .repertorio-text, .contacto-info, .contacto-cta, ' +
             '.card, .marcha-card, .estreno-card, .marcha-item, .historial-list li, ' +
-            '.gallery-item, .historia-foto, .contacto-item, .red-social, .formulario, .cta-content'
+            '.gallery-item, .historia-foto, .contacto-item, .red-social, .formulario, .agenda-calendar, .agenda-event, .cta-content'
         );
 
         const animateObserver = new IntersectionObserver((entries) => {
@@ -105,6 +105,32 @@ document.addEventListener('DOMContentLoaded', () => {
             el.style.transition = `opacity 0.6s ease ${i * 0.08}s, transform 0.6s ease ${i * 0.08}s`;
             animateObserver.observe(el);
         });
+    }
+
+    // Agenda 2027: cuenta atrás y próximo acompañamiento
+    const countdown = document.querySelector('[data-countdown]');
+    if (countdown) {
+        const target = new Date(`${countdown.dataset.countdown}T00:00:00+01:00`);
+        const days = Math.ceil((target.getTime() - Date.now()) / 86400000);
+        if (days > 1) {
+            countdown.textContent = `Faltan ${days} días`;
+        } else if (days === 1) {
+            countdown.textContent = 'Falta 1 día';
+        } else if (days === 0) {
+            countdown.textContent = 'Hoy comienza';
+        } else {
+            countdown.textContent = 'Semana Santa 2027';
+        }
+    }
+
+    const agendaEvents = [...document.querySelectorAll('.agenda-event[data-date]')];
+    if (agendaEvents.length) {
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+        const nextEvent = agendaEvents.find((event) => {
+            return new Date(`${event.dataset.date}T00:00:00+01:00`) >= today;
+        });
+        nextEvent?.classList.add('is-next');
     }
 
     // Scroll suave para anclas internas
