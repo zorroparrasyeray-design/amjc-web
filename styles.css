@@ -221,6 +221,30 @@ button { background: none; border: none; cursor: pointer; font-family: inherit; 
 .actualidad-card h3 { font-family: var(--fuente-titulos); font-size: 1.35rem; margin-bottom: 0.75rem; color: var(--blanco); font-weight: 500; }
 .actualidad-card p { color: var(--blanco-suave); font-size: 1.05rem; line-height: 1.8; }
 
+/* Últimas noticias */
+.section-noticias .section-header { margin-bottom: 2.5rem; }
+.noticias-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+.noticia-card { display: flex; flex-direction: column; gap: 0.75rem; background: linear-gradient(145deg, var(--azul-medio), var(--azul-oscuro)); border: 1px solid rgba(255,255,255,0.05); border-radius: 10px; padding: 1.75rem; position: relative; overflow: hidden; transition: var(--transition); }
+.noticia-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, transparent, var(--rojo), transparent); transform: scaleX(0); transform-origin: center; transition: var(--transition); }
+.noticia-card:hover { transform: translateY(-4px); border-color: rgba(255,255,255,0.1); box-shadow: 0 20px 40px rgba(0,0,0,0.28); }
+.noticia-card:hover::before { transform: scaleX(1); }
+.noticia-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 0.35rem 0.6rem; font-family: var(--fuente-ui); font-size: 0.72rem; }
+.noticia-tag { color: var(--rojo-brillante); font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em; }
+.noticia-meta time { color: var(--gris-claro); }
+.noticia-meta time::before { content: '·'; margin-right: 0.45rem; }
+.noticia-card h3 { font-family: var(--fuente-titulos); font-size: 1.4rem; font-weight: 500; line-height: 1.25; color: var(--blanco); }
+.noticia-card p { color: var(--blanco-suave); font-size: 1rem; line-height: 1.7; }
+.noticia-link { display: inline-flex; align-items: center; gap: 0.4rem; margin-top: auto; padding-top: 0.5rem; font-family: var(--fuente-ui); font-size: 0.8rem; font-weight: 600; color: var(--rojo-texto); }
+.noticia-link:hover { color: var(--blanco); }
+.noticia-link span { transition: var(--transition); }
+.noticia-link:hover span { transform: translateX(4px); }
+
+.proximos-eventos { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1.25rem 2rem; margin-top: 2rem; padding: 1.5rem 1.75rem; background: linear-gradient(120deg, rgba(204,0,0,0.12), rgba(17,34,64,0.92)); border: 1px solid rgba(204,0,0,0.28); border-radius: 12px; }
+.proximos-eventos .section-tag { margin-bottom: 0.35rem; font-size: 0.72rem; }
+.proximos-eventos h3 { font-family: var(--fuente-titulos); font-size: 1.5rem; font-weight: 500; color: var(--blanco); margin-bottom: 0.35rem; }
+.proximos-eventos p { max-width: 62ch; color: var(--blanco-suave); font-size: 0.98rem; line-height: 1.6; }
+.proximos-eventos .btn { flex-shrink: 0; }
+
 .acompanamientos-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2rem; align-items: start; }
 .acompanamiento-col { background: var(--azul-medio); border: 1px solid rgba(255,255,255,0.05); border-radius: 12px; padding: 2rem; }
 .acompanamiento-subtitle { font-family: var(--fuente-titulos); font-size: 1.25rem; color: var(--rojo); margin-bottom: 1.5rem; padding-bottom: 0.75rem; border-bottom: 1px solid rgba(204,0,0,0.2); }
@@ -338,6 +362,7 @@ button { background: none; border: none; cursor: pointer; font-family: inherit; 
 .card-link:hover { color: var(--blanco); }
 
 /* Agenda 2027 */
+.section-agenda { scroll-margin-top: calc(var(--header-height) + 1rem); }
 .agenda-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 2rem; align-items: start; }
 .agenda-calendar { position: relative; overflow: hidden; background: linear-gradient(145deg, var(--azul-medio), var(--azul-oscuro)); border: 1px solid rgba(255,255,255,0.06); border-radius: 14px; padding: 1.75rem; box-shadow: 0 20px 50px rgba(0,0,0,0.18); }
 .agenda-calendar::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, transparent, var(--dorado), transparent); background-size: 200% 100%; animation: agendaShimmer 7s linear infinite; }
@@ -349,13 +374,10 @@ button { background: none; border: none; cursor: pointer; font-family: inherit; 
 .calendar-day { position: relative; aspect-ratio: 1; display: flex; align-items: center; justify-content: center; border: 1px solid transparent; border-radius: 7px; font-family: var(--fuente-ui); font-size: 0.9rem; color: var(--gris-claro); transition: var(--transition); }
 .calendar-day.is-event { color: var(--blanco); font-weight: 600; background: rgba(204,0,0,0.14); border-color: rgba(204,0,0,0.35); }
 .calendar-day.is-event:hover { background: rgba(204,0,0,0.28); border-color: rgba(204,0,0,0.6); transform: translateY(-2px); }
-.calendar-day.is-double { background: rgba(201,168,76,0.1); border-color: rgba(201,168,76,0.42); }
-.calendar-day.is-double:hover { background: rgba(201,168,76,0.2); border-color: rgba(201,168,76,0.7); }
 .calendar-day-dot { position: absolute; bottom: 5px; width: 4px; height: 4px; border-radius: 50%; background: var(--rojo-brillante); }
-.calendar-day.is-double .calendar-day-dot { background: var(--dorado); }
 .calendar-day.is-empty { visibility: hidden; }
 .agenda-legend { display: flex; align-items: center; gap: 0.45rem; margin-top: 1rem; font-family: var(--fuente-ui); font-size: 0.72rem; color: var(--gris-claro); }
-.legend-dot { width: 7px; height: 7px; flex: 0 0 7px; border-radius: 50%; background: var(--rojo-brillante); }
+.legend-dot { width: 8px; height: 8px; flex: 0 0 8px; border-radius: 50%; background: var(--rojo-brillante); }
 .agenda-events { display: flex; flex-direction: column; gap: 0.75rem; }
 .agenda-event { display: flex; align-items: center; gap: 1rem; padding: 0.85rem 1rem; background: var(--azul-medio); border: 1px solid rgba(255,255,255,0.05); border-left: 3px solid var(--rojo); border-radius: 10px; transition: var(--transition); }
 .agenda-event:hover { border-color: rgba(255,255,255,0.12); border-left-color: var(--rojo-brillante); transform: translateX(3px); }
@@ -386,6 +408,10 @@ button { background: none; border: none; cursor: pointer; font-family: inherit; 
 
 @media (min-width: 769px) and (max-width: 900px) {
     .agenda-countdown { font-size: 0.65rem; padding: 0.25rem 0.55rem; }
+}
+
+@media (max-width: 900px) {
+    .noticias-grid { grid-template-columns: minmax(0, 1fr); max-width: 640px; margin: 0 auto; }
 }
 
 /* CTA section */
@@ -542,11 +568,12 @@ button { background: none; border: none; cursor: pointer; font-family: inherit; 
     .page-title { font-size: 1.9rem; line-height: 1.12; margin-bottom: 0.4rem; }
     .page-subtitle { font-size: 0.98rem; line-height: 1.5; }
 
-    .cards-grid, .actualidad-grid, .conciertos-grid, .gallery-grid, .historia-galeria,
+    .cards-grid, .actualidad-grid, .noticias-grid, .conciertos-grid, .gallery-grid, .historia-galeria,
     .marchas-grid, .marchas-list-grid, .estrenos-grid, .historial-list, .redes-grid { gap: 1rem; }
-    .card, .actualidad-card, .estreno-card, .repertorio-nota-box, .contacto-cta, .formulario { padding: 1.25rem; }
-    .card h3, .actualidad-card h3 { font-size: 1.2rem; }
-    .card p, .actualidad-card p, .estreno-card p { font-size: 0.98rem; line-height: 1.65; }
+    .card, .actualidad-card, .noticia-card, .estreno-card, .repertorio-nota-box, .contacto-cta, .formulario { padding: 1.25rem; }
+    .card h3, .actualidad-card h3, .noticia-card h3 { font-size: 1.2rem; }
+    .card p, .actualidad-card p, .noticia-card p, .estreno-card p { font-size: 0.98rem; line-height: 1.65; }
+    .proximos-eventos { flex-direction: column; align-items: flex-start; padding: 1.25rem; }
     .card p { margin-bottom: 1rem; }
     .card-link { font-size: 0.92rem; }
 
@@ -630,8 +657,8 @@ button { background: none; border: none; cursor: pointer; font-family: inherit; 
     .page-title { font-size: 1.75rem; }
     .page-subtitle { font-size: 0.92rem; }
 
-    .card, .actualidad-card, .estreno-card, .repertorio-nota-box, .contacto-cta, .formulario { padding: 1.1rem; }
-    .card p, .actualidad-card p, .estreno-card p { font-size: 0.94rem; }
+    .card, .actualidad-card, .noticia-card, .estreno-card, .repertorio-nota-box, .contacto-cta, .formulario { padding: 1.1rem; }
+    .card p, .actualidad-card p, .noticia-card p, .estreno-card p { font-size: 0.94rem; }
     .concierto-card { padding: 0.9rem; gap: 0.65rem; }
     .concierto-year { font-size: 1.25rem; min-width: 48px; }
 

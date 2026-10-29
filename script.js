@@ -147,6 +147,16 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    // Mantener el ancla en su sitio cuando terminan de cargar las fuentes
+    if (location.hash.length > 1) {
+        let anchorId = location.hash.slice(1);
+        try { anchorId = decodeURIComponent(anchorId); } catch { }
+        const anchorTarget = document.getElementById(anchorId);
+        if (anchorTarget && document.fonts?.ready) {
+            document.fonts.ready.then(() => anchorTarget.scrollIntoView());
+        }
+    }
+
     // Vídeo de fondo de la sección CTA: cubre la sección y empieza silenciado
     const ctaSection = document.querySelector('.section-cta');
     const ctaVideoBg = ctaSection?.querySelector('.cta-video-bg');
