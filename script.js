@@ -77,34 +77,41 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Animaciones al aparecer, respetando prefers-reduced-motion
+    // Animaciones al aparecer desde los lados, respetando prefers-reduced-motion
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     if (!reduceMotion && 'IntersectionObserver' in window) {
-        const animatedElements = document.querySelectorAll(
-            '.timeline-item, .historia-card, .concierto-card, .actualidad-card, .uniformidad-content > *, ' +
-            '.acompanamiento-col, .repertorio-text, .contacto-info, .contacto-cta, ' +
-            '.card, .marcha-card, .estreno-card, .marcha-item, .historial-list li, ' +
-            '.gallery-item, .historia-foto, .contacto-item, .red-social, .formulario, .agenda-calendar, .agenda-event, .cta-content'
-        );
+        const revealTargets = [...document.querySelectorAll([
+            '.section-header', '.page-hero .container > *',
+            '.card', '.noticia-card', '.concierto-card', '.actualidad-card',
+            '.timeline-item', '.historia-card', '.historia-foto',
+            '.nombre-text', '.nombre-escudo',
+            '.uniformidad-content > *', '.gallery-item',
+            '.acompanamiento-col', '.historial-list li',
+            '.repertorio-text', '.marcha-card', '.estreno-card', '.marcha-item',
+            '.contacto-info', '.contacto-item', '.red-social', '.formulario', '.contacto-cta',
+            '.proximos-eventos', '.agenda-calendar', '.agenda-event', '.cta-content'
+        ].join(', '))];
 
-        const animateObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                    entry.target.classList.add('visible');
-                    animateObserver.unobserve(entry.target);
-                }
+        if (revealTargets.length) {
+            const revealObserver = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (!entry.isIntersecting) return;
+                    entry.target.classList.add('is-visible');
+                    revealObserver.unobserve(entry.target);
+                });
+            }, { rootMargin: '0px 0px -60px 0px', threshold: 0.05 });
+
+            const groupIndex = new WeakMap();
+            revealTargets.forEach((el) => {
+                const parent = el.parentElement;
+                const index = groupIndex.get(parent) || 0;
+                groupIndex.set(parent, index + 1);
+                el.classList.add('reveal', index % 2 === 0 ? 'reveal-left' : 'reveal-right');
+                if (index) el.style.setProperty('--reveal-delay', `${Math.min(index, 4) * 0.07}s`);
+                revealObserver.observe(el);
             });
-        }, { rootMargin: '0px 0px -50px 0px' });
-
-        animatedElements.forEach((el, i) => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(30px)';
-            el.style.transition = `opacity 0.6s ease ${i * 0.08}s, transform 0.6s ease ${i * 0.08}s`;
-            animateObserver.observe(el);
-        });
+        }
     }
 
     // Agenda 2027: cuenta atrás hasta el Domingo de Ramos y próximo acompañamiento
@@ -150,6 +157,39 @@ document.addEventListener('DOMContentLoaded', () => {
         monthPrev.addEventListener('click', () => showMonth(monthIndex - 1));
         monthNext.addEventListener('click', () => showMonth(monthIndex + 1));
         showMonth(0);
+    }
+
+    // Portada: fondo de fotos con fundido
+    const heroSlides = [...document.querySelectorAll('.hero-slide')];
+    if (heroSlides.length > 1) {
+        let heroIndex = 0;
+        let heroTimer = null;
+        const showHeroSlide = (index) => {
+            heroSlides[heroIndex].classList.remove('is-active');
+            heroIndex = index;
+            heroSlides[heroIndex].classList.add('is-active');
+        };
+        const startHeroSlides = () => {
+            if (heroTimer || reduceMotion) return;
+            heroTimer = window.setInterval(() => showHeroSlide((heroIndex + 1) % heroSlides.length), 7000);
+        };
+        const stopHeroSlides = () => {
+            window.clearInterval(heroTimer);
+            heroTimer = null;
+        };
+        const loadHeroSlides = () => {
+            heroSlides.slice(1).forEach((slide) => {
+                const src = slide.dataset.src;
+                if (src) slide.style.backgroundImage = `url("${src}")`;
+            });
+            startHeroSlides();
+        };
+        if (document.readyState === 'complete') loadHeroSlides();
+        else window.addEventListener('load', loadHeroSlides, { once: true });
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden) stopHeroSlides();
+            else startHeroSlides();
+        });
     }
 
     // Scroll suave para anclas internas
