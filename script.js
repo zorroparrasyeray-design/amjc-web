@@ -133,6 +133,33 @@ document.addEventListener('DOMContentLoaded', () => {
         nextEvent?.classList.add('is-next');
     }
 
+    // Agenda: cambio de mes del calendario
+    const monthTabs = [...document.querySelectorAll('.agenda-month-tab')];
+    if (monthTabs.length) {
+        const selectMonth = (tab) => {
+            monthTabs.forEach((item) => {
+                const selected = item === tab;
+                item.classList.toggle('is-active', selected);
+                item.setAttribute('aria-selected', String(selected));
+                item.tabIndex = selected ? 0 : -1;
+                const panel = document.getElementById(item.getAttribute('aria-controls'));
+                if (panel) panel.hidden = !selected;
+            });
+        };
+        monthTabs.forEach((tab) => {
+            tab.addEventListener('click', () => selectMonth(tab));
+            tab.addEventListener('keydown', (event) => {
+                if (event.key !== 'ArrowRight' && event.key !== 'ArrowLeft') return;
+                event.preventDefault();
+                const index = monthTabs.indexOf(tab);
+                const step = event.key === 'ArrowRight' ? 1 : -1;
+                const nextTab = monthTabs[(index + step + monthTabs.length) % monthTabs.length];
+                selectMonth(nextTab);
+                nextTab.focus();
+            });
+        });
+    }
+
     // Scroll suave para anclas internas
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
