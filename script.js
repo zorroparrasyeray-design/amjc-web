@@ -133,31 +133,23 @@ document.addEventListener('DOMContentLoaded', () => {
         nextEvent?.classList.add('is-next');
     }
 
-    // Agenda: cambio de mes del calendario
-    const monthTabs = [...document.querySelectorAll('.agenda-month-tab')];
-    if (monthTabs.length) {
-        const selectMonth = (tab) => {
-            monthTabs.forEach((item) => {
-                const selected = item === tab;
-                item.classList.toggle('is-active', selected);
-                item.setAttribute('aria-selected', String(selected));
-                item.tabIndex = selected ? 0 : -1;
-                const panel = document.getElementById(item.getAttribute('aria-controls'));
-                if (panel) panel.hidden = !selected;
-            });
+    // Agenda: navegación por meses del calendario
+    const monthPanels = [...document.querySelectorAll('.agenda-month-panel')];
+    const monthName = document.getElementById('cal-month-name');
+    const monthPrev = document.getElementById('cal-prev');
+    const monthNext = document.getElementById('cal-next');
+    if (monthPanels.length && monthName && monthPrev && monthNext) {
+        let monthIndex = 0;
+        const showMonth = (index) => {
+            monthIndex = Math.max(0, Math.min(index, monthPanels.length - 1));
+            monthPanels.forEach((panel, i) => { panel.hidden = i !== monthIndex; });
+            monthName.textContent = monthPanels[monthIndex].dataset.month;
+            monthPrev.disabled = monthIndex === 0;
+            monthNext.disabled = monthIndex === monthPanels.length - 1;
         };
-        monthTabs.forEach((tab) => {
-            tab.addEventListener('click', () => selectMonth(tab));
-            tab.addEventListener('keydown', (event) => {
-                if (event.key !== 'ArrowRight' && event.key !== 'ArrowLeft') return;
-                event.preventDefault();
-                const index = monthTabs.indexOf(tab);
-                const step = event.key === 'ArrowRight' ? 1 : -1;
-                const nextTab = monthTabs[(index + step + monthTabs.length) % monthTabs.length];
-                selectMonth(nextTab);
-                nextTab.focus();
-            });
-        });
+        monthPrev.addEventListener('click', () => showMonth(monthIndex - 1));
+        monthNext.addEventListener('click', () => showMonth(monthIndex + 1));
+        showMonth(0);
     }
 
     // Scroll suave para anclas internas
