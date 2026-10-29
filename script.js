@@ -107,19 +107,19 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Agenda 2027: cuenta atrás y próximo acompañamiento
+    // Agenda 2027: cuenta atrás hasta el Domingo de Ramos y próximo acompañamiento
     const countdown = document.querySelector('[data-countdown]');
     if (countdown) {
         const target = new Date(`${countdown.dataset.countdown}T00:00:00+01:00`);
         const days = Math.ceil((target.getTime() - Date.now()) / 86400000);
         if (days > 1) {
-            countdown.textContent = `Faltan ${days} días`;
+            countdown.textContent = `Domingo de Ramos · ${days} días`;
         } else if (days === 1) {
-            countdown.textContent = 'Falta 1 día';
+            countdown.textContent = 'Domingo de Ramos · 1 día';
         } else if (days === 0) {
-            countdown.textContent = 'Hoy comienza';
+            countdown.textContent = 'Hoy es Domingo de Ramos';
         } else {
-            countdown.textContent = 'Semana Santa 2027';
+            countdown.textContent = 'Domingo de Ramos 2027';
         }
     }
 
