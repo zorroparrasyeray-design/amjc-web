@@ -280,8 +280,8 @@ button { background: none; border: none; cursor: pointer; font-family: inherit; 
 .proximo-dia { font-family: var(--fuente-titulos); font-size: 2.7rem; line-height: 1; color: var(--blanco); }
 .proximo-mes { margin-top: 0.2rem; font-family: var(--fuente-ui); font-size: 0.7rem; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--dorado); }
 .proximo-anio { font-family: var(--fuente-ui); font-size: 0.66rem; letter-spacing: 0.12em; color: var(--gris-claro); }
-.proximo-logo-wrap { flex: 0 0 150px; width: 150px; height: 150px; display: flex; align-items: center; justify-content: center; }
-.proximo-logo { width: 140px; height: 140px; object-fit: contain; filter: brightness(1.4) saturate(1.05) drop-shadow(0 8px 18px rgba(0,0,0,0.55)); }
+.proximo-logo-wrap { flex: 0 0 150px; width: 150px; height: 150px; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: radial-gradient(circle at 50% 45%, rgba(201,168,76,0.22), rgba(201,168,76,0.06) 58%, transparent 74%); }
+.proximo-logo { width: 140px; height: 140px; object-fit: contain; filter: drop-shadow(0 6px 16px rgba(201,168,76,0.35)); }
 .proximo-info { min-width: 0; }
 .proximo-info .section-tag { margin-bottom: 0.4rem; }
 .proximo-title { font-family: var(--fuente-titulos); font-size: 1.65rem; font-weight: 500; line-height: 1.2; color: var(--blanco); margin-bottom: 0.35rem; }
@@ -478,7 +478,7 @@ button { background: none; border: none; cursor: pointer; font-family: inherit; 
 .gallery-item { border-radius: 12px; overflow: hidden; border: 2px solid rgba(204,0,0,0.2); transition: var(--transition); }
 .gallery-item:hover { border-color: var(--rojo); transform: scale(1.02); box-shadow: 0 20px 40px rgba(0,0,0,0.3); }
 .gallery-img { width: 100%; height: 300px; object-fit: cover; }
-.gallery-img--tambores { object-position: 64% 34%; }
+.gallery-img--tambores { object-position: 50% 50%; }
 .gallery-img--guion { object-position: 50% 42%; }
 
 /* Galería de historia */
@@ -530,12 +530,22 @@ button { background: none; border: none; cursor: pointer; font-family: inherit; 
 .repertorio-item { display: flex; align-items: center; gap: 0.9rem; background: var(--azul-medio); border: 1px solid rgba(255,255,255,0.05); border-left: 3px solid rgba(201,168,76,0.55); border-radius: 10px; padding: 0.95rem 1.1rem; transition: var(--transition); }
 .repertorio-item:hover { border-color: rgba(201,168,76,0.45); border-left-color: var(--dorado); transform: translateY(-2px); }
 .repertorio-item[hidden] { display: none; }
+.repertorio-enlace { display: flex; align-items: center; gap: 0.9rem; width: 100%; color: inherit; text-decoration: none; }
+.repertorio-enlace:focus-visible { outline: 2px solid var(--dorado); outline-offset: 4px; border-radius: 6px; }
+.repertorio-play { flex: 0 0 auto; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; border-radius: 50%; border: 1px solid rgba(201,168,76,0.45); color: var(--dorado); transition: var(--transition); }
+.repertorio-play svg { width: 13px; height: 13px; margin-left: 1px; }
+.repertorio-item:hover .repertorio-play { background: var(--rojo); border-color: var(--rojo); color: var(--blanco); }
 .repertorio-num { font-family: var(--fuente-titulos); font-size: 0.9rem; color: rgba(201,168,76,0.7); min-width: 1.5rem; }
 .repertorio-item-info { flex: 1; min-width: 0; }
 .repertorio-item-title { font-family: var(--fuente-titulos); font-size: 1.06rem; font-weight: 500; color: var(--blanco); margin: 0 0 0.15rem; line-height: 1.3; }
 .repertorio-item-author { font-family: var(--fuente-ui); font-size: 0.83rem; color: var(--gris-claro); margin: 0; line-height: 1.45; }
 .repertorio-badge { flex: 0 0 auto; padding: 0.2rem 0.55rem; border-radius: 999px; background: rgba(204,0,0,0.2); border: 1px solid rgba(204,0,0,0.5); color: #ff9a9a; font-family: var(--fuente-ui); font-size: 0.64rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; }
 .repertorio-empty { text-align: center; padding: 2.5rem 1rem; color: var(--gris-claro); font-style: italic; }
+@media (max-width: 480px) {
+    .repertorio-item { gap: 0.65rem; padding: 0.85rem 0.9rem; }
+    .repertorio-play { width: 28px; height: 28px; }
+    .repertorio-badge { font-size: 0.58rem; padding: 0.16rem 0.42rem; }
+}
 
 .repertorio-nota { text-align: center; margin-top: 2rem; color: var(--gris-claro); font-style: italic; }
 
