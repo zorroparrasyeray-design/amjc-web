@@ -90,7 +90,7 @@ document.addEventListener('DOMContentLoaded', () => {
             '.acompanamiento-col', '.historial-list li',
             '.repertorio-text', '.marcha-card', '.estreno-card', '.marcha-item',
             '.contacto-info', '.contacto-item', '.red-social', '.formulario', '.contacto-cta',
-            '.proximos-eventos', '.agenda-calendar', '.agenda-event', '.cta-content'
+            '.proximos-eventos', '.proximo-card', '.agenda-calendar', '.agenda-event', '.cta-content'
         ].join(', '))];
 
         if (revealTargets.length) {
@@ -160,29 +160,50 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Portada: fondo de fotos con fundido
-    const heroSlides = [...document.querySelectorAll('.hero-slide')];
-    if (heroSlides.length > 1) {
+    const heroSlideNodes = [...document.querySelectorAll('.hero-slide')];
+    if (heroSlideNodes.length > 1) {
+        let heroSlides = [];
         let heroIndex = 0;
         let heroTimer = null;
         const showHeroSlide = (index) => {
+            if (!heroSlides.length) return;
             heroSlides[heroIndex].classList.remove('is-active');
             heroIndex = index;
             heroSlides[heroIndex].classList.add('is-active');
         };
         const startHeroSlides = () => {
-            if (heroTimer || reduceMotion) return;
+            if (heroTimer || reduceMotion || heroSlides.length < 2) return;
             heroTimer = window.setInterval(() => showHeroSlide((heroIndex + 1) % heroSlides.length), 7000);
         };
         const stopHeroSlides = () => {
             window.clearInterval(heroTimer);
             heroTimer = null;
         };
+        // Comprueba cada foto y descarta las que falten, para no dejar huecos
+        const checkHeroSlide = (slide) => new Promise((resolve) => {
+            const src = slide.dataset.src;
+            const cssUrl = (getComputedStyle(slide).backgroundImage.match(/url\(["']?(.*?)["']?\)/) || [])[1];
+            const url = src || cssUrl;
+            if (!url) { resolve(slide); return; }
+            const probe = new Image();
+            probe.onload = () => {
+                slide.style.backgroundImage = `url("${url}")`;
+                resolve(slide);
+            };
+            probe.onerror = () => {
+                slide.remove();
+                resolve(null);
+            };
+            probe.src = url;
+        });
         const loadHeroSlides = () => {
-            heroSlides.slice(1).forEach((slide) => {
-                const src = slide.dataset.src;
-                if (src) slide.style.backgroundImage = `url("${src}")`;
+            Promise.all(heroSlideNodes.map(checkHeroSlide)).then((result) => {
+                heroSlides = result.filter(Boolean);
+                if (heroSlides.length < 2) return;
+                heroSlides.forEach((slide, i) => slide.classList.toggle('is-active', i === 0));
+                heroIndex = 0;
+                startHeroSlides();
             });
-            startHeroSlides();
         };
         if (document.readyState === 'complete') loadHeroSlides();
         else window.addEventListener('load', loadHeroSlides, { once: true });

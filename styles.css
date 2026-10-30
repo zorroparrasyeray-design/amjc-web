@@ -137,7 +137,7 @@ button { background: none; border: none; cursor: pointer; font-family: inherit; 
 .hero-bg { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
 .hero-slide { position: absolute; inset: 0; background-repeat: no-repeat; background-size: cover; background-position: center; opacity: 0; transition: opacity 1.8s ease; }
 .hero-slide.is-active { opacity: 1; }
-.hero-slide:nth-child(1) { background-image: url('img/hero/portada-1.jpg'); }
+.hero-slide:nth-child(1) { background-image: url('img/portada-concierto.jpg'); }
 .hero::after { content: ''; position: absolute; inset: 0; z-index: 1; pointer-events: none; background: linear-gradient(90deg, rgba(5,13,26,0.94) 0%, rgba(5,13,26,0.86) 34%, rgba(5,13,26,0.56) 58%, rgba(5,13,26,0.22) 100%), linear-gradient(180deg, rgba(5,13,26,0.7) 0%, rgba(5,13,26,0.26) 28%, rgba(5,13,26,0.4) 66%, rgba(10,22,40,0.96) 100%); }
 .hero::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; z-index: 2; background: radial-gradient(ellipse at 30% 30%, rgba(204,0,0,0.15) 0%, transparent 60%), radial-gradient(ellipse at 70% 70%, rgba(201,168,76,0.08) 0%, transparent 50%); pointer-events: none; }
 .hero .container { display: grid; grid-template-columns: 1fr 380px; gap: 3rem; align-items: center; width: 100%; position: relative; z-index: 3; }
@@ -271,6 +271,30 @@ button { background: none; border: none; cursor: pointer; font-family: inherit; 
 .acompanamiento-text { display: block; min-width: 0; font-size: 0.98rem; line-height: 1.55; overflow-wrap: break-word; }
 .acompanamiento-text strong { color: var(--dorado); }
 .acompanamiento-nota { margin-top: 1.5rem; padding-top: 1.25rem; border-top: 1px solid rgba(255,255,255,0.05); color: var(--gris-claro); font-size: 0.95rem; line-height: 1.7; }
+
+/* Próxima cita destacada */
+.section-proximo { padding-bottom: 0; }
+.proximo-card { display: flex; align-items: center; gap: 2rem; max-width: 900px; margin: 0 auto; padding: 1.75rem 2rem; background: linear-gradient(135deg, rgba(201,168,76,0.1), var(--azul-medio) 48%); border: 1px solid rgba(201,168,76,0.28); border-radius: 14px; box-shadow: 0 18px 40px rgba(0,0,0,0.28); }
+.proximo-fecha { flex: 0 0 96px; text-align: center; padding: 0.9rem 0.5rem; background: rgba(204,0,0,0.14); border: 1px solid rgba(204,0,0,0.3); border-radius: 10px; }
+.proximo-fecha span { display: block; }
+.proximo-dia { font-family: var(--fuente-titulos); font-size: 2.7rem; line-height: 1; color: var(--blanco); }
+.proximo-mes { margin-top: 0.2rem; font-family: var(--fuente-ui); font-size: 0.7rem; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--dorado); }
+.proximo-anio { font-family: var(--fuente-ui); font-size: 0.66rem; letter-spacing: 0.12em; color: var(--gris-claro); }
+.proximo-logo-wrap { flex: 0 0 150px; width: 150px; height: 150px; display: flex; align-items: center; justify-content: center; }
+.proximo-logo { width: 140px; height: 140px; object-fit: contain; filter: brightness(1.4) saturate(1.05) drop-shadow(0 8px 18px rgba(0,0,0,0.55)); }
+.proximo-info { min-width: 0; }
+.proximo-info .section-tag { margin-bottom: 0.4rem; }
+.proximo-title { font-family: var(--fuente-titulos); font-size: 1.65rem; font-weight: 500; line-height: 1.2; color: var(--blanco); margin-bottom: 0.35rem; }
+.proximo-lugar { font-family: var(--fuente-ui); font-size: 0.8rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--dorado); margin-bottom: 0.55rem; }
+.proximo-texto { color: var(--gris-claro); font-size: 0.95rem; line-height: 1.65; }
+@media (max-width: 640px) {
+    .proximo-card { flex-wrap: wrap; justify-content: center; gap: 1.25rem; padding: 1.4rem 1.15rem; text-align: center; }
+    .proximo-fecha { flex-basis: 84px; }
+    .proximo-logo-wrap { flex-basis: 118px; width: 118px; height: 118px; }
+    .proximo-logo { width: 108px; height: 108px; }
+    .proximo-info { flex: 1 1 100%; }
+    .proximo-title { font-size: 1.4rem; }
+}
 
 .repertorio-content { max-width: 800px; margin: 0 auto; }
 .repertorio-text p { margin-bottom: 1rem; color: var(--blanco-suave); line-height: 1.8; }
@@ -454,6 +478,8 @@ button { background: none; border: none; cursor: pointer; font-family: inherit; 
 .gallery-item { border-radius: 12px; overflow: hidden; border: 2px solid rgba(204,0,0,0.2); transition: var(--transition); }
 .gallery-item:hover { border-color: var(--rojo); transform: scale(1.02); box-shadow: 0 20px 40px rgba(0,0,0,0.3); }
 .gallery-img { width: 100%; height: 300px; object-fit: cover; }
+.gallery-img--tambores { object-position: 64% 34%; }
+.gallery-img--guion { object-position: 50% 42%; }
 
 /* Galería de historia */
 .historia-galeria { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; }
