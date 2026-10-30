@@ -213,6 +213,52 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // Repertorio: buscador de marchas
+    const repertorioBuscador = document.getElementById('repertorio-buscar');
+    const repertorioLista = document.getElementById('repertorio-lista');
+    if (repertorioBuscador && repertorioLista) {
+        const repertorioItems = [...repertorioLista.querySelectorAll('.repertorio-item')];
+        const repertorioContador = document.getElementById('repertorio-count');
+        const repertorioVacio = document.getElementById('repertorio-empty');
+        const normalizar = (texto) => texto.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+        const repertorioTotal = repertorioItems.length;
+
+        repertorioItems.forEach((item) => { item.dataset.busqueda = normalizar(item.textContent); });
+
+        const filtrarRepertorio = () => {
+            const consulta = normalizar(repertorioBuscador.value.trim());
+            let visibles = 0;
+            repertorioItems.forEach((item) => {
+                const coincide = !consulta || item.dataset.busqueda.includes(consulta);
+                item.hidden = !coincide;
+                if (coincide) visibles += 1;
+            });
+            if (repertorioContador) {
+                repertorioContador.textContent = consulta
+                    ? `${visibles} de ${repertorioTotal} marchas`
+                    : `${repertorioTotal} marchas`;
+            }
+            if (repertorioVacio) repertorioVacio.hidden = visibles > 0;
+        };
+
+        repertorioBuscador.addEventListener('input', filtrarRepertorio);
+        filtrarRepertorio();
+    }
+
+    // Estrenos: solo se muestran a partir de la fecha indicada en data-publicar
+    const estrenosGrid = document.getElementById('estrenos-grid');
+    if (estrenosGrid) {
+        const hoy = new Date();
+        hoy.setHours(0, 0, 0, 0);
+        estrenosGrid.querySelectorAll('[data-publicar]').forEach((card) => {
+            const fecha = new Date(`${card.dataset.publicar}T00:00:00`);
+            if (Number.isNaN(fecha.getTime()) || fecha > hoy) card.remove();
+        });
+        if (!estrenosGrid.querySelector('.estreno-card')) {
+            document.getElementById('nuevos-estrenos')?.remove();
+        }
+    }
+
     // Scroll suave para anclas internas
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {

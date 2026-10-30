@@ -514,6 +514,28 @@ button { background: none; border: none; cursor: pointer; font-family: inherit; 
 .estreno-card h3 { font-family: var(--fuente-titulos); font-size: 1.25rem; margin-bottom: 0.5rem; color: var(--rojo); }
 .estreno-author { font-size: 0.85rem; color: var(--dorado); font-weight: 600; margin-bottom: 1rem; }
 .estreno-card p { color: var(--blanco-suave); line-height: 1.7; }
+.estreno-badge { display: inline-block; margin-bottom: 0.85rem; padding: 0.28rem 0.72rem; border-radius: 999px; background: rgba(204,0,0,0.18); border: 1px solid rgba(204,0,0,0.45); color: #ff9a9a; font-family: var(--fuente-ui); font-size: 0.7rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; }
+
+/* Repertorio completo */
+.section-intro { max-width: 720px; margin: -1rem auto 2.25rem; text-align: center; color: var(--gris-claro); line-height: 1.7; }
+.section-intro strong { color: var(--dorado); font-weight: 600; }
+.repertorio-toolbar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem; margin-bottom: 1.75rem; }
+.repertorio-search { position: relative; flex: 1 1 300px; max-width: 440px; }
+.repertorio-search svg { position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); width: 18px; height: 18px; color: var(--dorado); pointer-events: none; }
+.repertorio-search input { width: 100%; padding: 0.8rem 1.1rem 0.8rem 2.7rem; border-radius: 999px; border: 1px solid rgba(255,255,255,0.12); background: rgba(255,255,255,0.04); color: var(--blanco); font-family: var(--fuente-ui); font-size: 0.95rem; transition: var(--transition); }
+.repertorio-search input::placeholder { color: var(--gris-claro); }
+.repertorio-search input:focus { outline: none; border-color: var(--dorado); box-shadow: 0 0 0 3px rgba(201,168,76,0.18); }
+.repertorio-count { font-family: var(--fuente-ui); font-size: 0.9rem; color: var(--gris-claro); }
+.repertorio-lista { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(330px, 1fr)); gap: 0.8rem; }
+.repertorio-item { display: flex; align-items: center; gap: 0.9rem; background: var(--azul-medio); border: 1px solid rgba(255,255,255,0.05); border-left: 3px solid rgba(201,168,76,0.55); border-radius: 10px; padding: 0.95rem 1.1rem; transition: var(--transition); }
+.repertorio-item:hover { border-color: rgba(201,168,76,0.45); border-left-color: var(--dorado); transform: translateY(-2px); }
+.repertorio-item[hidden] { display: none; }
+.repertorio-num { font-family: var(--fuente-titulos); font-size: 0.9rem; color: rgba(201,168,76,0.7); min-width: 1.5rem; }
+.repertorio-item-info { flex: 1; min-width: 0; }
+.repertorio-item-title { font-family: var(--fuente-titulos); font-size: 1.06rem; font-weight: 500; color: var(--blanco); margin: 0 0 0.15rem; line-height: 1.3; }
+.repertorio-item-author { font-family: var(--fuente-ui); font-size: 0.83rem; color: var(--gris-claro); margin: 0; line-height: 1.45; }
+.repertorio-badge { flex: 0 0 auto; padding: 0.2rem 0.55rem; border-radius: 999px; background: rgba(204,0,0,0.2); border: 1px solid rgba(204,0,0,0.5); color: #ff9a9a; font-family: var(--fuente-ui); font-size: 0.64rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; }
+.repertorio-empty { text-align: center; padding: 2.5rem 1rem; color: var(--gris-claro); font-style: italic; }
 
 .repertorio-nota { text-align: center; margin-top: 2rem; color: var(--gris-claro); font-style: italic; }
 
