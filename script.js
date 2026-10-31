@@ -89,7 +89,7 @@ document.addEventListener('DOMContentLoaded', () => {
             '.uniformidad-content > *', '.gallery-item',
             '.acompanamiento-col', '.historial-list li',
             '.repertorio-text', '.marcha-card', '.estreno-card', '.marcha-item',
-            '.contacto-info', '.contacto-item', '.red-social', '.formulario', '.contacto-cta',
+            '.contacto-info', '.contacto-item', '.red-social', '.contacto-cta',
             '.proximos-eventos', '.proximo-card', '.agenda-calendar', '.agenda-event', '.cta-content'
         ].join(', '))];
 
@@ -354,32 +354,22 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Formulario de contacto: prepara el email con los datos introducidos
+    // Formulario de contacto: FormSubmit envía la solicitud directamente
     const form = document.querySelector('.formulario');
     if (form) {
-        form.addEventListener('submit', (event) => {
-            const data = new FormData(form);
-            const get = (key) => (data.get(key) || '').toString().trim();
-            const tipoSelect = form.querySelector('#tipo');
-            const tipo = tipoSelect?.selectedOptions[0]?.textContent.trim() || get('tipo');
-            const subject = `Contacto web · ${tipo || 'Consulta'}`;
-            const body = [
-                `Nombre: ${get('nombre')}`,
-                `Email: ${get('email')}`,
-                `Teléfono: ${get('telefono') || 'No indicado'}`,
-                `Tipo de consulta: ${tipo}`,
-                '',
-                'Mensaje:',
-                get('mensaje')
-            ].join('\n');
+        const subject = form.querySelector('input[name="_subject"]');
+        const tipoSelect = form.querySelector('#tipo');
 
-            event.preventDefault();
-            window.location.href = `mailto:amusicaljesuscaido@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-
-            const nota = form.querySelector('.form-nota');
-            if (nota) {
-                nota.textContent = 'Gracias. Se ha abierto tu cliente de correo con el mensaje preparado. Si no ocurre, escríbenos a amusicaljesuscaido@gmail.com.';
-            }
+        form.addEventListener('submit', () => {
+            const tipo = tipoSelect?.selectedOptions[0]?.textContent.trim();
+            if (subject && tipo) subject.value = `Contacto web · ${tipo}`;
         });
+    }
+
+    // Mensaje de confirmación al volver desde FormSubmit
+    const formExito = document.getElementById('form-exito');
+    if (formExito && new URLSearchParams(window.location.search).get('enviado') === '1') {
+        formExito.hidden = false;
+        formExito.scrollIntoView({ block: 'center' });
     }
 });

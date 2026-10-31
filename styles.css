@@ -49,6 +49,18 @@ body {
     font-size: 1.05rem;
 }
 
+main p,
+main li {
+    text-align: justify;
+    text-justify: inter-word;
+    hyphens: auto;
+}
+
+.hero-subtitle,
+.page-subtitle {
+    text-align: center;
+}
+
 .container {
     max-width: var(--max-width);
     margin: 0 auto;
@@ -260,14 +272,17 @@ button { background: none; border: none; cursor: pointer; font-family: inherit; 
 .proximos-eventos h3 { font-family: var(--fuente-titulos); font-size: 1.5rem; font-weight: 500; color: var(--blanco); margin-bottom: 0.35rem; }
 .proximos-eventos p { max-width: 62ch; color: var(--blanco-suave); font-size: 0.98rem; line-height: 1.6; }
 .proximos-eventos .btn { flex-shrink: 0; }
-.proxima-actuacion { display: flex; align-items: flex-start; gap: 1rem; margin-top: 1rem; }
-.proxima-actuacion-fecha { flex: 0 0 auto; width: 56px; padding: 0.45rem 0; text-align: center; border-radius: 8px; background: rgba(204,0,0,0.18); border: 1px solid rgba(204,0,0,0.45); }
-.proxima-actuacion-fecha span { display: block; font-family: var(--fuente-titulos); font-size: 1.4rem; font-weight: 600; color: var(--blanco); line-height: 1; }
-.proxima-actuacion-fecha small { display: block; margin-top: 0.2rem; font-size: 0.6rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--rojo-brillante); }
-.proxima-actuacion-titulo { font-family: var(--fuente-titulos); font-size: 1.12rem; font-weight: 500; color: var(--dorado); margin: 0 0 0.15rem; }
-.proxima-actuacion-lugar { font-size: 0.76rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--rojo-brillante); margin: 0 0 0.2rem; }
-.proxima-actuacion-cuando { font-size: 0.8rem; color: var(--gris-claro); margin: 0 0 0.35rem; }
-.proxima-actuacion-texto { margin: 0; font-size: 0.94rem; color: var(--blanco-suave); max-width: 52ch; }
+.proxima-actuacion { display: grid; grid-template-columns: 92px minmax(0, 1fr); align-items: center; gap: 1.15rem; margin-top: 1rem; }
+.proxima-actuacion-logo { width: 92px; height: 92px; display: flex; align-items: center; justify-content: center; padding: 0.55rem; background: rgba(10,22,40,0.55); border: 1px solid rgba(201,168,76,0.28); border-radius: 12px; }
+.proxima-actuacion-logo img { width: 100%; height: 100%; object-fit: contain; }
+.proxima-actuacion-info { min-width: 0; }
+.proximos-eventos .proxima-actuacion-titulo { font-family: var(--fuente-titulos); font-size: 1.18rem; font-weight: 500; color: var(--dorado); margin: 0 0 0.15rem; line-height: 1.3; }
+.proximos-eventos .proxima-actuacion-lugar { font-size: 0.82rem; letter-spacing: 0.04em; color: var(--rojo-brillante); margin: 0 0 0.15rem; }
+.proximos-eventos .proxima-actuacion-cuando { font-size: 0.82rem; color: var(--gris-claro); margin: 0; }
+@media (max-width: 600px) {
+    .proxima-actuacion { grid-template-columns: 1fr; justify-items: start; }
+    .proxima-actuacion-logo { width: 80px; height: 80px; }
+}
 
 .acompanamientos-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2rem; align-items: start; }
 .acompanamiento-col { background: var(--azul-medio); border: 1px solid rgba(255,255,255,0.05); border-radius: 12px; padding: 2rem; }
@@ -587,7 +602,6 @@ button { background: none; border: none; cursor: pointer; font-family: inherit; 
 .red-social:hover { border-color: var(--rojo); transform: translateX(4px); background: var(--azul-claro); }
 .red-social svg { width: 24px; height: 24px; flex-shrink: 0; }
 .red-social span:first-of-type { font-weight: 600; font-size: 1rem; }
-.red-social-user { font-size: 0.85rem; color: var(--gris-claro); }
 .red-social.facebook:hover { border-color: #1877f2; }
 .red-social.instagram:hover { border-color: #e4405f; }
 .red-social.tiktok:hover { border-color: #000000; background: #000; }
@@ -595,6 +609,9 @@ button { background: none; border: none; cursor: pointer; font-family: inherit; 
 
 /* Formulario */
 .formulario-container { max-width: 600px; margin: 0 auto; }
+.form-exito { margin-bottom: 1.25rem; padding: 1rem 1.15rem; border: 1px solid rgba(201,168,76,0.4); border-left: 3px solid var(--dorado); border-radius: 8px; background: rgba(201,168,76,0.1); color: var(--blanco-suave); line-height: 1.6; }
+.form-exito strong { color: var(--dorado); }
+.form-honey { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
 .formulario { background: linear-gradient(145deg, var(--azul-medio), var(--azul-oscuro)); border: 1px solid rgba(204,0,0,0.1); border-radius: 12px; padding: 2.5rem; }
 .form-group { margin-bottom: 1.5rem; }
 .form-group label { display: block; margin-bottom: 0.5rem; font-weight: 500; color: var(--blanco); font-size: 1rem; }
