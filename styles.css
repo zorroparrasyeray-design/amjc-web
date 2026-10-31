@@ -56,7 +56,10 @@ main li {
     hyphens: auto;
 }
 
-.hero-subtitle,
+.hero-subtitle {
+    text-align: inherit;
+}
+
 .page-subtitle {
     text-align: center;
 }
