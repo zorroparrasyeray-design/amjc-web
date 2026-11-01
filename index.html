@@ -201,7 +201,12 @@
                                 <div class="calendar-day" role="listitem" aria-label="11 de noviembre de 2026"><span>11</span></div>
                                 <div class="calendar-day" role="listitem" aria-label="12 de noviembre de 2026"><span>12</span></div>
                                 <div class="calendar-day" role="listitem" aria-label="13 de noviembre de 2026"><span>13</span></div>
-                                <div class="calendar-day is-event" role="listitem" aria-label="14 de noviembre: acompañamiento a la Virgen del Carmen Coronada en Córdoba"><span>14</span><span class="calendar-day-dot" aria-hidden="true"></span></div>
+                                <div class="calendar-day is-event" role="listitem">
+                                    <button type="button" class="calendar-day-btn" data-date="2026-11-14" aria-label="14 de noviembre: acompañamiento a la Virgen del Carmen Coronada en Córdoba. Ver en la agenda.">
+                                        <span>14</span>
+                                        <span class="calendar-day-dot" aria-hidden="true"></span>
+                                    </button>
+                                </div>
                                 <div class="calendar-day" role="listitem" aria-label="15 de noviembre de 2026"><span>15</span></div>
                                 <div class="calendar-day" role="listitem" aria-label="16 de noviembre de 2026"><span>16</span></div>
                                 <div class="calendar-day" role="listitem" aria-label="17 de noviembre de 2026"><span>17</span></div>
@@ -402,14 +407,39 @@
                                 <div class="calendar-day" role="listitem" aria-label="18 de marzo de 2027"><span>18</span></div>
                                 <div class="calendar-day" role="listitem" aria-label="19 de marzo de 2027"><span>19</span></div>
                                 <div class="calendar-day" role="listitem" aria-label="20 de marzo de 2027"><span>20</span></div>
-                                <div class="calendar-day is-event" role="listitem" aria-label="21 de marzo: Domingo de Ramos en Pedro Abad"><span>21</span><span class="calendar-day-dot" aria-hidden="true"></span></div>
+                                <div class="calendar-day is-event" role="listitem">
+                                    <button type="button" class="calendar-day-btn" data-date="2027-03-21" aria-label="21 de marzo: Domingo de Ramos en Pedro Abad. Ver en la agenda.">
+                                        <span>21</span>
+                                        <span class="calendar-day-dot" aria-hidden="true"></span>
+                                    </button>
+                                </div>
                                 <div class="calendar-day" role="listitem" aria-label="22 de marzo de 2027"><span>22</span></div>
-                                <div class="calendar-day is-event" role="listitem" aria-label="23 de marzo: Martes Santo en Montoro"><span>23</span><span class="calendar-day-dot" aria-hidden="true"></span></div>
+                                <div class="calendar-day is-event" role="listitem">
+                                    <button type="button" class="calendar-day-btn" data-date="2027-03-23" aria-label="23 de marzo: Martes Santo en Montoro. Ver en la agenda.">
+                                        <span>23</span>
+                                        <span class="calendar-day-dot" aria-hidden="true"></span>
+                                    </button>
+                                </div>
                                 <div class="calendar-day" role="listitem" aria-label="24 de marzo de 2027"><span>24</span></div>
-                                <div class="calendar-day is-event" role="listitem" aria-label="25 de marzo: Jueves Santo en Montoro"><span>25</span><span class="calendar-day-dot" aria-hidden="true"></span></div>
-                                <div class="calendar-day is-event" role="listitem" aria-label="26 de marzo: Madrugá y Viernes Santo en Montoro, dos acompañamientos" title="Madrugá y Viernes Santo: dos acompañamientos el mismo día"><span>26</span><span class="calendar-day-dot" aria-hidden="true"></span></div>
+                                <div class="calendar-day is-event" role="listitem">
+                                    <button type="button" class="calendar-day-btn" data-date="2027-03-25" aria-label="25 de marzo: Jueves Santo en Montoro. Ver en la agenda.">
+                                        <span>25</span>
+                                        <span class="calendar-day-dot" aria-hidden="true"></span>
+                                    </button>
+                                </div>
+                                <div class="calendar-day is-event" role="listitem">
+                                    <button type="button" class="calendar-day-btn" data-date="2027-03-26" aria-label="26 de marzo: Madrugá y Viernes Santo en Montoro, dos acompañamientos. Ver en la agenda." title="Madrugá y Viernes Santo: dos acompañamientos el mismo día">
+                                        <span>26</span>
+                                        <span class="calendar-day-dot" aria-hidden="true"></span>
+                                    </button>
+                                </div>
                                 <div class="calendar-day" role="listitem" aria-label="27 de marzo de 2027"><span>27</span></div>
-                                <div class="calendar-day is-event" role="listitem" aria-label="28 de marzo: Domingo de Resurrección en Montoro"><span>28</span><span class="calendar-day-dot" aria-hidden="true"></span></div>
+                                <div class="calendar-day is-event" role="listitem">
+                                    <button type="button" class="calendar-day-btn" data-date="2027-03-28" aria-label="28 de marzo: Domingo de Resurrección en Montoro. Ver en la agenda.">
+                                        <span>28</span>
+                                        <span class="calendar-day-dot" aria-hidden="true"></span>
+                                    </button>
+                                </div>
                                 <div class="calendar-day" role="listitem" aria-label="29 de marzo de 2027"><span>29</span></div>
                                 <div class="calendar-day" role="listitem" aria-label="30 de marzo de 2027"><span>30</span></div>
                                 <div class="calendar-day" role="listitem" aria-label="31 de marzo de 2027"><span>31</span></div>
@@ -428,11 +458,12 @@
                         </div>
 
                         <p class="agenda-legend"><span class="legend-dot" aria-hidden="true"></span> Días de salida</p>
+                        <p class="agenda-hint">Pulsa un día señalado o un acto para destacarlo en el calendario.</p>
                     </div>
 
                     <div class="agenda-events">
                         <article class="agenda-event" data-date="2026-11-14">
-                            <div class="agenda-date"><time datetime="2026-11-14"><span>14</span><small>Nov</small></time></div>
+                            <button type="button" class="agenda-date" aria-label="Ver el 14 de noviembre en el calendario"><time datetime="2026-11-14"><span>14</span><small>Nov</small></time></button>
                             <div class="agenda-info">
                                 <span class="agenda-day">Acompañamiento</span>
                                 <h3>Virgen del Carmen Coronada</h3>
@@ -443,7 +474,7 @@
                             </div>
                         </article>
                         <article class="agenda-event" data-date="2027-03-21">
-                            <div class="agenda-date"><time datetime="2027-03-21"><span>21</span><small>Mar</small></time></div>
+                            <button type="button" class="agenda-date" aria-label="Ver el 21 de marzo en el calendario"><time datetime="2027-03-21"><span>21</span><small>Mar</small></time></button>
                             <div class="agenda-info">
                                 <span class="agenda-day">Domingo de Ramos</span>
                                 <h3>Ntro. Señor de los Reyes y María Stma. de la Oliva</h3>
@@ -454,7 +485,7 @@
                             </div>
                         </article>
                         <article class="agenda-event" data-date="2027-03-23">
-                            <div class="agenda-date"><time datetime="2027-03-23"><span>23</span><small>Mar</small></time></div>
+                            <button type="button" class="agenda-date" aria-label="Ver el 23 de marzo en el calendario"><time datetime="2027-03-23"><span>23</span><small>Mar</small></time></button>
                             <div class="agenda-info">
                                 <span class="agenda-day">Martes Santo</span>
                                 <h3>Cristo de la Humildad y Ntra. Sra. de Consolación</h3>
@@ -465,7 +496,7 @@
                             </div>
                         </article>
                         <article class="agenda-event" data-date="2027-03-25">
-                            <div class="agenda-date"><time datetime="2027-03-25"><span>25</span><small>Mar</small></time></div>
+                            <button type="button" class="agenda-date" aria-label="Ver el 25 de marzo en el calendario"><time datetime="2027-03-25"><span>25</span><small>Mar</small></time></button>
                             <div class="agenda-info">
                                 <span class="agenda-day">Jueves Santo</span>
                                 <h3>Cofradía de la Santa Vera Crux</h3>
@@ -476,7 +507,7 @@
                             </div>
                         </article>
                         <article class="agenda-event" data-date="2027-03-26">
-                            <div class="agenda-date"><time datetime="2027-03-26"><span>26</span><small>Mar</small></time></div>
+                            <button type="button" class="agenda-date" aria-label="Ver el 26 de marzo en el calendario"><time datetime="2027-03-26"><span>26</span><small>Mar</small></time></button>
                             <div class="agenda-info">
                                 <span class="agenda-day">Madrugá y Viernes Santo</span>
                                 <h3>Padre Jesús y Cristo de la Misericordia</h3>
@@ -488,7 +519,7 @@
                             </div>
                         </article>
                         <article class="agenda-event" data-date="2027-03-28">
-                            <div class="agenda-date"><time datetime="2027-03-28"><span>28</span><small>Mar</small></time></div>
+                            <button type="button" class="agenda-date" aria-label="Ver el 28 de marzo en el calendario"><time datetime="2027-03-28"><span>28</span><small>Mar</small></time></button>
                             <div class="agenda-info">
                                 <span class="agenda-day">Domingo de Resurrección</span>
                                 <h3>Cofradía del Stmo. Cristo Resucitado</h3>

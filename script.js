@@ -140,7 +140,7 @@ document.addEventListener('DOMContentLoaded', () => {
         nextEvent?.classList.add('is-next');
     }
 
-    // Agenda: navegación por meses del calendario
+    // Agenda: navegación por meses y selección cruzada entre calendario y actos
     const monthPanels = [...document.querySelectorAll('.agenda-month-panel')];
     const monthName = document.getElementById('cal-month-name');
     const monthPrev = document.getElementById('cal-prev');
@@ -157,6 +157,56 @@ document.addEventListener('DOMContentLoaded', () => {
         monthPrev.addEventListener('click', () => showMonth(monthIndex - 1));
         monthNext.addEventListener('click', () => showMonth(monthIndex + 1));
         showMonth(0);
+
+        const eventDays = [...document.querySelectorAll('.calendar-day-btn[data-date]')];
+        const isInView = (element) => {
+            const rect = element.getBoundingClientRect();
+            return rect.top >= 80 && rect.bottom <= window.innerHeight;
+        };
+
+        const selectDate = (date, origin) => {
+            const dayButton = eventDays.find((button) => button.dataset.date === date);
+            const card = agendaEvents.find((item) => item.dataset.date === date);
+            if (!dayButton || !card) return;
+
+            eventDays.forEach((button) => {
+                const selected = button === dayButton;
+                button.closest('.calendar-day').classList.toggle('is-selected', selected);
+                button.setAttribute('aria-pressed', String(selected));
+            });
+            agendaEvents.forEach((item) => {
+                const selected = item === card;
+                item.classList.toggle('is-selected', selected);
+                if (selected) {
+                    item.setAttribute('aria-current', 'true');
+                } else {
+                    item.removeAttribute('aria-current');
+                }
+            });
+
+            const panel = dayButton.closest('.agenda-month-panel');
+            const panelIndex = monthPanels.indexOf(panel);
+            if (panelIndex >= 0 && panelIndex !== monthIndex) showMonth(panelIndex);
+
+            const target = origin === 'calendar' ? card : dayButton;
+            if (!isInView(target)) {
+                target.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'center' });
+            }
+
+            const focusTarget = origin === 'calendar' ? card.querySelector('.agenda-date') : dayButton;
+            focusTarget?.focus({ preventScroll: true });
+        };
+
+        eventDays.forEach((button) => {
+            button.addEventListener('click', () => selectDate(button.dataset.date, 'calendar'));
+        });
+
+        agendaEvents.forEach((card) => {
+            card.addEventListener('click', (event) => {
+                if (event.target.closest('a')) return;
+                selectDate(card.dataset.date, 'event');
+            });
+        });
     }
 
     // Portada: fondo de fotos con fundido
@@ -353,6 +403,22 @@ document.addEventListener('DOMContentLoaded', () => {
             if (soundLabel) soundLabel.textContent = soundOn ? 'Silenciar' : 'Activar sonido';
         });
     }
+
+    // Noticias desplegables: muestra el contenido completo sin salir de la página
+    const noticiaToggles = document.querySelectorAll('.noticia-toggle');
+    noticiaToggles.forEach((toggle) => {
+        const panelId = toggle.getAttribute('aria-controls');
+        const panel = panelId ? document.getElementById(panelId) : null;
+        const label = toggle.querySelector('.noticia-toggle-text');
+        if (!panel || !label) return;
+
+        toggle.addEventListener('click', () => {
+            const isOpen = toggle.getAttribute('aria-expanded') === 'true';
+            toggle.setAttribute('aria-expanded', String(!isOpen));
+            panel.hidden = isOpen;
+            label.textContent = isOpen ? 'Leer noticia completa' : 'Leer menos';
+        });
+    });
 
     // Formulario de contacto: FormSubmit envía la solicitud directamente
     const form = document.querySelector('.formulario');
