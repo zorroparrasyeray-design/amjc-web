@@ -505,7 +505,15 @@ button { background: none; border: none; cursor: pointer; font-family: inherit; 
 }
 
 /* CTA section */
-.section-cta { position: relative; overflow: hidden; background: var(--azul-oscuro); }
+.section-cta {
+    position: relative;
+    overflow: hidden;
+    background-color: var(--azul-oscuro);
+    background-image: url('img/hero-cuaresma-2026.jpg');
+    background-position: center 60%;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
 .cta-video-bg { position: absolute; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; }
 .cta-video-bg iframe { position: absolute; top: 50%; left: 50%; width: 100%; height: 100%; transform: translate(-50%, -50%); border: 0; }
 .cta-video-bg::after { content: ''; position: absolute; inset: 0; z-index: 1; background: linear-gradient(180deg, rgba(10,22,40,0.85) 0%, rgba(10,22,40,0.72) 45%, rgba(10,22,40,0.9) 100%); }
@@ -832,4 +840,241 @@ button { background: none; border: none; cursor: pointer; font-family: inherit; 
     .bandas-list--logos .banda-item { gap: 0.7rem; padding: 0.65rem 0.75rem; }
     .banda-logo,
     .banda-logo-frame { width: 64px; height: 64px; flex-basis: 64px; }
+}
+
+/* === PÁGINAS LEGALES === */
+.footer-legal-links {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 0.35rem 0.65rem;
+    margin-top: 0.35rem;
+    font-size: 0.85rem;
+}
+
+.footer-legal-links a { color: var(--gris-claro); transition: var(--transition); }
+.footer-legal-links a:hover,
+.footer-legal-links a:focus-visible { color: var(--dorado); }
+.footer-legal-links span { color: rgba(255,255,255,0.25); }
+
+.legal-content {
+    max-width: 860px;
+    margin: 0 auto;
+    color: var(--blanco-suave);
+    line-height: 1.8;
+}
+
+.legal-content h2 {
+    font-family: var(--fuente-titulos);
+    font-size: clamp(1.5rem, 2.6vw, 2rem);
+    font-weight: 600;
+    color: var(--blanco);
+    margin: 2.5rem 0 0.9rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid rgba(201,168,76,0.22);
+}
+
+.legal-content h2:first-of-type { margin-top: 1.75rem; }
+.legal-content p { margin-bottom: 1rem; }
+
+.legal-content ul {
+    display: block;
+    margin: 0 0 1.25rem 1.35rem;
+    padding-left: 0.5rem;
+    list-style: disc;
+}
+
+.legal-content li {
+    padding-left: 0.25rem;
+    margin-bottom: 0.45rem;
+}
+
+.legal-content li:last-child { margin-bottom: 0; }
+
+.legal-content a {
+    color: var(--dorado);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.legal-content a:hover,
+.legal-content a:focus-visible { color: var(--blanco); }
+.legal-content strong { color: var(--blanco); }
+
+.legal-content code {
+    font-family: ui-monospace, SFMono-Regular, Consolas, 'Liberation Mono', monospace;
+    font-size: 0.88em;
+    color: var(--dorado);
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 4px;
+    padding: 0.1rem 0.35rem;
+    word-break: break-word;
+}
+
+.legal-meta {
+    display: inline-block;
+    margin-bottom: 1.25rem;
+    padding: 0.35rem 0.85rem;
+    border: 1px solid rgba(201,168,76,0.25);
+    border-radius: 100px;
+    background: rgba(201,168,76,0.1);
+    color: var(--gris-claro);
+    font-size: 0.82rem;
+}
+
+.legal-table-wrap {
+    margin: 0 0 1.5rem;
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 10px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.legal-table {
+    width: 100%;
+    min-width: 640px;
+    border-collapse: collapse;
+    font-size: 0.92rem;
+    line-height: 1.6;
+}
+
+.legal-table th,
+.legal-table td {
+    padding: 0.85rem 1rem;
+    text-align: left;
+    vertical-align: top;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+}
+
+.legal-table thead th {
+    background: rgba(204,0,0,0.12);
+    color: var(--blanco);
+    font-size: 0.82rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.legal-table tbody tr:nth-child(even) { background: rgba(255,255,255,0.025); }
+.legal-table tbody tr:last-child td { border-bottom: none; }
+
+/* === AVISO DE COOKIES === */
+.cookie-banner {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 2000;
+    padding: 1rem;
+    background: rgba(5,13,26,0.97);
+    border-top: 1px solid rgba(201,168,76,0.35);
+    box-shadow: 0 -12px 40px rgba(0,0,0,0.45);
+    backdrop-filter: blur(10px);
+}
+
+.cookie-banner[hidden] { display: none; }
+
+.cookie-banner-inner {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+}
+
+.cookie-banner-text {
+    flex: 1 1 auto;
+    color: var(--blanco-suave);
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+
+.cookie-banner-text strong {
+    display: block;
+    margin-bottom: 0.15rem;
+    font-family: var(--fuente-titulos);
+    font-size: 1.15rem;
+    color: var(--dorado);
+}
+
+.cookie-banner-text p { margin: 0; }
+
+.cookie-banner-text a {
+    color: var(--dorado);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+.cookie-banner-actions {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.cookie-banner-actions .btn {
+    padding: 0.7rem 1.4rem;
+    font-size: 0.85rem;
+    white-space: nowrap;
+}
+
+.cookie-banner-actions .btn-secondary { margin-right: 0; }
+
+body.cookie-banner-open { padding-bottom: 7rem; }
+
+@media (max-width: 768px) {
+    .cookie-banner { padding: 0.85rem; }
+    .cookie-banner-inner { flex-direction: column; align-items: stretch; gap: 0.85rem; }
+    .cookie-banner-text { font-size: 0.85rem; }
+    .cookie-banner-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 0.6rem; }
+    .cookie-banner-actions .btn { display: block; width: 100%; margin: 0; }
+    body.cookie-banner-open { padding-bottom: 16rem; }
+
+    .legal-content ul { margin-left: 1rem; }
+    .legal-table { font-size: 0.86rem; }
+    .legal-table th,
+    .legal-table td { padding: 0.7rem 0.8rem; }
+}
+
+/* Botón de sonido oculto hasta que el vídeo esté listo */
+.cta-video-sound[hidden] { display: none; }
+
+/* Casilla de privacidad del formulario */
+.form-group.form-check {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.65rem;
+}
+
+.form-group.form-check input[type="checkbox"] {
+    width: 1.15rem;
+    height: 1.15rem;
+    flex: 0 0 auto;
+    margin-top: 0.25rem;
+    padding: 0;
+    accent-color: var(--rojo);
+    cursor: pointer;
+}
+
+.form-group.form-check input[type="checkbox"]:focus {
+    box-shadow: none;
+    outline: 2px solid var(--dorado);
+    outline-offset: 2px;
+}
+
+.form-group.form-check label {
+    margin: 0;
+    font-size: 0.9rem;
+    font-weight: 400;
+    line-height: 1.55;
+    color: var(--blanco-suave);
+    cursor: pointer;
+}
+
+.form-group.form-check label a {
+    color: var(--dorado);
+    text-decoration: underline;
+    text-underline-offset: 2px;
 }

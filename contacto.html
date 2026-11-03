@@ -30,7 +30,7 @@
 <body>
     <a class="skip-link" href="#main-content">Saltar al contenido</a>
     <div class="stripe-bg" aria-hidden="true"></div>
-    
+
     <header class="header">
         <div class="container header-inner">
             <a href="index.html" class="logo" aria-label="Agrupación Musical Jesús Caído - Inicio">
@@ -52,7 +52,7 @@
                     <li><a href="contacto.html" class="nav-link active btn-contacto" aria-current="page">Contacto</a></li>
                 </ul>
             </nav>
-            <button class="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Abrir menú">
+            <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Abrir menú">
                 <span class="hamburger"></span>
             </button>
         </div>
@@ -172,6 +172,10 @@
                             <label for="mensaje">Mensaje *</label>
                             <textarea id="mensaje" name="mensaje" rows="5" required placeholder="Cuéntanos qué necesitas: fecha, lugar, tipo de evento..."></textarea>
                         </div>
+                        <div class="form-group form-check">
+                            <input type="checkbox" id="privacidad" name="privacidad" value="Aceptada" required>
+                            <label for="privacidad">He leído y acepto la <a href="privacidad.html">política de privacidad</a> y el uso de mis datos para responder a esta solicitud. *</label>
+                        </div>
                         <button type="submit" class="btn btn-primary btn-full">Enviar Solicitud</button>
                         <p class="form-nota" role="status" aria-live="polite">Tu solicitud se enviará directamente a la agrupación. Tus datos solo se utilizan para responderte.</p>
                     </form>
@@ -221,6 +225,13 @@
             <div class="footer-bottom">
                 <p>&copy; 2026 Agrupación Musical Jesús Caído. Todos los derechos reservados.</p>
                 <p class="footer-credit">Música que suena a Montoro • Desde 1963</p>
+                <nav class="footer-legal-links" aria-label="Información legal">
+                    <a href="aviso-legal.html">Aviso legal</a>
+                    <span aria-hidden="true">·</span>
+                    <a href="privacidad.html">Política de privacidad</a>
+                    <span aria-hidden="true">·</span>
+                    <a href="cookies.html">Política de cookies</a>
+                </nav>
             </div>
         </div>
     </footer>

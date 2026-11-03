@@ -333,18 +333,73 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Vídeo de fondo de la sección CTA: cubre la sección y empieza silenciado
+    // Consentimiento de cookies y carga diferida del vídeo de YouTube
+    const COOKIE_CONSENT_KEY = 'amjc-cookie-consent';
+    const getCookieConsent = () => {
+        try {
+            return localStorage.getItem(COOKIE_CONSENT_KEY);
+        } catch {
+            return null;
+        }
+    };
+    const setCookieConsent = (value) => {
+        try {
+            localStorage.setItem(COOKIE_CONSENT_KEY, value);
+        } catch {
+            /* Si el navegador bloquea el almacenamiento, se volverá a preguntar. */
+        }
+    };
+
+    const cookieBanner = document.createElement('div');
+    cookieBanner.className = 'cookie-banner';
+    cookieBanner.id = 'cookie-banner';
+    cookieBanner.setAttribute('role', 'region');
+    cookieBanner.setAttribute('aria-label', 'Aviso de cookies');
+    cookieBanner.hidden = true;
+    cookieBanner.innerHTML = `
+        <div class="cookie-banner-inner">
+            <div class="cookie-banner-text">
+                <strong>Cookies y vídeo</strong>
+                <p>Usamos almacenamiento local técnico necesario para recordar tu elección. Si aceptas, cargaremos el vídeo de YouTube de la portada, que puede instalar cookies de terceros. Puedes rechazarlo y seguir navegando. <a href="cookies.html">Más información</a>.</p>
+            </div>
+            <div class="cookie-banner-actions">
+                <button type="button" class="btn btn-secondary" data-cookie-reject>Rechazar</button>
+                <button type="button" class="btn btn-primary" data-cookie-accept>Aceptar</button>
+            </div>
+        </div>`;
+    document.body.appendChild(cookieBanner);
+
+    const showCookieBanner = () => {
+        cookieBanner.hidden = false;
+        document.body.classList.add('cookie-banner-open');
+    };
+    const hideCookieBanner = () => {
+        cookieBanner.hidden = true;
+        document.body.classList.remove('cookie-banner-open');
+    };
+
+    // Vídeo de fondo de la sección CTA: solo se carga con consentimiento
     const ctaSection = document.querySelector('.section-cta');
     const ctaVideoBg = ctaSection?.querySelector('.cta-video-bg');
-    if (ctaSection && ctaVideoBg) {
+    let ctaVideoLoaded = false;
+
+    const loadCtaVideo = () => {
+        if (!ctaSection || !ctaVideoBg || ctaVideoLoaded) return;
         const iframe = ctaVideoBg.querySelector('iframe');
+        if (!iframe) return;
+        ctaVideoLoaded = true;
+
+        if (iframe.dataset.src) {
+            iframe.src = iframe.dataset.src;
+            iframe.removeAttribute('data-src');
+        }
+
         const soundToggle = ctaSection.querySelector('.cta-video-sound');
         const soundLabel = soundToggle?.querySelector('.cta-video-sound-label');
         let player = null;
         let soundOn = false;
 
         const resizeCtaVideo = () => {
-            if (!iframe) return;
             const width = ctaSection.clientWidth;
             const height = ctaSection.clientHeight;
             const videoWidth = Math.max(width, height * (16 / 9));
@@ -361,7 +416,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         const initCtaPlayer = () => {
-            if (!iframe || !window.YT?.Player) return;
+            if (!window.YT?.Player) return;
 
             player = new YT.Player(iframe, {
                 events: {
@@ -372,7 +427,10 @@ document.addEventListener('DOMContentLoaded', () => {
                         } else {
                             event.target.playVideo();
                         }
-                        soundToggle?.removeAttribute('disabled');
+                        if (soundToggle) {
+                            soundToggle.hidden = false;
+                            soundToggle.removeAttribute('disabled');
+                        }
                     }
                 }
             });
@@ -402,7 +460,41 @@ document.addEventListener('DOMContentLoaded', () => {
             soundToggle.setAttribute('aria-pressed', String(soundOn));
             if (soundLabel) soundLabel.textContent = soundOn ? 'Silenciar' : 'Activar sonido';
         });
-    }
+    };
+
+    const applyCookieConsent = (consent) => {
+        if (consent === 'accepted') {
+            hideCookieBanner();
+            loadCtaVideo();
+        } else if (consent === 'rejected') {
+            hideCookieBanner();
+        } else {
+            showCookieBanner();
+        }
+    };
+
+    cookieBanner.querySelector('[data-cookie-accept]')?.addEventListener('click', () => {
+        setCookieConsent('accepted');
+        applyCookieConsent('accepted');
+    });
+    cookieBanner.querySelector('[data-cookie-reject]')?.addEventListener('click', () => {
+        setCookieConsent('rejected');
+        applyCookieConsent('rejected');
+    });
+
+    applyCookieConsent(getCookieConsent());
+
+    // Permite cambiar la elección desde la política de cookies
+    document.querySelectorAll('[data-cookie-reset]').forEach((button) => {
+        button.addEventListener('click', () => {
+            try {
+                localStorage.removeItem(COOKIE_CONSENT_KEY);
+            } catch {
+                /* Sin almacenamiento, se volverá a preguntar igualmente. */
+            }
+            window.location.reload();
+        });
+    });
 
     // Noticias desplegables: muestra el contenido completo sin salir de la página
     const noticiaToggles = document.querySelectorAll('.noticia-toggle');
