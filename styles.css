@@ -128,7 +128,7 @@ button { background: none; border: none; cursor: pointer; font-family: inherit; 
 .logo-img:hover { opacity: 1; transform: scale(1.05); }
 .logo-text { display: flex; flex-direction: column; line-height: 1.1; }
 .logo-title { font-family: var(--fuente-titulos); font-size: 1.1rem; font-weight: 600; color: var(--blanco); letter-spacing: 0.02em; }
-.logo-subtitle { font-size: 0.7rem; font-weight: 500; color: var(--rojo); letter-spacing: 0.1em; text-transform: uppercase; }
+.logo-subtitle { font-size: 0.75rem; font-weight: 600; color: var(--rojo-texto); letter-spacing: 0.08em; text-transform: uppercase; }
 
 .nav-list { display: flex; align-items: center; gap: 0.25rem; }
 .nav-link { padding: 0.5rem 1rem; font-size: 0.95rem; font-weight: 500; color: var(--gris-claro); border-radius: 4px; transition: var(--transition); position: relative; }
@@ -679,7 +679,7 @@ button { background: none; border: none; cursor: pointer; font-family: inherit; 
     .logo { gap: 0.55rem; }
     .logo-img { width: 40px; height: 40px; }
     .logo-title { font-size: 1rem; }
-    .logo-subtitle { font-size: 0.62rem; }
+    .logo-subtitle { font-size: 0.68rem; }
     .nav { width: min(280px, 86vw); padding: calc(var(--header-height) + 1.5rem) 1.5rem 1.5rem; }
     .nav-link { display: block; padding: 0.85rem 0.75rem; font-size: 0.95rem; border-radius: 6px; -webkit-tap-highlight-color: transparent; }
     .nav-link:hover, .nav-link:focus-visible { background: rgba(255,255,255,0.06); color: var(--blanco); }
