@@ -510,7 +510,7 @@ button { background: none; border: none; cursor: pointer; font-family: inherit; 
     overflow: hidden;
     background-color: var(--azul-oscuro);
     background-image: url('img/detalle-cuello-uniforme.jpg');
-    background-position: center 22%;
+    background-position: center 50%;
     background-size: cover;
     background-repeat: no-repeat;
 }
@@ -538,7 +538,7 @@ button { background: none; border: none; cursor: pointer; font-family: inherit; 
 .gallery-img--salida { object-position: 50% 38%; }
 
 @media (max-width: 768px) {
-    .section-cta { background-position: center 42%; }
+    .section-cta { background-position: center 55%; }
 }
 
 /* Galería de historia */
