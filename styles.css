@@ -509,8 +509,8 @@ button { background: none; border: none; cursor: pointer; font-family: inherit; 
     position: relative;
     overflow: hidden;
     background-color: var(--azul-oscuro);
-    background-image: url('img/hero-cuaresma-2026.jpg');
-    background-position: center 60%;
+    background-image: url('img/detalle-cuello-uniforme.jpg');
+    background-position: center 22%;
     background-size: cover;
     background-repeat: no-repeat;
 }
@@ -535,6 +535,11 @@ button { background: none; border: none; cursor: pointer; font-family: inherit; 
 .gallery-img--tambores { object-position: 50% 50%; }
 .gallery-img--guion { object-position: 50% 42%; }
 .gallery-img--guion-detalle { object-position: 50% 50%; }
+.gallery-img--salida { object-position: 50% 38%; }
+
+@media (max-width: 768px) {
+    .section-cta { background-position: center 42%; }
+}
 
 /* Galería de historia */
 .historia-galeria { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; }
