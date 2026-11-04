@@ -291,6 +291,8 @@ button { background: none; border: none; cursor: pointer; font-family: inherit; 
 .proximos-eventos .proxima-actuacion-titulo { font-family: var(--fuente-titulos); font-size: 1.18rem; font-weight: 500; color: var(--dorado); margin: 0 0 0.15rem; line-height: 1.3; }
 .proximos-eventos .proxima-actuacion-lugar { font-size: 0.82rem; letter-spacing: 0.04em; color: var(--rojo-brillante); margin: 0 0 0.15rem; }
 .proximos-eventos .proxima-actuacion-cuando { font-size: 0.82rem; color: var(--gris-claro); margin: 0; }
+.proximos-eventos .proxima-cuenta { margin: 0.35rem 0 0; font-family: var(--fuente-ui); font-size: 0.78rem; font-weight: 600; letter-spacing: 0.04em; color: var(--dorado); }
+.proximos-eventos .proxima-cuenta:empty { display: none; }
 @media (max-width: 600px) {
     .proxima-actuacion { grid-template-columns: 1fr; justify-items: start; }
     .proxima-actuacion-logo { width: 80px; height: 80px; }
@@ -483,6 +485,8 @@ button { background: none; border: none; cursor: pointer; font-family: inherit; 
 .agenda-day { display: block; margin-bottom: 0.15rem; font-family: var(--fuente-ui); font-size: 0.68rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--rojo-texto); }
 .agenda-info h3 { font-family: var(--fuente-titulos); font-size: 1.05rem; font-weight: 500; line-height: 1.3; color: var(--blanco); margin-bottom: 0.15rem; }
 .agenda-info p { font-family: var(--fuente-ui); font-size: 0.8rem; line-height: 1.4; color: var(--gris-claro); }
+.agenda-info .agenda-cuenta { margin-top: 0.2rem; font-family: var(--fuente-ui); font-size: 0.76rem; font-weight: 600; letter-spacing: 0.04em; color: var(--dorado); }
+.agenda-info .agenda-cuenta:empty { display: none; }
 .agenda-logos { display: flex; gap: 0.35rem; margin-top: 0.4rem; }
 .agenda-logo { width: 34px; height: 34px; object-fit: contain; filter: drop-shadow(0 4px 8px rgba(0,0,0,0.35)); }
 .agenda-cta { text-align: center; margin-top: 2rem; }
@@ -1025,10 +1029,25 @@ button { background: none; border: none; cursor: pointer; font-family: inherit; 
 .cookie-banner-actions .btn {
     padding: 0.7rem 1.4rem;
     font-size: 0.85rem;
+    font-weight: 600;
+    border: 2px solid transparent;
     white-space: nowrap;
 }
 
-.cookie-banner-actions .btn-secondary { margin-right: 0; }
+.cookie-banner-actions .btn-secondary {
+    margin-right: 0;
+    background: rgba(255,255,255,0.1);
+    border-color: rgba(255,255,255,0.55);
+    color: var(--blanco);
+}
+
+.cookie-banner-actions .btn-secondary:hover {
+    background: rgba(255,255,255,0.2);
+    border-color: var(--blanco);
+    color: var(--blanco);
+    transform: none;
+    box-shadow: none;
+}
 
 body.cookie-banner-open { padding-bottom: 7rem; }
 

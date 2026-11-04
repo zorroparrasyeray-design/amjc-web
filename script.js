@@ -130,6 +130,24 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    // Cuenta atrás de la próxima actuación: la tarjeta se retira el día después
+    document.querySelectorAll('[data-cuenta]').forEach((el) => {
+        const objetivo = new Date(`${el.dataset.cuenta}T00:00:00+01:00`);
+        const hoy = new Date();
+        hoy.setHours(0, 0, 0, 0);
+        const dias = Math.round((objetivo.getTime() - hoy.getTime()) / 86400000);
+        if (dias > 1) {
+            el.textContent = `Faltan ${dias} días`;
+        } else if (dias === 1) {
+            el.textContent = 'Falta 1 día';
+        } else if (dias === 0) {
+            el.textContent = 'Es hoy';
+        }
+        if (dias < 0) {
+            el.closest('[data-evento]')?.remove();
+        }
+    });
+
     const agendaEvents = [...document.querySelectorAll('.agenda-event[data-date]')];
     if (agendaEvents.length) {
         const today = new Date();
