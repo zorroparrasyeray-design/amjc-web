@@ -22,9 +22,7 @@
     <meta name="twitter:image" content="https://zorroparrasyeray-design.github.io/amjc-web/img/formacion-atardecer.jpg">
     <link rel="icon" type="image/png" href="favicon.png">
     <link rel="apple-touch-icon" href="favicon.png">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="fonts.css">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -47,7 +45,7 @@
                     <li><a href="conciertos.html" class="nav-link">Conciertos</a></li>
                     <li><a href="uniformidad.html" class="nav-link">Uniformidad</a></li>
                     <li><a href="actualidad.html" class="nav-link">Actualidad</a></li>
-                    <li><a href="acompanamientos.html" class="nav-link">Acompañamientos</a></li>
+                    <li><a href="acompanamientos.html" class="nav-link">Semana Santa</a></li>
                     <li><a href="repertorio.html" class="nav-link">Repertorio</a></li>
                     <li><a href="contacto.html" class="nav-link btn-contacto">Contacto</a></li>
                 </ul>
@@ -69,7 +67,7 @@
         <section class="section" aria-labelledby="cookies-title">
             <div class="container">
                 <div class="legal-content">
-                    <p class="legal-meta">Última actualización: 3 de noviembre de 2026</p>
+                    <p class="legal-meta">Última actualización: 4 de noviembre de 2026</p>
 
                     <h2 id="cookies-title">1. Qué son las cookies y el almacenamiento local</h2>
                     <p>Las cookies son pequeños archivos que algunos sitios web guardan en tu navegador. También existe el <strong>almacenamiento local</strong> (<em>localStorage</em>), una tecnología similar que permite guardar información en tu dispositivo sin enviarla automáticamente al servidor.</p>
@@ -103,33 +101,48 @@
                                     <td>Hasta que borres los datos del navegador o cambies tu elección.</td>
                                 </tr>
                                 <tr>
-                                    <td>YouTube / Google (youtube-nocookie.com)</td>
-                                    <td>Cookies y almacenamiento de terceros</td>
-                                    <td>Reproducir el vídeo de la portada. Solo se carga si pulsas “Aceptar” en el aviso. Puede recoger tu IP, dispositivo, navegador e interacción con el reproductor.</td>
-                                    <td>Según la política de Google/YouTube.</td>
+                                    <td><code>YSC</code> (youtube.com)</td>
+                                    <td>Cookie de terceros</td>
+                                    <td>Identificar la sesión del reproductor y mantener su funcionamiento. Solo se instala si aceptas cargar el vídeo.</td>
+                                    <td>Hasta que cierras el navegador.</td>
                                 </tr>
                                 <tr>
-                                    <td>Google Fonts</td>
-                                    <td>Servicio de terceros (sin cookies propias)</td>
-                                    <td>Cargar las tipografías del sitio. La conexión con los servidores de Google puede registrar datos técnicos como la IP.</td>
-                                    <td>Según la política de Google.</td>
+                                    <td><code>VISITOR_INFO1_LIVE</code> (youtube.com)</td>
+                                    <td>Cookie de terceros</td>
+                                    <td>Estimar el ancho de banda y recordar preferencias de reproducción. Solo se instala si aceptas cargar el vídeo.</td>
+                                    <td>Unos 6 meses.</td>
                                 </tr>
                                 <tr>
-                                    <td>FormSubmit</td>
-                                    <td>Servicio de terceros</td>
-                                    <td>Procesar y reenviar el formulario de contacto por correo electrónico. Solo interviene cuando envías el formulario.</td>
-                                    <td>Según la política de FormSubmit.</td>
+                                    <td><code>VISITOR_PRIVACY_METADATA</code> (youtube.com)</td>
+                                    <td>Cookie de terceros</td>
+                                    <td>Guardar el estado de privacidad y consentimiento del visitante. Solo se instala si aceptas cargar el vídeo.</td>
+                                    <td>Unos 6 meses.</td>
+                                </tr>
+                                <tr>
+                                    <td><code>__Secure-YNID</code> (youtube.com)</td>
+                                    <td>Cookie de terceros</td>
+                                    <td>Recordar preferencias y el estado de consentimiento del visitante. Solo se instala si aceptas cargar el vídeo.</td>
+                                    <td>Unos 6 meses.</td>
+                                </tr>
+                                <tr>
+                                    <td><code>__Secure-ROLLOUT_TOKEN</code> (youtube.com)</td>
+                                    <td>Cookie de terceros</td>
+                                    <td>Gestionar el despliegue de versiones y experimentos del reproductor. Solo se instala si aceptas cargar el vídeo.</td>
+                                    <td>Unos 6 meses.</td>
                                 </tr>
                                 <tr>
                                     <td>GitHub Pages</td>
                                     <td>Alojamiento</td>
-                                    <td>Servir las páginas del sitio y registrar datos técnicos de conexión por seguridad y funcionamiento.</td>
+                                    <td>Servir las páginas del sitio y registrar datos técnicos de conexión por seguridad y funcionamiento. No instala cookies propias de seguimiento.</td>
                                     <td>Según la política de GitHub.</td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
                     <p>Esta web no utiliza cookies publicitarias, de análisis, de perfilado ni de redes sociales más allá de la carga del vídeo descrita.</p>
+                    <p>Los nombres de las cookies de YouTube se han comprobado en las herramientas de desarrollo del navegador al cargar el vídeo. YouTube puede añadir otras cookies según la interacción con el reproductor o si tienes una sesión iniciada en Google; en ese caso se rigen por la política de Google.</p>
+                    <p>El reproductor también puede utilizar almacenamiento local técnico en el dominio de YouTube para recordar el estado de la sesión. Esa información pertenece a YouTube, no es accesible desde esta web y solo se genera si aceptas cargar el vídeo.</p>
+                    <p>Las tipografías de esta web se alojan en el propio sitio, por lo que no se realiza ninguna conexión a Google Fonts.</p>
 
                     <h2>4. Cómo funciona el aviso</h2>
                     <p>Al entrar por primera vez aparece un aviso en la parte inferior con dos opciones:</p>
@@ -137,7 +150,7 @@
                         <li><strong>Aceptar:</strong> se guarda tu elección y se carga el vídeo de YouTube de la portada.</li>
                         <li><strong>Rechazar:</strong> se guarda tu elección y el vídeo no se carga. Puedes seguir navegando con normalidad.</li>
                     </ul>
-                    <p>Si rechazas, no se realiza ninguna petición a YouTube. Si más adelante cambias de opinión, puedes usar el botón que aparece al final de esta página o borrar los datos del sitio desde la configuración de tu navegador.</p>
+                    <p>Si rechazas, no se realiza ninguna petición a YouTube. Si más adelante cambias de opinión, puedes usar el botón que aparece al final de esta página, el enlace «Configurar cookies» del pie de todas las páginas o borrar los datos del sitio desde la configuración de tu navegador.</p>
 
                     <h2>5. Cambiar o retirar tu elección</h2>
                     <p>Pulsa este botón para borrar la decisión guardada. Al recargar la página, el aviso volverá a aparecer y podrás elegir de nuevo.</p>
@@ -180,7 +193,7 @@
                         <li><a href="conciertos.html">Conciertos</a></li>
                         <li><a href="uniformidad.html">Uniformidad</a></li>
                         <li><a href="actualidad.html">Actualidad</a></li>
-                        <li><a href="acompanamientos.html">Acompañamientos</a></li>
+                        <li><a href="acompanamientos.html">Semana Santa</a></li>
                         <li><a href="repertorio.html">Repertorio</a></li>
                     </ul>
                 </nav>
@@ -211,6 +224,8 @@
                     <a href="privacidad.html">Política de privacidad</a>
                     <span aria-hidden="true">·</span>
                     <a href="cookies.html">Política de cookies</a>
+                    <span aria-hidden="true">·</span>
+                    <a href="cookies.html" data-cookie-reset>Configurar cookies</a>
                 </nav>
             </div>
         </div>

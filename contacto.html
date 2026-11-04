@@ -22,9 +22,7 @@
     <meta name="twitter:image" content="https://zorroparrasyeray-design.github.io/amjc-web/formacion.jpg">
     <link rel="icon" type="image/png" href="favicon.png">
     <link rel="apple-touch-icon" href="favicon.png">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="fonts.css">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -47,7 +45,7 @@
                     <li><a href="conciertos.html" class="nav-link">Conciertos</a></li>
                     <li><a href="uniformidad.html" class="nav-link">Uniformidad</a></li>
                     <li><a href="actualidad.html" class="nav-link">Actualidad</a></li>
-                    <li><a href="acompanamientos.html" class="nav-link">Acompañamientos</a></li>
+                    <li><a href="acompanamientos.html" class="nav-link">Semana Santa</a></li>
                     <li><a href="repertorio.html" class="nav-link">Repertorio</a></li>
                     <li><a href="contacto.html" class="nav-link active btn-contacto" aria-current="page">Contacto</a></li>
                 </ul>
@@ -137,15 +135,7 @@
                     <div class="section-divider"><span></span></div>
                 </header>
                 <div class="formulario-container">
-                    <div class="form-exito" id="form-exito" role="status" hidden>
-                        <strong>Solicitud enviada.</strong> Gracias por escribirnos. Te responderemos lo antes posible.
-                    </div>
-                    <form class="formulario" action="https://formsubmit.co/amusicaljesuscaido@gmail.com" method="POST">
-                        <input type="hidden" name="_subject" value="Nueva solicitud desde la web">
-                        <input type="hidden" name="_template" value="table">
-                        <input type="hidden" name="_captcha" value="false">
-                        <input type="hidden" name="_next" value="https://zorroparrasyeray-design.github.io/amjc-web/contacto.html?enviado=1#formulario">
-                        <input type="text" name="_honey" class="form-honey" tabindex="-1" autocomplete="off" aria-hidden="true">
+                    <form class="formulario">
                         <div class="form-group">
                             <label for="nombre">Nombre *</label>
                             <input type="text" id="nombre" name="nombre" autocomplete="name" required>
@@ -172,12 +162,16 @@
                             <label for="mensaje">Mensaje *</label>
                             <textarea id="mensaje" name="mensaje" rows="5" required placeholder="Cuéntanos qué necesitas: fecha, lugar, tipo de evento..."></textarea>
                         </div>
+                        <div class="form-info" role="note">
+                            <p><strong>Información básica sobre protección de datos</strong></p>
+                            <p><strong>Responsable:</strong> Agrupación Musical Jesús Caído de Montoro (G14415269). <strong>Finalidad:</strong> atender tu solicitud de información o contratación. <strong>Base jurídica:</strong> tu consentimiento y, en solicitudes de contratación, la aplicación de medidas precontractuales a tu petición (art. 6.1.a y 6.1.b RGPD). <strong>Destinatarios:</strong> no se envían a ningún servicio externo; el formulario abre tu programa de correo y el mensaje llega a la cuenta de la Entidad. <strong>Derechos:</strong> acceso, rectificación, supresión y otros, escribiendo a <a href="mailto:amusicaljesuscaido@gmail.com">amusicaljesuscaido@gmail.com</a>. <strong>Más información:</strong> <a href="privacidad.html">política de privacidad</a>.</p>
+                        </div>
                         <div class="form-group form-check">
-                            <input type="checkbox" id="privacidad" name="privacidad" value="Aceptada" required>
-                            <label for="privacidad">He leído y acepto la <a href="privacidad.html">política de privacidad</a> y el uso de mis datos para responder a esta solicitud. *</label>
+                            <input type="checkbox" id="privacidad" name="privacidad" value="Consentimiento otorgado" required>
+                            <label for="privacidad">Consiento el tratamiento de mis datos para atender mi solicitud, según la <a href="privacidad.html">política de privacidad</a>. *</label>
                         </div>
                         <button type="submit" class="btn btn-primary btn-full">Enviar Solicitud</button>
-                        <p class="form-nota" role="status" aria-live="polite">Tu solicitud se enviará directamente a la agrupación. Tus datos solo se utilizan para responderte.</p>
+                        <p class="form-nota" role="status" aria-live="polite">Al pulsar Enviar se abrirá tu programa de correo con la solicitud redactada; revísala y envíala desde ahí. También puedes escribir directamente a <a href="mailto:amusicaljesuscaido@gmail.com">amusicaljesuscaido@gmail.com</a>.</p>
                     </form>
                 </div>
 
@@ -200,7 +194,7 @@
                         <li><a href="conciertos.html">Conciertos</a></li>
                         <li><a href="uniformidad.html">Uniformidad</a></li>
                         <li><a href="actualidad.html">Actualidad</a></li>
-                        <li><a href="acompanamientos.html">Acompañamientos</a></li>
+                        <li><a href="acompanamientos.html">Semana Santa</a></li>
                         <li><a href="repertorio.html">Repertorio</a></li>
                     </ul>
                 </nav>
@@ -231,6 +225,8 @@
                     <a href="privacidad.html">Política de privacidad</a>
                     <span aria-hidden="true">·</span>
                     <a href="cookies.html">Política de cookies</a>
+                    <span aria-hidden="true">·</span>
+                    <a href="cookies.html" data-cookie-reset>Configurar cookies</a>
                 </nav>
             </div>
         </div>

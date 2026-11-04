@@ -360,7 +360,7 @@ document.addEventListener('DOMContentLoaded', () => {
         <div class="cookie-banner-inner">
             <div class="cookie-banner-text">
                 <strong>Cookies y vídeo</strong>
-                <p>Usamos almacenamiento local técnico necesario para recordar tu elección. Si aceptas, cargaremos el vídeo de YouTube de la portada, que puede instalar cookies de terceros. Puedes rechazarlo y seguir navegando. <a href="cookies.html">Más información</a>.</p>
+                <p>Usamos almacenamiento local técnico necesario para recordar tu elección. Si aceptas, cargaremos el vídeo de YouTube de la portada, que puede instalar cookies de terceros. Puedes rechazarlo y seguir navegando. <a href="cookies.html">Más información sobre cookies</a>.</p>
             </div>
             <div class="cookie-banner-actions">
                 <button type="button" class="btn btn-secondary" data-cookie-reject>Rechazar</button>
@@ -512,22 +512,33 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Formulario de contacto: FormSubmit envía la solicitud directamente
+    // Formulario de contacto: abre el programa de correo con la solicitud ya redactada.
+    // No se envía nada a servicios externos; el mensaje sale desde la cuenta del usuario.
     const form = document.querySelector('.formulario');
     if (form) {
-        const subject = form.querySelector('input[name="_subject"]');
-        const tipoSelect = form.querySelector('#tipo');
+        form.addEventListener('submit', (event) => {
+            event.preventDefault();
+            if (!form.reportValidity()) return;
 
-        form.addEventListener('submit', () => {
-            const tipo = tipoSelect?.selectedOptions[0]?.textContent.trim();
-            if (subject && tipo) subject.value = `Contacto web · ${tipo}`;
+            const valor = (id) => form.querySelector('#' + id)?.value.trim() || '';
+            const tipo = form.querySelector('#tipo')?.selectedOptions[0]?.textContent.trim() || '';
+            const cuerpo = [
+                `Nombre: ${valor('nombre')}`,
+                `Email: ${valor('email')}`,
+                `Teléfono: ${valor('telefono') || 'No indicado'}`,
+                `Tipo de consulta: ${tipo || 'No indicado'}`,
+                '',
+                valor('mensaje')
+            ].join('\n');
+            const asunto = `Contacto web · ${tipo || 'Consulta'}`;
+            const enlace = `mailto:amusicaljesuscaido@gmail.com?subject=${encodeURIComponent(asunto)}&body=${encodeURIComponent(cuerpo)}`;
+
+            window.location.href = enlace;
+
+            const nota = form.querySelector('.form-nota');
+            if (nota) {
+                nota.textContent = 'Se ha abierto tu programa de correo con la solicitud redactada. Revisa el mensaje y pulsa Enviar.';
+            }
         });
-    }
-
-    // Mensaje de confirmación al volver desde FormSubmit
-    const formExito = document.getElementById('form-exito');
-    if (formExito && new URLSearchParams(window.location.search).get('enviado') === '1') {
-        formExito.hidden = false;
-        formExito.scrollIntoView({ block: 'center' });
     }
 });

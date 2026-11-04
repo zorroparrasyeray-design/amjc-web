@@ -362,7 +362,7 @@ button { background: none; border: none; cursor: pointer; font-family: inherit; 
 .footer-escudo:hover { opacity: 1; transform: scale(1.05); }
 .footer-brand p:first-of-type { font-family: var(--fuente-titulos); font-weight: 600; margin-bottom: 0.25rem; }
 .footer-tagline { font-size: 0.95rem; color: var(--gris-claro); }
-.footer-nav h3, .footer-legal h3 { font-size: 0.9rem; font-weight: 600; color: var(--rojo); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1rem; }
+.footer-nav h3, .footer-legal h3 { font-size: 0.9rem; font-weight: 600; color: var(--rojo-texto); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1rem; }
 .footer-nav ul, .footer-legal ul { display: flex; flex-direction: column; gap: 0.5rem; }
 .footer-nav a, .footer-legal a { color: var(--gris-claro); font-size: 0.95rem; transition: var(--transition); }
 .footer-nav a:hover, .footer-legal a:hover { color: var(--rojo); }
@@ -642,6 +642,11 @@ button { background: none; border: none; cursor: pointer; font-family: inherit; 
 .form-exito strong { color: var(--dorado); }
 .form-honey { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
 .formulario { background: linear-gradient(145deg, var(--azul-medio), var(--azul-oscuro)); border: 1px solid rgba(204,0,0,0.1); border-radius: 12px; padding: 2.5rem; }
+.form-info { margin-bottom: 1.5rem; padding: 1rem 1.15rem; border: 1px solid rgba(201,168,76,0.25); border-left: 3px solid var(--dorado); border-radius: 8px; background: rgba(5,13,26,0.45); font-size: 0.82rem; line-height: 1.6; color: var(--gris-claro); }
+.form-info p { margin: 0 0 0.5rem; }
+.form-info p:last-child { margin-bottom: 0; }
+.form-info strong { color: var(--blanco); }
+.form-info a, .form-nota a { color: var(--dorado); }
 .form-group { margin-bottom: 1.5rem; }
 .form-group label { display: block; margin-bottom: 0.5rem; font-weight: 500; color: var(--blanco); font-size: 1rem; }
 .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 0.875rem 1rem; border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; background: var(--azul-oscuro); color: var(--blanco); font-family: inherit; font-size: 1rem; transition: var(--transition); }
@@ -651,7 +656,7 @@ button { background: none; border: none; cursor: pointer; font-family: inherit; 
 .form-nota { text-align: center; margin-top: 1rem; font-size: 0.85rem; color: var(--gris-claro); }
 
 .footer-social { text-align: center; }
-.footer-social h3 { font-size: 0.85rem; font-weight: 600; color: var(--rojo); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1rem; }
+.footer-social h3 { font-size: 0.85rem; font-weight: 600; color: var(--rojo-texto); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1rem; }
 
 @media (max-width: 768px) {
     .contacto-grid { grid-template-columns: 1fr; gap: 2rem; }
