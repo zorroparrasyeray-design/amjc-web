@@ -560,8 +560,7 @@ button { background: none; border: none; cursor: pointer; font-family: inherit; 
 .historia-galeria--misericordia { grid-template-columns: repeat(3, 1fr); max-width: 1000px; margin: 0 auto; }
 
 /* Marchas grid */
-.marchas-grid { display: flex; flex-wrap: wrap; justify-content: center; align-items: flex-start; gap: 1rem; }
-.marchas-grid .marcha-card { flex: 0 0 240px; width: 240px; aspect-ratio: 1; display: flex; flex-direction: column; justify-content: center; }
+.marchas-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; }
 .marcha-card { background: var(--azul-medio); border: 1px solid rgba(255,255,255,0.05); border-radius: 8px; padding: 1.5rem; text-align: center; transition: var(--transition); position: relative; overflow: hidden; }
 .marcha-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, transparent, var(--rojo), transparent); transform: scaleX(0); transform-origin: center; transition: var(--transition); }
 .marcha-card:hover { border-color: rgba(255,255,255,0.1); transform: translateY(-4px); }
