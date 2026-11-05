@@ -211,6 +211,7 @@ button { background: none; border: none; cursor: pointer; font-family: inherit; 
 .nombre-escudo-img { width: 100%; aspect-ratio: 1; border-radius: 50%; border: none; object-fit: cover; box-shadow: 0 20px 40px rgba(0,0,0,0.3), 0 0 60px rgba(204,0,0,0.1); transition: var(--transition); }
 .nombre-escudo-img:hover { transform: scale(1.02); }
 
+.conciertos-timeline { margin-bottom: 3rem; }
 .conciertos-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin-bottom: 3rem; }
 .concierto-card { background: var(--azul-medio); border: 1px solid rgba(255,255,255,0.05); border-radius: 8px; padding: 1.5rem; display: flex; gap: 1rem; transition: var(--transition); position: relative; overflow: hidden; }
 .concierto-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, transparent, var(--rojo), transparent); transform: scaleX(0); transform-origin: left; transition: var(--transition); }
@@ -224,8 +225,8 @@ button { background: none; border: none; cursor: pointer; font-family: inherit; 
 .bandas-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 0.5rem; }
 .bandas-list li { background: var(--azul-medio); padding: 0.85rem 1rem; border-radius: 8px; border-left: 3px solid var(--rojo); font-size: 0.95rem; color: var(--blanco-suave); transition: var(--transition); }
 .bandas-list li:hover { background: var(--azul-claro); transform: translateX(4px); }
-.bandas-list--logos { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 0.75rem; }
-.bandas-list--logos .banda-item { display: flex; align-items: center; gap: 0.9rem; padding: 0.75rem 0.9rem; }
+.bandas-list--logos { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.75rem; }
+.bandas-list--logos .banda-item { display: flex; align-items: center; gap: 0.9rem; padding: 0.75rem 0.9rem; flex: 0 1 260px; }
 .banda-logo { width: 84px; height: 84px; flex: 0 0 84px; object-fit: contain; filter: drop-shadow(0 6px 12px rgba(0,0,0,0.35)); transition: transform 0.35s ease; }
 .banda-logo-frame { width: 84px; height: 84px; flex: 0 0 84px; display: flex; align-items: center; justify-content: center; overflow: hidden; border-radius: 50%; background: #efe6d2; border: 2px solid rgba(201,168,76,0.55); box-shadow: 0 6px 12px rgba(0,0,0,0.35); }
 .banda-logo-frame .banda-logo { width: 100%; height: 100%; filter: none; mix-blend-mode: multiply; }
