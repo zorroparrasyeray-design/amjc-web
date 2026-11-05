@@ -8,10 +8,10 @@ const md = (value) => marked.parse(value || '');
 const mdInline = (value) => md(value).replace(/^<p>|<\/p>\s*$/g, '');
 const title = "Actualidad | Agrupación Musical Jesús Caído";
 const description = "Actualidad de la Agrupación Musical Jesús Caído de Montoro: últimas noticias, junta directiva 2026, dirección musical, repertorio y próximo concierto de Cuaresma.";
-const canonical = "https://zorroparrasyeray-design.github.io/amjc-web/actualidad.html";
+const canonical = "https://www.amjesuscaido.es/actualidad.html";
 const ogTitle = "Actualidad | Agrupación Musical Jesús Caído";
 const ogDescription = "Juan José De La Rosa Simón preside la agrupación desde 2026. Leonor Soriano Cazorla continúa al frente de la dirección musical.";
-const ogImage = "https://zorroparrasyeray-design.github.io/amjc-web/img/formacion-atardecer.jpg";
+const ogImage = "https://www.amjesuscaido.es/img/formacion-atardecer.jpg";
 ---
 <BaseLayout title={title} description={description} canonical={canonical} ogTitle={ogTitle} ogDescription={ogDescription} ogImage={ogImage} active="actualidad">
 <main id="main-content">

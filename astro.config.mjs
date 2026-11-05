@@ -1,8 +1,8 @@
 import { defineConfig } from 'astro/config';
 
 export default defineConfig({
-  site: 'https://zorroparrasyeray-design.github.io',
-  base: '/amjc-web',
+  site: 'https://www.amjesuscaido.es',
+  base: '/',
   build: { format: 'file' },
   trailingSlash: 'ignore',
 });

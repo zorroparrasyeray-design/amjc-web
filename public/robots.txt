@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://zorroparrasyeray-design.github.io/amjc-web/sitemap.xml
+Sitemap: https://www.amjesuscaido.es/sitemap.xml
