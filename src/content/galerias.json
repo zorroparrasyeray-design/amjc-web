@@ -1,0 +1,106 @@
+{
+  "uniformidad": [
+    {
+      "src": "img/formacion.jpg",
+      "alt": "Formación de la Agrupación Musical Jesús Caído con el uniforme oficial",
+      "className": "gallery-img",
+      "width": "768",
+      "height": "512"
+    },
+    {
+      "src": "img/tambores-dia.jpg",
+      "alt": "Cuerpo de tambores de la Agrupación Musical Jesús Caído durante un desfile",
+      "className": "gallery-img gallery-img--tambores",
+      "width": "933",
+      "height": "1400"
+    },
+    {
+      "src": "img/salida-jueves-santo.jpg",
+      "alt": "La Agrupación Musical Jesús Caído en la calle durante la salida del Jueves Santo",
+      "className": "gallery-img gallery-img--salida",
+      "width": "626",
+      "height": "700"
+    },
+    {
+      "src": "img/cornetas-noche.jpg",
+      "alt": "Cornetas de la Agrupación Musical Jesús Caído en una actuación nocturna",
+      "className": "gallery-img",
+      "width": "933",
+      "height": "1400"
+    },
+    {
+      "src": "img/guion-noche.jpg",
+      "alt": "Guion de la Agrupación Musical Jesús Caído en una salida nocturna",
+      "className": "gallery-img gallery-img--guion",
+      "width": "933",
+      "height": "1400"
+    },
+    {
+      "src": "img/guion-detalle.jpg",
+      "alt": "Detalle del bordado del guion de la Agrupación Musical Jesús Caído",
+      "className": "gallery-img gallery-img--guion-detalle",
+      "width": "700",
+      "height": "570"
+    }
+  ],
+  "historiaPrincipal": [
+    {
+      "src": "img/formacion-1989.jpg",
+      "alt": "Formación de la agrupación el 19 de marzo de 1989",
+      "className": "historia-foto-img",
+      "width": "900",
+      "height": "1270",
+      "caption": "Formación de la agrupación el 19 de marzo de 1989."
+    },
+    {
+      "src": "img/formacion-atardecer.jpg",
+      "alt": "La Agrupación Musical Jesús Caído formada al atardecer",
+      "className": "historia-foto-img",
+      "width": "1200",
+      "height": "1800",
+      "caption": "La agrupación formada antes de una salida procesional."
+    },
+    {
+      "src": "img/callejon-martes-santo.jpg",
+      "alt": "Salida del Martes Santo por un callejón de Montoro",
+      "className": "historia-foto-img",
+      "width": "1000",
+      "height": "1502",
+      "caption": "Salida del Martes Santo por las calles de Montoro."
+    },
+    {
+      "src": "img/formacion-noche.jpg",
+      "alt": "La Agrupación Musical Jesús Caído en la calle durante una salida nocturna",
+      "className": "historia-foto-img",
+      "width": "1200",
+      "height": "1800",
+      "caption": "La agrupación en la calle, en una salida nocturna."
+    }
+  ],
+  "historiaEspecial": [
+    {
+      "src": "img/despojado-1.jpg",
+      "alt": "Guiones de la Agrupación Musical Jesús Caído y de la Agrupación Musical Ntro. Padre Jesús Despojado",
+      "className": "historia-foto-img",
+      "width": "1000",
+      "height": "1499",
+      "caption": "Los guiones de ambas formaciones durante la salida extraordinaria."
+    },
+    {
+      "src": "img/despojado-3.jpg",
+      "alt": "Guiones de ambas formaciones en la calle",
+      "className": "historia-foto-img",
+      "width": "900",
+      "height": "1125",
+      "caption": "Los guiones de ambas agrupaciones en la calle."
+    },
+    {
+      "src": "img/despojado-2.jpg",
+      "alt": "Detalle del guion de la Agrupación Musical Jesús Caído",
+      "className": "historia-foto-img",
+      "width": "1000",
+      "height": "1499",
+      "caption": "Detalle del guion de la Agrupación Musical Jesús Caído."
+    }
+  ]
+}

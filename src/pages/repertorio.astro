@@ -1,0 +1,130 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import repertorio from '../content/repertorio.json';
+
+const marchas = repertorio.marchas;
+const propias = marchas.filter((m) => m.propia);
+const recuperadas = marchas.filter((m) => m.recuperada);
+const estrenos = marchas.filter((m) => m.estreno);
+const title = "Repertorio | Agrupación Musical Jesús Caído";
+const description = "Repertorio de la Agrupación Musical Jesús Caído: composiciones propias, marchas clásicas recuperadas y 55 marchas en activo.";
+const canonical = "https://zorroparrasyeray-design.github.io/amjc-web/repertorio.html";
+const ogTitle = "Repertorio | Agrupación Musical Jesús Caído";
+const ogDescription = "Composiciones propias, clásicas recuperadas y 55 marchas en activo. La música de la Agrupación Musical Jesús Caído.";
+const ogImage = "https://zorroparrasyeray-design.github.io/amjc-web/img/formacion-atardecer.jpg";
+---
+<BaseLayout title={title} description={description} canonical={canonical} ogTitle={ogTitle} ogDescription={ogDescription} ogImage={ogImage} active="repertorio">
+<main id="main-content">
+        <section class="page-hero" aria-labelledby="page-title">
+            <div class="container">
+                <h1 id="page-title" class="page-title">Repertorio</h1>
+                <p class="page-subtitle">La música que llevamos en el corazón</p>
+            </div>
+        </section>
+
+        <section class="section section-repertorio" aria-labelledby="repertorio-title">
+            <div class="container">
+                <header class="section-header">
+                    <span class="section-tag">Nuestra música</span>
+                    <h2 id="repertorio-title" class="section-title">Marchas Propias</h2>
+                    <div class="section-divider"><span></span></div>
+                </header>
+                <div class="marchas-grid">
+                    {propias.map((m) => (
+                        <article class="marcha-card">
+                            <h3>{m.title}</h3>
+                            <p class="marcha-type">Composición de {m.author}</p>
+                            {m.nota && <p class="marcha-note">{m.nota}</p>}
+                        </article>
+                    ))}
+                </div>
+            </div>
+        </section>
+
+        <section class="section section-recuperadas" aria-labelledby="recuperadas-title">
+            <div class="container">
+                <header class="section-header">
+                    <span class="section-tag">Recuperadas</span>
+                    <h2 id="recuperadas-title" class="section-title">Marchas Clásicas Recuperadas</h2>
+                    <div class="section-divider"><span></span></div>
+                </header>
+                <div class="marchas-list-grid">
+                    {recuperadas.map((m) => (
+                        <article class="marcha-item">
+                            <h3>{m.title}</h3>
+                            <p>{m.descripcion}</p>
+                        </article>
+                    ))}
+                </div>
+            </div>
+        </section>
+
+        <section class="section section-estrenos" id="nuevos-estrenos" aria-labelledby="estrenos-title">
+            <div class="container">
+                <header class="section-header">
+                    <span class="section-tag">Novedades</span>
+                    <h2 id="estrenos-title" class="section-title">Nuevos Estrenos</h2>
+                    <div class="section-divider"><span></span></div>
+                </header>
+                <p class="section-intro">Las últimas marchas que se han incorporado al repertorio de la agrupación.</p>
+                <div class="estrenos-grid" id="estrenos-grid">
+                    {estrenos.map((m) => (
+                        <article class="estreno-card">
+                            <span class="estreno-badge">Estreno</span>
+                            <h3>{m.title}</h3>
+                            <p class="estreno-author">{m.author}</p>
+                            <p>{m.descripcion}</p>
+                        </article>
+                    ))}
+                </div>
+            </div>
+        </section>
+
+        <section class="section section-repertorio-completo" aria-labelledby="completo-title">
+            <div class="container">
+                <header class="section-header">
+                    <span class="section-tag">Completo</span>
+                    <h2 id="completo-title" class="section-title">Repertorio Completo</h2>
+                    <div class="section-divider"><span></span></div>
+                </header>
+
+                <div class="repertorio-toolbar">
+                    <div class="repertorio-search">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+                        <input type="search" id="repertorio-buscar" placeholder="Buscar por marcha o autor…" aria-label="Buscar marcha o autor" autocomplete="off">
+                    </div>
+                    <p class="repertorio-count" id="repertorio-count" role="status" aria-live="polite">{marchas.length} marchas</p>
+                </div>
+
+                <ul class="repertorio-lista" id="repertorio-lista">
+                    {marchas.map((m) => (
+                        <li class="repertorio-item">
+                            {m.video ? (
+                                <a class="repertorio-enlace" href={m.href || 'https://youtu.be/' + m.video} data-video={m.video} target="_blank" rel="noopener">
+                                    <span class="sr-only">Escuchar </span>
+                                    <span class="repertorio-num" aria-hidden="true">{m.n}</span>
+                                    <div class="repertorio-item-info">
+                                        <h3 class="repertorio-item-title">{m.title}</h3>
+                                        <p class="repertorio-item-author">{m.author}</p>
+                                    </div>
+                                    <span class="repertorio-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor" focusable="false"><path d="M8 5v14l11-7z"/></svg></span>
+                                </a>
+                            ) : (
+                                <>
+                                    <span class="repertorio-num" aria-hidden="true">{m.n}</span>
+                                    <div class="repertorio-item-info">
+                                        <h3 class="repertorio-item-title">{m.title}</h3>
+                                        <p class="repertorio-item-author">{m.author}</p>
+                                    </div>
+                                    {m.estreno && <span class="repertorio-badge">Estreno</span>}
+                                </>
+                            )}
+                        </li>
+                    ))}
+                </ul>
+                <p class="repertorio-empty" id="repertorio-empty" hidden>No hay marchas que coincidan con la búsqueda.</p>
+            </div>
+        </section>
+
+    </main>
+</BaseLayout>

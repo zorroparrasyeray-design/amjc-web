@@ -1,0 +1,33 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+const title = "Página no encontrada | Agrupación Musical Jesús Caído";
+const description = "La página que buscas no existe o ha cambiado. Vuelve al inicio de la Agrupación Musical Jesús Caído de Montoro.";
+const canonical = "";
+const ogTitle = "Página no encontrada | Agrupación Musical Jesús Caído";
+const ogDescription = "La página que buscas no existe o ha cambiado. Vuelve al inicio de la Agrupación Musical Jesús Caído de Montoro.";
+const ogImage = "https://zorroparrasyeray-design.github.io/amjc-web/img/formacion-atardecer.jpg";
+---
+<BaseLayout title={title} description={description} canonical={canonical} ogTitle={ogTitle} ogDescription={ogDescription} ogImage={ogImage} active="">
+<main id="main-content">
+        <section class="page-hero" aria-labelledby="page-title">
+            <div class="container">
+                <h1 id="page-title" class="page-title">Esta página no está en el repertorio</h1>
+                <p class="page-subtitle">La dirección que buscas no existe o ha cambiado. Pero la música sigue sonando.</p>
+            </div>
+        </section>
+
+        <section class="section" aria-labelledby="notfound-title">
+            <div class="container">
+                <div class="cta-content">
+                    <span class="section-tag">Error 404</span>
+                    <h2 id="notfound-title" class="section-title">Volvamos a Montoro</h2>
+                    <p>Puedes regresar al inicio para seguir descubriendo nuestra historia, o escribirnos si necesitas encontrar algo concreto.</p>
+                    <div class="hero-buttons">
+                        <a href="index.html" class="btn btn-primary">Volver al inicio</a>
+                        <a href="contacto.html" class="btn btn-secondary">Contactar</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+</BaseLayout>

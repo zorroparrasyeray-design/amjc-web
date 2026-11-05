@@ -1,0 +1,212 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import agenda from '../content/agenda.json';
+
+const monthNames = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
+const monthShort = ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'];
+const events = agenda.events;
+const eventByDate = new Map(events.map((e) => [e.date, e]));
+const eventDate = (value) => new Date(`${value}T00:00:00`);
+const firstEvent = eventDate(events[0].date);
+const lastEvent = eventDate(events[events.length - 1].date);
+const months = [];
+const cursor = new Date(firstEvent.getFullYear(), firstEvent.getMonth(), 1);
+const endMonth = new Date(lastEvent.getFullYear(), lastEvent.getMonth(), 1);
+while (cursor <= endMonth) {
+  const y = cursor.getFullYear();
+  const m = cursor.getMonth();
+  months.push({
+    key: `${y}-${String(m + 1).padStart(2, '0')}`,
+    name: `${monthNames[m]} ${y}`,
+    days: new Date(y, m + 1, 0).getDate(),
+    firstWeekday: (new Date(y, m, 1).getDay() + 6) % 7,
+  });
+  cursor.setMonth(cursor.getMonth() + 1);
+}
+const eventAria = (ev) => {
+  const d = eventDate(ev.date);
+  return `${d.getDate()} de ${monthNames[d.getMonth()].toLowerCase()}: ${ev.type} en ${ev.place}. Ver en la agenda.`;
+};
+
+const title = "Agrupación Musical Jesús Caído | Montoro, Córdoba";
+const description = "Agrupación Musical Jesús Caído de Montoro (Córdoba). Más de 60 años de música cofrade: historia, repertorio, uniformidad y acompañamientos de Semana Santa.";
+const canonical = "https://zorroparrasyeray-design.github.io/amjc-web/";
+const ogTitle = "Agrupación Musical Jesús Caído | Montoro, Córdoba";
+const ogDescription = "Más de 60 años de música cofrade en Montoro. Historia, repertorio, uniformidad y acompañamientos de Semana Santa.";
+const ogImage = "https://zorroparrasyeray-design.github.io/amjc-web/img/formacion-atardecer.jpg";
+const jsonLd = "{\n        \"@context\": \"https://schema.org\",\n        \"@type\": \"MusicGroup\",\n        \"name\": \"Agrupación Musical Jesús Caído\",\n        \"alternateName\": \"AM Jesús Caído\",\n        \"url\": \"https://zorroparrasyeray-design.github.io/amjc-web/\",\n        \"logo\": \"https://zorroparrasyeray-design.github.io/amjc-web/escudo-jesus-caido-banda.jpg\",\n        \"image\": \"https://zorroparrasyeray-design.github.io/amjc-web/img/formacion-atardecer.jpg\",\n        \"description\": \"Agrupación Musical de Montoro (Córdoba), fundada en 1963. Música cofrade para Estaciones de Penitencia, conciertos y certámenes.\",\n        \"foundingDate\": \"1963\",\n        \"foundingLocation\": {\n            \"@type\": \"Place\",\n            \"name\": \"Montoro, Córdoba\"\n        },\n        \"genre\": \"Música cofrade\",\n        \"email\": \"amusicaljesuscaido@gmail.com\",\n        \"address\": {\n            \"@type\": \"PostalAddress\",\n            \"addressLocality\": \"Montoro\",\n            \"addressRegion\": \"Córdoba\",\n            \"addressCountry\": \"ES\"\n        },\n        \"areaServed\": \"Montoro, Córdoba\",\n        \"sameAs\": [\n            \"https://www.facebook.com/amjesus.caidomontoro\",\n            \"https://www.instagram.com/amjesuscaido\",\n            \"https://www.tiktok.com/@amjesuscaido\",\n            \"https://www.youtube.com/@amjesuscaido\"\n        ]\n    }";
+---
+<BaseLayout title={title} description={description} canonical={canonical} ogTitle={ogTitle} ogDescription={ogDescription} ogImage={ogImage} active="inicio" jsonLd={jsonLd}>
+<main id="main-content">
+        <section class="hero" aria-labelledby="hero-title">
+            <div class="hero-bg" aria-hidden="true">
+                <div class="hero-slide is-active"></div>
+            </div>
+            <div class="container">
+                <div class="hero-content">
+                    <h1 id="hero-title" class="hero-title">
+                        <span class="hero-title-line">Agrupación Musical</span>
+                        <span class="hero-title-line hero-title-main">Jesús Caído</span>
+                    </h1>
+                    <p class="hero-subtitle">Montoro, Córdoba • Desde 1963</p>
+                    <div class="hero-buttons">
+                        <a href="historia.html" class="btn btn-primary">Descubrir Historia</a>
+                        <a href="contacto.html" class="btn btn-secondary">Contactar</a>
+                    </div>
+                </div>
+                <div class="hero-escudo" aria-hidden="true">
+                    <img src="escudo-jesus-caido-banda.jpg" alt="" class="hero-escudo-img" width="340" height="340" decoding="async">
+                </div>
+            </div>
+        </section>
+
+        <section class="section section-resumen" aria-labelledby="resumen-title">
+            <div class="container">
+                <header class="section-header">
+                    <span class="section-tag">Qué encontrarás</span>
+                    <h2 id="resumen-title" class="section-title">Nuestra Web</h2>
+                    <div class="section-divider"><span></span></div>
+                </header>
+                <div class="cards-grid">
+                    <article class="card">
+                        <h3>Historia</h3>
+                        <p>De la Banda de Cornetas y Tambores de 1963 a una Agrupación Musical con voz propia. Más de seis décadas de evolución, ensayos y calle.</p>
+                        <a href="historia.html" class="card-link">Leer más sobre nuestra historia →</a>
+                    </article>
+                    <article class="card">
+                        <h3>Conciertos y Certámenes</h3>
+                        <p>Del I Congreso Nacional de Bandas al certamen de la Rosa de Oro. Escenarios de dentro y fuera de Andalucía y el concierto de Cuaresma en casa.</p>
+                        <a href="conciertos.html" class="card-link">Ver trayectoria →</a>
+                    </article>
+                    <article class="card">
+                        <h3>Uniformidad</h3>
+                        <p>Marino noche, canutillo de plata y una tirilla roja que nos distingue. Un uniforme cuidado al detalle y reconocible en cualquier calle.</p>
+                        <a href="uniformidad.html" class="card-link">Ver detalles →</a>
+                    </article>
+                    <article class="card">
+                        <h3>Actualidad</h3>
+                        <p>Manuela De La Rosa abrió una etapa nueva en 2022 y Juan José De La Rosa Simón preside la agrupación desde 2026. Hoy seguimos creciendo con más de 50 marchas y la misma ilusión.</p>
+                        <a href="actualidad.html" class="card-link">Saber más sobre la actualidad →</a>
+                    </article>
+                    <article class="card">
+                        <h3>Semana Santa</h3>
+                        <p>Cinco hermandades en Montoro durante la Semana Santa de 2027 y el Domingo de Ramos en Pedro Abad. Música para acompañar la fe.</p>
+                        <a href="acompanamientos.html" class="card-link">Ver la lista de Semana Santa →</a>
+                    </article>
+                    <article class="card">
+                        <h3>Repertorio</h3>
+                        <p>Composiciones propias, clásicas recuperadas y más de 50 piezas en activo. Música con firma de Montoro y mirada a la tradición.</p>
+                        <a href="repertorio.html" class="card-link">Ver repertorio →</a>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="section section-agenda" id="agenda" aria-labelledby="agenda-title">
+            <div class="container">
+                <header class="section-header">
+                    <span class="section-tag">Próximos eventos</span>
+                    <h2 id="agenda-title" class="section-title">Agenda</h2>
+                    <div class="section-divider"><span></span></div>
+                </header>
+
+                <div class="agenda-grid">
+                    <div class="agenda-calendar">
+                        <div class="agenda-calendar-head">
+                            <div class="agenda-month-nav">
+                                <button type="button" class="agenda-month-arrow" id="cal-prev" aria-label="Mes anterior" disabled>
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m15 18-6-6 6-6"/></svg>
+                                </button>
+                                <span class="agenda-month-name" id="cal-month-name" aria-live="polite">{months[0].name}</span>
+                                <button type="button" class="agenda-month-arrow" id="cal-next" aria-label="Mes siguiente">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m9 18 6-6-6-6"/></svg>
+                                </button>
+                            </div>
+                            <span class="agenda-countdown" data-countdown="2027-03-21" title="Domingo de Ramos, 21 de marzo de 2027">21 de marzo de 2027</span>
+                        </div>
+                        {months.map((month, index) => (
+                            <div id={`panel-${month.key}`} class="agenda-month-panel" data-month={month.name} hidden={index !== 0}>
+                                <div class="calendar-weekdays" aria-hidden="true">
+                                    <span>L</span><span>M</span><span>X</span><span>J</span><span>V</span><span>S</span><span>D</span>
+                                </div>
+                                <ul class="calendar-grid" aria-label={`Calendario de ${month.name.toLowerCase()}`}>
+                                    {Array.from({ length: month.firstWeekday }).map(() => (
+                                        <li class="calendar-day is-empty" aria-hidden="true"></li>
+                                    ))}
+                                    {Array.from({ length: month.days }, (_, i) => {
+                                        const day = i + 1;
+                                        const date = `${month.key}-${String(day).padStart(2, '0')}`;
+                                        const ev = eventByDate.get(date);
+                                        return ev ? (
+                                            <li class="calendar-day is-event">
+                                                <button type="button" class="calendar-day-btn" data-date={date} aria-label={eventAria(ev)}>
+                                                    <span>{day}</span>
+                                                    <span class="calendar-day-dot" aria-hidden="true"></span>
+                                                </button>
+                                            </li>
+                                        ) : (
+                                            <li class="calendar-day"><span>{day}</span></li>
+                                        );
+                                    })}
+                                </ul>
+                            </div>
+                        ))}
+                        <p class="agenda-legend"><span class="legend-dot" aria-hidden="true"></span> Días de salida</p>
+                        <p class="agenda-hint">Pulsa un día señalado o un acto para destacarlo en el calendario.</p>
+                    </div>
+
+                    <div class="agenda-events">
+                        {events.map((ev) => {
+                            const d = eventDate(ev.date);
+                            const day = d.getDate();
+                            const month = monthShort[d.getMonth()];
+                            return (
+                                <article class="agenda-event" data-date={ev.date} data-evento={ev.date}>
+                                    <button type="button" class="agenda-date" aria-label={`Ver el ${day} de ${monthNames[d.getMonth()].toLowerCase()} en el calendario`}><time datetime={ev.date}><span>{day}</span><small>{month}</small></time></button>
+                                    <div class="agenda-info">
+                                        <span class="agenda-day">{ev.type}</span>
+                                        <h3>{ev.title}</h3>
+                                        <p>{ev.place}</p>
+                                        {ev.countdown && <p class="agenda-cuenta" data-cuenta={ev.date}></p>}
+                                        <div class="agenda-logos">
+                                            {ev.logos.map((logo) => (
+                                                <img src={logo.src} alt={logo.alt} class="agenda-logo" width="220" height="220" loading="lazy" decoding="async">
+                                            ))}
+                                        </div>
+                                    </div>
+                                </article>
+                            );
+                        })}
+                    </div>
+                </div>
+
+                <div class="agenda-cta">
+                    <a href="acompanamientos.html" class="btn btn-primary">Ver Semana Santa 2027</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="section section-cta" aria-labelledby="cta-title">
+            <div class="cta-video-bg" aria-hidden="true">
+                <iframe
+                    data-src="https://www.youtube-nocookie.com/embed/YFhtjK7ghFU?autoplay=1&mute=1&playsinline=1&rel=0&loop=1&playlist=YFhtjK7ghFU&enablejsapi=1&controls=0&modestbranding=1&iv_load_policy=3&disablekb=1&fs=0"
+                    title="Vídeo de fondo: Traslado de Evangelización de Ntra. Sra. del Carmen (Montoro)"
+                    tabindex="-1"
+                    loading="lazy"
+                    allow="autoplay; encrypted-media; picture-in-picture"
+                    referrerpolicy="strict-origin-when-cross-origin"></iframe>
+            </div>
+            <div class="container">
+                <div class="cta-content">
+                    <h2 id="cta-title" class="section-title">¿Quieres que llevemos nuestra música a tu hermandad?</h2>
+                    <p>Estamos disponibles para Estaciones de Penitencia, conciertos, certámenes y eventos cofrades. Cuéntanos tu proyecto y hablamos.</p>
+                    <a href="contacto.html" class="btn btn-primary">Hablemos</a>
+                    <button type="button" class="cta-video-sound" aria-pressed="false" disabled hidden>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M11 5 6 9H2v6h4l5 4V5z"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
+                        <span class="cta-video-sound-label">Activar sonido</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+    </main>
+</BaseLayout>

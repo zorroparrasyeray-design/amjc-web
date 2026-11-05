@@ -1,0 +1,40 @@
+---
+const { active = '' } = Astro.props;
+const links = [
+  { href: 'index.html', label: 'Inicio', key: 'inicio', extra: '' },
+  { href: 'historia.html', label: 'Historia', key: 'historia', extra: '' },
+  { href: 'conciertos.html', label: 'Conciertos', key: 'conciertos', extra: '' },
+  { href: 'uniformidad.html', label: 'Uniformidad', key: 'uniformidad', extra: '' },
+  { href: 'actualidad.html', label: 'Actualidad', key: 'actualidad', extra: '' },
+  { href: 'acompanamientos.html', label: 'Semana Santa', key: 'semana-santa', extra: '' },
+  { href: 'repertorio.html', label: 'Repertorio', key: 'repertorio', extra: '' },
+  { href: 'contacto.html', label: 'Contacto', key: 'contacto', extra: ' btn-contacto' },
+];
+---
+<header class="header">
+    <div class="container header-inner">
+        <a href="index.html" class="logo" aria-label="Agrupación Musical Jesús Caído - Inicio">
+            <img src="escudo-jesus-caido-banda.jpg" alt="Escudo Agrupación Musical Jesús Caído" class="logo-img" width="48" height="48" decoding="async">
+            <div class="logo-text">
+                <span class="logo-title">Agrupación Musical</span>
+                <span class="logo-subtitle">Jesús Caído</span>
+            </div>
+        </a>
+        <nav class="nav" aria-label="Navegación principal">
+            <ul id="nav-menu" class="nav-list">
+                {links.map((link) => (
+                    <li>
+                        <a
+                            href={link.href}
+                            class:list={['nav-link', link.extra, active === link.key && 'active']}
+                            aria-current={active === link.key ? 'page' : undefined}
+                        >{link.label}</a>
+                    </li>
+                ))}
+            </ul>
+        </nav>
+        <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Abrir menú">
+            <span class="hamburger"></span>
+        </button>
+    </div>
+</header>

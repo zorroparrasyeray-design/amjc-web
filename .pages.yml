@@ -1,0 +1,235 @@
+media:
+  input: public/img
+  output: img
+
+content:
+  - name: agenda
+    label: Agenda
+    type: file
+    path: src/content/agenda.json
+    fields:
+      - name: events
+        label: Actos
+        type: object
+        list:
+          collapsible:
+            summary: "{title}"
+        fields:
+          - name: date
+            label: Fecha
+            type: date
+            options:
+              format: yyyy-MM-dd
+          - name: type
+            label: Tipo de acto
+            type: string
+          - name: title
+            label: Título
+            type: string
+          - name: place
+            label: Lugar
+            type: string
+          - name: logos
+            label: Escudos
+            type: object
+            list: true
+            fields:
+              - name: src
+                label: Imagen
+                type: image
+              - name: alt
+                label: Texto alternativo
+                type: string
+          - name: countdown
+            label: Mostrar cuenta atrás
+            type: boolean
+
+  - name: repertorio
+    label: Repertorio
+    type: file
+    path: src/content/repertorio.json
+    fields:
+      - name: marchas
+        label: Marchas
+        type: object
+        list:
+          collapsible:
+            summary: "{n}. {title}"
+        fields:
+          - name: n
+            label: Número
+            type: number
+          - name: title
+            label: Título
+            type: string
+          - name: author
+            label: Autor
+            type: string
+          - name: video
+            label: ID del vídeo de YouTube
+            type: string
+          - name: href
+            label: Enlace de YouTube
+            type: string
+          - name: estreno
+            label: Estreno
+            type: boolean
+          - name: propia
+            label: Marcha propia
+            type: boolean
+          - name: recuperada
+            label: Recuperada
+            type: boolean
+          - name: nota
+            label: Nota
+            type: text
+          - name: descripcion
+            label: Descripción
+            type: text
+
+  - name: noticias
+    label: Noticias
+    type: file
+    path: src/content/noticias.json
+    fields:
+      - name: noticias
+        label: Noticias
+        type: object
+        list:
+          collapsible:
+            summary: "{title}"
+        fields:
+          - name: tag
+            label: Etiqueta
+            type: string
+          - name: datetime
+            label: Fecha (para el navegador)
+            type: string
+          - name: dateLabel
+            label: Fecha visible
+            type: string
+          - name: title
+            label: Titular
+            type: string
+          - name: excerpt
+            label: Entradilla
+            type: rich-text
+          - name: body
+            label: Cuerpo de la noticia
+            type: rich-text
+          - name: id
+            label: Identificador
+            type: string
+          - name: link
+            label: Enlace (opcional)
+            type: object
+            fields:
+              - name: href
+                label: Destino
+                type: string
+              - name: text
+                label: Texto
+                type: string
+
+  - name: galerias
+    label: Galerías
+    type: file
+    path: src/content/galerias.json
+    fields:
+      - name: uniformidad
+        label: Uniformidad
+        type: object
+        list:
+          collapsible:
+            summary: "Foto de uniformidad"
+        fields:
+          - name: src
+            label: Imagen
+            type: image
+          - name: alt
+            label: Texto alternativo
+            type: string
+          - name: className
+            label: Clase CSS (avanzado)
+            type: string
+          - name: width
+            label: Ancho
+            type: number
+          - name: height
+            label: Alto
+            type: number
+      - name: historiaPrincipal
+        label: Historia (galería principal)
+        type: object
+        list:
+          collapsible:
+            summary: "Foto de historia"
+        fields:
+          - name: src
+            label: Imagen
+            type: image
+          - name: alt
+            label: Texto alternativo
+            type: string
+          - name: caption
+            label: Pie de foto
+            type: string
+          - name: className
+            label: Clase CSS (avanzado)
+            type: string
+          - name: width
+            label: Ancho
+            type: number
+          - name: height
+            label: Alto
+            type: number
+      - name: historiaEspecial
+        label: Historia (salida extraordinaria)
+        type: object
+        list:
+          collapsible:
+            summary: "Foto de la salida extraordinaria"
+        fields:
+          - name: src
+            label: Imagen
+            type: image
+          - name: alt
+            label: Texto alternativo
+            type: string
+          - name: caption
+            label: Pie de foto
+            type: string
+          - name: className
+            label: Clase CSS (avanzado)
+            type: string
+          - name: width
+            label: Ancho
+            type: number
+          - name: height
+            label: Alto
+            type: number
+
+  - name: ajustes
+    label: Ajustes
+    type: file
+    path: src/content/ajustes.json
+    fields:
+      - name: email
+        label: Correo electrónico
+        type: string
+      - name: social
+        label: Redes sociales
+        type: object
+        fields:
+          - name: facebook
+            label: Facebook
+            type: string
+          - name: instagram
+            label: Instagram
+            type: string
+          - name: tiktok
+            label: TikTok
+            type: string
+          - name: youtube
+            label: YouTube
+            type: string

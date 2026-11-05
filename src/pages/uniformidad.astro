@@ -1,0 +1,58 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import galerias from '../content/galerias.json';
+const title = "Uniformidad | Agrupación Musical Jesús Caído";
+const description = "Uniformidad de la Agrupación Musical Jesús Caído: guerrera marino noche, cuello rojo con canutillo de plata, gorra de plato y guion diseñado por «Paquili».";
+const canonical = "https://zorroparrasyeray-design.github.io/amjc-web/uniformidad.html";
+const ogTitle = "Uniformidad | Agrupación Musical Jesús Caído";
+const ogDescription = "Marino noche, cuello rojo con canutillo de plata y un guion con historia. El uniforme que identifica a la Agrupación Musical Jesús Caído de Montoro.";
+const ogImage = "https://zorroparrasyeray-design.github.io/amjc-web/img/formacion-noche.jpg";
+---
+<BaseLayout title={title} description={description} canonical={canonical} ogTitle={ogTitle} ogDescription={ogDescription} ogImage={ogImage} active="uniformidad">
+<main id="main-content">
+        <section class="page-hero" aria-labelledby="page-title">
+            <div class="container">
+                <h1 id="page-title" class="page-title">Uniformidad</h1>
+                <p class="page-subtitle">La seña de identidad que nos reconoce en la calle</p>
+            </div>
+        </section>
+
+        <section class="section section-uniformidad" aria-labelledby="uniformidad-title">
+            <div class="container">
+                <header class="section-header">
+                    <span class="section-tag">Identidad</span>
+                    <h2 id="uniformidad-title" class="section-title">Uniformidad Oficial</h2>
+                    <div class="section-divider"><span></span></div>
+                </header>
+                <div class="uniformidad-content">
+                    <div class="uniformidad-text">
+                        <p>En <strong>2015</strong> la agrupación renovó su uniforme y adoptó una <strong>guerrera color marino noche</strong>, con dos filas de botones plateados personalizados con el escudo de la Agrupación Musical Jesús Caído.</p>
+                        <p>El <strong>cuello rojo</strong> con el nombre <strong>«Jesús Caído» en canutillo de plata</strong>, la <strong>gorra de plato</strong> y el resto del conjunto completan una imagen que se reconoce de lejos en la calle.</p>
+                        <p class="uniformidad-aviso">La agrupación estrenará una <strong>nueva uniformidad en la próxima Cuaresma</strong>: una imagen renovada que mantiene la esencia de siempre.</p>
+                        <h3 class="guion-subtitle">El guion</h3>
+                        <p>El guion preside la formación en cada actuación. En él se coloca la <strong>medalla de la hermandad o cofradía</strong> a la que se acompaña y, cuando corresponde, el <strong>crespón negro en memoria de Juan Francisco Soriano Castilla</strong>.</p>
+                        <p>Fue diseñado por <strong>Francisco Carrera Iglesias «Paquili»</strong> y está realizado en <strong>plata fina</strong>, con un <strong>ángel en plata y oro</strong> como remate.</p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section class="section section-gallery" aria-labelledby="gallery-title">
+            <div class="container">
+                <header class="section-header">
+                    <span class="section-tag">Galería</span>
+                    <h2 id="gallery-title" class="section-title">El uniforme y el guion</h2>
+                    <div class="section-divider"><span></span></div>
+                </header>
+                <div class="gallery-grid">
+                    {galerias.uniformidad.map((img) => (
+                        <div class="gallery-item">
+                            <img src={img.src} alt={img.alt} class={img.className} width={img.width || undefined} height={img.height || undefined} loading="lazy" decoding="async">
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </section>
+    </main>
+</BaseLayout>

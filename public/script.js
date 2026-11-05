@@ -549,7 +549,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 valor('mensaje')
             ].join('\n');
             const asunto = `Contacto web · ${tipo || 'Consulta'}`;
-            const enlace = `mailto:amusicaljesuscaido@gmail.com?subject=${encodeURIComponent(asunto)}&body=${encodeURIComponent(cuerpo)}`;
+            const destino = form.dataset.email || 'amusicaljesuscaido@gmail.com';
+            const enlace = `mailto:${destino}?subject=${encodeURIComponent(asunto)}&body=${encodeURIComponent(cuerpo)}`;
 
             window.location.href = enlace;
 

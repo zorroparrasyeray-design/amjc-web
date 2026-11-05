@@ -1,0 +1,86 @@
+{
+  "events": [
+    {
+      "date": "2026-11-14",
+      "type": "Acompañamiento",
+      "title": "Virgen del Carmen Coronada",
+      "place": "Córdoba",
+      "logos": [
+        {
+          "src": "cofradias/virgen-carmen-cordoba.png",
+          "alt": "Escudo de la Hermandad de Ntra. Sra. del Carmen Coronada"
+        }
+      ],
+      "countdown": true
+    },
+    {
+      "date": "2027-03-21",
+      "type": "Domingo de Ramos",
+      "title": "Ntro. Señor de los Reyes y María Stma. de la Oliva",
+      "place": "Pedro Abad",
+      "logos": [
+        {
+          "src": "cofradias/borriquita-pedro-abad.png",
+          "alt": ""
+        }
+      ],
+      "countdown": false
+    },
+    {
+      "date": "2027-03-23",
+      "type": "Martes Santo",
+      "title": "Cristo de la Humildad y Ntra. Sra. de Consolación",
+      "place": "Montoro",
+      "logos": [
+        {
+          "src": "cofradias/humildad-montoro.png",
+          "alt": ""
+        }
+      ],
+      "countdown": false
+    },
+    {
+      "date": "2027-03-25",
+      "type": "Jueves Santo",
+      "title": "Cofradía de la Santa Vera Crux",
+      "place": "Montoro",
+      "logos": [
+        {
+          "src": "cofradias/vera-crux-montoro.png",
+          "alt": ""
+        }
+      ],
+      "countdown": false
+    },
+    {
+      "date": "2027-03-26",
+      "type": "Madrugá y Viernes Santo",
+      "title": "Padre Jesús y Cristo de la Misericordia",
+      "place": "Montoro",
+      "logos": [
+        {
+          "src": "cofradias/padre-jesus-montoro.png",
+          "alt": ""
+        },
+        {
+          "src": "cofradias/misericordia-montoro.png",
+          "alt": ""
+        }
+      ],
+      "countdown": false
+    },
+    {
+      "date": "2027-03-28",
+      "type": "Domingo de Resurrección",
+      "title": "Cofradía del Stmo. Cristo Resucitado",
+      "place": "Montoro",
+      "logos": [
+        {
+          "src": "cofradias/resurreccion-montoro.png",
+          "alt": ""
+        }
+      ],
+      "countdown": false
+    }
+  ]
+}

@@ -1,0 +1,56 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import noticiasData from '../content/noticias.json';
+import { marked } from 'marked';
+
+const noticias = noticiasData.noticias;
+const md = (value) => marked.parse(value || '');
+const mdInline = (value) => md(value).replace(/^<p>|<\/p>\s*$/g, '');
+const title = "Actualidad | Agrupación Musical Jesús Caído";
+const description = "Actualidad de la Agrupación Musical Jesús Caído de Montoro: últimas noticias, junta directiva 2026, dirección musical, repertorio y próximo concierto de Cuaresma.";
+const canonical = "https://zorroparrasyeray-design.github.io/amjc-web/actualidad.html";
+const ogTitle = "Actualidad | Agrupación Musical Jesús Caído";
+const ogDescription = "Juan José De La Rosa Simón preside la agrupación desde 2026. Leonor Soriano Cazorla continúa al frente de la dirección musical.";
+const ogImage = "https://zorroparrasyeray-design.github.io/amjc-web/img/formacion-atardecer.jpg";
+---
+<BaseLayout title={title} description={description} canonical={canonical} ogTitle={ogTitle} ogDescription={ogDescription} ogImage={ogImage} active="actualidad">
+<main id="main-content">
+        <section class="page-hero" aria-labelledby="page-title">
+            <div class="container">
+                <h1 id="page-title" class="page-title">La Agrupación en la Actualidad</h1>
+                <p class="page-subtitle">Nueva etapa, nueva dirección, el mismo compromiso con Montoro</p>
+            </div>
+        </section>
+
+        <section class="section section-noticias" aria-labelledby="noticias-title">
+            <div class="container">
+                <header class="section-header">
+                    <span class="section-tag">Actualidad</span>
+                    <h2 id="noticias-title" class="section-title">Últimas noticias</h2>
+                    <div class="section-divider"><span></span></div>
+                </header>
+                <div class="noticias-grid">
+                    {noticias.map((n) => (
+                        <article class="noticia-card">
+                            <div class="noticia-meta">
+                                <span class="noticia-tag">{n.tag}</span>
+                                <time datetime={n.datetime}>{n.dateLabel}</time>
+                            </div>
+                            <h3>{n.title}</h3>
+                            <p set:html={mdInline(n.excerpt)}></p>
+                            <button type="button" class="noticia-toggle" aria-expanded="false" aria-controls={n.id}>
+                                <span class="noticia-toggle-text">Leer noticia completa</span>
+                                <svg class="noticia-toggle-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg>
+                            </button>
+                            <div class="noticia-completa" id={n.id} hidden>
+                                <Fragment set:html={md(n.body)} />
+                                {n.link && <a class="noticia-link" href={n.link.href}>{n.link.text} <span aria-hidden="true">&rarr;</span></a>}
+                            </div>
+                        </article>
+                    ))}
+                </div>
+            </div>
+        </section>
+
+    </main>
+</BaseLayout>

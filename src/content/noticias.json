@@ -1,0 +1,53 @@
+{
+  "noticias": [
+    {
+      "tag": "Uniformidad",
+      "datetime": "2026-10",
+      "dateLabel": "Octubre 2026",
+      "title": "Nueva uniformidad para la próxima Cuaresma",
+      "excerpt": "La agrupación estrenará una **nueva uniformidad** en la próxima Cuaresma. Una imagen renovada que mantiene la esencia de siempre y con la que seguiremos acompañando a nuestras hermandades.",
+      "id": "noticia-uniformidad",
+      "body": "La renovación afecta al conjunto que la agrupación luce en la calle, pero no a su identidad. El nuevo uniforme mantiene el **color marino noche**, el **cuello rojo** con el nombre «Jesús Caído» en canutillo de plata y el **guion** que preside la formación, diseñado por Francisco Carrera Iglesias «Paquili» y realizado en plata fina con un ángel en plata y oro como remate.\n\nLa agrupación conserva así la estética que la identifica desde la renovación de **2015** —guerrera marino noche, dos filas de botones plateados con el escudo, cuello rojo y gorra de plato—, incorporando una imagen renovada para esta nueva etapa. El estreno tendrá lugar en la próxima Cuaresma, antes del inicio de la Semana Santa de 2027.",
+      "link": {
+        "href": "uniformidad.html",
+        "text": "Ver uniformidad"
+      }
+    },
+    {
+      "tag": "Semana Santa",
+      "datetime": "2026-10",
+      "dateLabel": "Octubre 2026",
+      "title": "Cinco hermandades y una cita en Pedro Abad",
+      "excerpt": "La agrupación ya tiene cerrados sus acompañamientos para la **Semana Santa de 2027**: cinco hermandades en Montoro y el Domingo de Ramos en Pedro Abad, el **21 de marzo**.",
+      "id": "noticia-acompanamientos",
+      "body": "La Semana Santa de 2027 tendrá para la Agrupación Musical Jesús Caído un recorrido de seis citas. En Montoro acompañará a la **Hermandad y Cofradía de Nazarenos del Santísimo Cristo de la Humildad y Nuestra Madre y Señora de Consolación y Esperanza** (Martes Santo, salida desde la Parroquia de Ntra. Sra. del Carmen); a la **Cofradía de la Santa Vera Crux** (Jueves Santo, desde la Iglesia de Santiago); a la **Real Cofradía de Nuestro Padre Jesús Nazareno y María Santísima de los Dolores** en la Madrugá del Viernes Santo, la «Noche de Padre Jesús», desde la Iglesia de San Juan de Letrán; a la **Cofradía del Santísimo Cristo de la Misericordia y Nuestra Señora de las Angustias** (Viernes Santo, desde la Iglesia Auxiliar de San Sebastián); y a la **Cofradía del Santísimo Cristo Resucitado** (Domingo de Resurrección, desde la Ermita de la Virgen de Gracia).\n\nEl **Domingo de Ramos, 21 de marzo**, la banda estará en Pedro Abad junto a la **Hermandad de Nuestro Señor de los Reyes en su Entrada Triunfal en Jerusalén y María Santísima de la Oliva**, con salida desde la Parroquia de Ntra. Sra. de la Asunción. Es la gran novedad de la próxima Semana Santa y refuerza el vínculo de la agrupación con las hermandades de la comarca.\n\nLos horarios y recorridos pueden variar cada año. Consulta nuestras redes sociales para confirmar los detalles.",
+      "link": {
+        "href": "acompanamientos.html",
+        "text": "Ver la Semana Santa 2027"
+      }
+    },
+    {
+      "tag": "Web",
+      "datetime": "2026-10",
+      "dateLabel": "Octubre 2026",
+      "title": "Estrenamos web oficial",
+      "excerpt": "La agrupación da el salto a internet con un espacio propio donde consultar su **historia**, el **repertorio**, los **conciertos** y la **agenda** de cada temporada.",
+      "id": "noticia-web",
+      "body": "La Agrupación Musical Jesús Caído ya tiene su espacio propio en internet. La web, **diseñada y desarrollada por un miembro de la agrupación**, nace con la vocación de reunir en un solo lugar todo lo que rodea a la banda y de acercar su música a quienes la siguen dentro y fuera de Montoro.\n\nEl sitio reúne las secciones principales de la agrupación: la **historia** desde 1963, la **uniformidad** y el guion, los **conciertos** y la **agenda**, los **acompañamientos** de Semana Santa, el **repertorio completo** —con las marchas propias y sus autores— y la **actualidad**. También incluye un formulario de contacto para solicitar información o plantear una contratación.\n\nLa web está pensada para consultarse cómodamente desde el móvil y el ordenador, con un diseño cuidado, una navegación sencilla y toda la información organizada por secciones. Además, se irá actualizando con las noticias, las próximas actuaciones y las novedades de la agrupación.\n\nUn nuevo escaparate para una banda con más de sesenta años de historia, que mira al futuro sin perder de vista sus raíces.",
+      "link": {
+        "href": "historia.html",
+        "text": "Conocer la agrupación"
+      }
+    },
+    {
+      "tag": "Junta directiva",
+      "datetime": "2026",
+      "dateLabel": "2026",
+      "title": "Juan José De La Rosa Simón, presidente",
+      "excerpt": "Desde 2026 preside la agrupación, tomando el relevo de **Manuela De La Rosa**, primera mujer presidenta en los sesenta años de historia de la banda.",
+      "id": "noticia-presidencia",
+      "body": "**Juan José De La Rosa Simón** asumió en 2026 la presidencia de la Agrupación Musical Jesús Caído para los próximos dos años. Toma el relevo de **Manuela De La Rosa**, que en 2022 se convirtió en la primera mujer presidenta de la agrupación en sus sesenta años de historia.\n\nEl cambio forma parte de una etapa de renovación en la que la banda mantiene su compromiso con Montoro, con sus hermandades y con la música. La junta directiva afronta el reto de seguir creciendo y de acompañar a la agrupación en sus próximos proyectos.\n\nLa Agrupación Musical Jesús Caído quiere agradecer a Manuela De La Rosa su trabajo al frente de la entidad y desear a Juan José De La Rosa Simón una fructífera labor en esta nueva etapa.",
+      "link": null
+    }
+  ]
+}
