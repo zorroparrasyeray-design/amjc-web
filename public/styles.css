@@ -561,7 +561,7 @@ button { background: none; border: none; cursor: pointer; font-family: inherit; 
 
 /* Marchas grid */
 .marchas-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; }
-.marchas-grid .marcha-card { flex: 0 1 280px; }
+.marchas-grid .marcha-card { flex: 0 1 240px; }
 .marcha-card { background: var(--azul-medio); border: 1px solid rgba(255,255,255,0.05); border-radius: 8px; padding: 1.5rem; text-align: center; transition: var(--transition); position: relative; overflow: hidden; }
 .marcha-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, transparent, var(--rojo), transparent); transform: scaleX(0); transform-origin: center; transition: var(--transition); }
 .marcha-card:hover { border-color: rgba(255,255,255,0.1); transform: translateY(-4px); }
