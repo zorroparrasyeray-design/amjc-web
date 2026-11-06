@@ -179,7 +179,7 @@ button { background: none; border: none; cursor: pointer; font-family: inherit; 
 }
 .section::before { content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 100px; height: 1px; background: linear-gradient(90deg, transparent, var(--rojo), transparent); }
 .section-header { text-align: center; margin-bottom: 3rem; }
-.section-tag { display: inline-block; font-size: 0.85rem; font-weight: 500; color: var(--rojo); text-transform: uppercase; letter-spacing: 0.15em; margin-bottom: 0.75rem; }
+.section-tag { display: inline-block; font-size: 0.85rem; font-weight: 500; color: var(--rojo-texto); text-transform: uppercase; letter-spacing: 0.15em; margin-bottom: 0.75rem; }
 .section-title { font-family: var(--fuente-titulos); font-size: clamp(2.2rem, 4.5vw, 3.2rem); font-weight: 500; color: var(--blanco); margin-bottom: 1rem; letter-spacing: 0.01em; }
 .highlight { color: var(--rojo); }
 .section-divider { display: flex; align-items: center; justify-content: center; gap: 1rem; }
