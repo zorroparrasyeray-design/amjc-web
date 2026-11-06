@@ -535,6 +535,36 @@ button { background: none; border: none; cursor: pointer; font-family: inherit; 
 .cta-video-sound:disabled { opacity: 0.55; cursor: default; }
 .cta-video-sound svg { width: 18px; height: 18px; }
 
+/* Historia del traje */
+.section-trajes { background: linear-gradient(180deg, rgba(201,168,76,0.04), transparent 30%); }
+.trajes-timeline { position: relative; max-width: 1000px; margin: 0 auto; }
+.trajes-timeline::before { content: ''; position: absolute; left: 50%; top: 0; bottom: 0; width: 2px; background: linear-gradient(180deg, rgba(201,168,76,0.08), rgba(201,168,76,0.65) 20%, rgba(201,168,76,0.65) 80%, rgba(201,168,76,0.08)); transform: translateX(-50%); }
+.traje-hito { position: relative; display: grid; grid-template-columns: 1fr 1fr; gap: 3.5rem; align-items: center; padding: 2.25rem 0; }
+.traje-hito::before { content: ''; position: absolute; left: 50%; top: 50%; width: 14px; height: 14px; border-radius: 50%; background: var(--azul-oscuro); border: 2px solid var(--dorado); box-shadow: 0 0 0 4px var(--azul-oscuro); transform: translate(-50%, -50%); z-index: 1; }
+.traje-foto { position: relative; z-index: 0; }
+.traje-foto img { display: block; width: 100%; height: auto; border-radius: 12px; border: 1px solid rgba(201,168,76,0.25); box-shadow: 0 18px 36px rgba(0,0,0,0.35); }
+.traje-foto--doble { display: grid; grid-template-columns: 1fr 1fr; gap: 0.6rem; }
+.traje-foto--doble img { height: 100%; aspect-ratio: 3 / 4; object-fit: cover; }
+.traje-texto { position: relative; z-index: 0; }
+.traje-epoca { display: block; font-family: var(--fuente-ui); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--dorado); margin-bottom: 0.4rem; }
+.traje-texto h3 { font-family: var(--fuente-titulos); font-size: 1.7rem; font-weight: 500; color: var(--blanco); margin-bottom: 0.6rem; }
+.traje-texto p { color: var(--blanco-suave); font-size: 1rem; line-height: 1.8; margin: 0; }
+.traje-hito:nth-child(even) .traje-foto { order: 2; }
+.traje-hito--futuro { grid-template-columns: 1fr; padding: 2.5rem 0; }
+.traje-hito--futuro::before { display: none; }
+.traje-hito--futuro .traje-texto { position: relative; z-index: 1; max-width: 660px; margin: 0 auto; text-align: center; padding: 2rem; border: 1px solid rgba(201,168,76,0.35); border-radius: 14px; background: linear-gradient(rgba(201,168,76,0.06), rgba(201,168,76,0.06)), var(--azul-oscuro); box-shadow: 0 18px 36px rgba(0,0,0,0.25); }
+
+@media (max-width: 768px) {
+    .trajes-timeline::before { left: 7px; }
+    .traje-hito { grid-template-columns: 1fr; gap: 1.1rem; padding: 1.5rem 0 1.5rem 2rem; }
+    .traje-hito::before { left: 7px; top: 1.8rem; transform: translate(-50%, 0); }
+    .traje-hito:nth-child(even) .traje-foto { order: 0; }
+    .traje-texto h3 { font-size: 1.45rem; }
+    .traje-hito--futuro { padding-left: 2rem; }
+    .traje-hito--futuro .traje-texto { padding: 1.25rem; text-align: left; }
+}
+
+
 /* Gallery uniformidad */
 .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
 .gallery-item { border-radius: 12px; overflow: hidden; border: 2px solid rgba(204,0,0,0.2); transition: var(--transition); }
