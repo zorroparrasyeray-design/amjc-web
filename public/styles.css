@@ -1149,3 +1149,63 @@ body.cookie-banner-open { padding-bottom: 7rem; }
     text-decoration: underline;
     text-underline-offset: 2px;
 }
+
+
+/* Portada: bienvenida, franja de datos y lo ultimo */
+.section-bienvenida { padding-top: 4.5rem; padding-bottom: 4rem; background: linear-gradient(180deg, rgba(201,168,76,0.06), transparent 60%); }
+.bienvenida { display: grid; grid-template-columns: 1.02fr 1fr; gap: 3.5rem; align-items: center; }
+.bienvenida-foto { position: relative; margin: 0; isolation: isolate; }
+.bienvenida-foto::after { content: ''; position: absolute; inset: 16px -16px -16px 16px; border: 1px solid rgba(201,168,76,0.35); border-radius: 14px; z-index: -1; }
+.bienvenida-foto img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 14px; border: 1px solid rgba(201,168,76,0.25); box-shadow: 0 26px 50px rgba(0,0,0,0.45); }
+.bienvenida-foto figcaption { position: absolute; left: 1rem; bottom: 1rem; padding: 0.4rem 0.9rem; border-radius: 999px; background: rgba(10,22,40,0.85); border: 1px solid rgba(201,168,76,0.45); color: var(--dorado); font-family: var(--fuente-ui); font-size: 0.72rem; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; }
+.bienvenida-titulo { font-family: var(--fuente-titulos); font-size: clamp(2rem, 3.6vw, 2.9rem); font-weight: 500; line-height: 1.15; color: var(--blanco); margin-bottom: 1.25rem; }
+.bienvenida-entradilla { font-size: 1.16rem; line-height: 1.75; color: var(--blanco-suave); margin-bottom: 1rem; }
+.bienvenida-parrafo { font-size: 1.02rem; line-height: 1.8; color: var(--gris-claro); margin-bottom: 2rem; }
+.bienvenida-acciones { display: flex; flex-wrap: wrap; gap: 0.9rem; }
+.bienvenida-acciones .btn-secondary { margin-right: 0; }
+
+.franja-datos { list-style: none; display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; margin: 3.75rem 0 0; padding: 0; background: rgba(201,168,76,0.28); border: 1px solid rgba(201,168,76,0.25); border-radius: 14px; overflow: hidden; }
+.franja-datos li { display: flex; flex-direction: column; gap: 0.45rem; padding: 1.7rem 1rem; text-align: center; background: linear-gradient(180deg, var(--azul-medio), var(--azul-oscuro)); }
+.dato-num { font-family: var(--fuente-titulos); font-size: clamp(1.9rem, 3vw, 2.5rem); font-weight: 600; line-height: 1; color: var(--dorado); }
+.dato-txt { font-family: var(--fuente-ui); font-size: 0.74rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; line-height: 1.55; color: var(--blanco-suave); }
+
+.section-ultimo { padding-top: 1rem; padding-bottom: 4.5rem; }
+.ultimo-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 1rem; padding-bottom: 1.1rem; margin-bottom: 2rem; border-bottom: 1px solid rgba(201,168,76,0.22); }
+.ultimo-head .section-title { margin-bottom: 0; text-align: left; }
+.ultimo-head .section-tag { margin-bottom: 0.45rem; }
+.ultimo-vertodo { font-family: var(--fuente-ui); font-size: 0.88rem; font-weight: 600; color: var(--dorado); white-space: nowrap; padding-bottom: 0.35rem; }
+.ultimo-vertodo:hover { color: var(--blanco); }
+.ultimo-grid { display: grid; grid-template-columns: 1.45fr 1fr; gap: 1.5rem; }
+.ultimo-principal { position: relative; display: flex; flex-direction: column; border-radius: 14px; overflow: hidden; border: 1px solid rgba(201,168,76,0.25); background: linear-gradient(180deg, var(--azul-medio), var(--azul-oscuro)); transition: var(--transition); }
+.ultimo-principal:hover { border-color: rgba(201,168,76,0.55); box-shadow: 0 22px 44px rgba(0,0,0,0.4); }
+.ultimo-principal-foto { position: relative; flex: 0 0 220px; overflow: hidden; }
+.ultimo-principal-foto::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(10,22,40,0) 55%, rgba(17,34,64,0.95) 100%); }
+.ultimo-principal-foto img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center 62%; transition: transform 0.6s ease; }
+.ultimo-principal:hover .ultimo-principal-foto img { transform: scale(1.03); }
+.ultimo-principal-texto { position: relative; flex: 1; padding: 0.4rem 2.1rem 2.1rem; }
+.ultimo-etiqueta { display: inline-block; font-family: var(--fuente-ui); font-size: 0.72rem; font-weight: 600; letter-spacing: 0.13em; text-transform: uppercase; color: var(--dorado); margin-bottom: 0.7rem; }
+.ultimo-principal h3 { font-family: var(--fuente-titulos); font-size: clamp(1.5rem, 2.4vw, 2rem); font-weight: 500; line-height: 1.2; color: var(--blanco); margin-bottom: 0.7rem; }
+.ultimo-principal p { font-size: 1rem; line-height: 1.7; color: var(--blanco-suave); margin-bottom: 1.2rem; max-width: 46ch; text-align: left; hyphens: none; }
+.ultimo-enlace { font-family: var(--fuente-ui); font-size: 0.9rem; font-weight: 600; color: var(--dorado); }
+.ultimo-principal:hover .ultimo-enlace { color: var(--blanco); }
+.ultimo-lateral { display: grid; gap: 1.5rem; }
+.ultimo-mini { display: flex; flex-direction: column; justify-content: center; gap: 0.5rem; padding: 1.6rem 1.7rem; border-radius: 14px; border: 1px solid rgba(255,255,255,0.07); background: linear-gradient(145deg, var(--azul-medio), var(--azul-oscuro)); transition: var(--transition); position: relative; overflow: hidden; }
+.ultimo-mini::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: linear-gradient(180deg, var(--rojo), var(--dorado)); transition: var(--transition); }
+.ultimo-mini:hover { transform: translateY(-3px); border-color: rgba(201,168,76,0.45); box-shadow: 0 18px 34px rgba(0,0,0,0.35); }
+.ultimo-mini:hover::before { width: 5px; }
+.ultimo-mini-tag { font-family: var(--fuente-ui); font-size: 0.7rem; font-weight: 600; letter-spacing: 0.13em; text-transform: uppercase; color: var(--dorado); }
+.ultimo-mini strong { font-family: var(--fuente-titulos); font-size: 1.4rem; font-weight: 500; line-height: 1.25; color: var(--blanco); }
+.ultimo-mini span:last-child { font-family: var(--fuente-ui); font-size: 0.9rem; line-height: 1.6; color: var(--gris-claro); }
+
+@media (max-width: 900px) {
+    .bienvenida { grid-template-columns: 1fr; gap: 2.5rem; }
+    .bienvenida-foto { order: -1; }
+    .bienvenida-foto img { aspect-ratio: 4 / 3; }
+    .bienvenida-foto::after { display: none; }
+    .franja-datos { grid-template-columns: repeat(2, 1fr); margin-top: 2.5rem; }
+    .ultimo-grid { grid-template-columns: 1fr; }
+    .ultimo-head { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+    .ultimo-principal { min-height: 0; }
+    .ultimo-principal-foto { flex-basis: 190px; }
+    .ultimo-principal-texto { padding: 0.2rem 1.5rem 1.6rem; }
+}

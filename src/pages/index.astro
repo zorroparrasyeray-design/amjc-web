@@ -1,6 +1,10 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import agenda from '../content/agenda.json';
+import noticiasData from '../content/noticias.json';
+
+const noticiaDestacada = noticiasData.noticias[0];
+const textoPlano = (value) => (value || '').replace(/\*\*(.+?)\*\*/g, '$1').replace(/\[(.+?)\]\(.+?\)/g, '$1');
 
 const monthNames = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
 const monthShort = ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'];
@@ -60,44 +64,81 @@ const jsonLd = "{\n        \"@context\": \"https://schema.org\",\n        \"@typ
             </div>
         </section>
 
-        <section class="section section-resumen" aria-labelledby="resumen-title">
+        <section class="section section-bienvenida" aria-labelledby="bienvenida-title">
             <div class="container">
-                <header class="section-header">
-                    <span class="section-tag">Qué encontrarás</span>
-                    <h2 id="resumen-title" class="section-title">Nuestra Web</h2>
-                    <div class="section-divider"><span></span></div>
-                </header>
-                <div class="cards-grid">
-                    <article class="card">
-                        <h3>Historia</h3>
-                        <p>De la Banda de Cornetas y Tambores de 1963 a una Agrupación Musical con voz propia. Más de seis décadas de evolución, ensayos y calle.</p>
-                        <a href="historia.html" class="card-link">Leer más sobre nuestra historia →</a>
+                <div class="bienvenida">
+                    <figure class="bienvenida-foto">
+                        <img src="img/portada-guion-alcazaba.jpg" alt="Guion de la Agrupación Musical Jesús Caído frente al castillo de Montoro" width="1152" height="2048" loading="lazy" decoding="async">
+                        <figcaption>Montoro · Córdoba</figcaption>
+                    </figure>
+                    <div class="bienvenida-texto">
+                        <span class="section-tag">Bienvenidos</span>
+                        <h2 id="bienvenida-title" class="bienvenida-titulo">Más de sesenta años poniendo música a la fe</h2>
+                        <p class="bienvenida-entradilla">Somos la Agrupación Musical Jesús Caído, de Montoro. Nacimos como Banda de Cornetas y Tambores y hoy acompañamos a nuestras hermandades con un repertorio propio.</p>
+                        <p class="bienvenida-parrafo">Cada Cuaresma preparamos la calle, cada Domingo de Ramos salimos con la misma ilusión del primer día y cada concierto es una forma de contar quiénes somos.</p>
+                        <div class="bienvenida-acciones">
+                            <a href="historia.html" class="btn btn-primary">Conoce la banda</a>
+                            <a href="repertorio.html" class="btn btn-secondary">Nuestro repertorio</a>
+                        </div>
+                    </div>
+                </div>
+
+                <ul class="franja-datos">
+                    <li>
+                        <span class="dato-num">1963</span>
+                        <span class="dato-txt">Desde entonces<br>en la calle</span>
+                    </li>
+                    <li>
+                        <span class="dato-num">+50</span>
+                        <span class="dato-txt">Marchas<br>en el repertorio</span>
+                    </li>
+                    <li>
+                        <span class="dato-num">6</span>
+                        <span class="dato-txt">Citas en la<br>Semana Santa 2027</span>
+                    </li>
+                    <li>
+                        <span class="dato-num">5</span>
+                        <span class="dato-txt">Hermandades<br>en Montoro</span>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="section section-ultimo" aria-labelledby="ultimo-title">
+            <div class="container">
+                <div class="ultimo-head">
+                    <div>
+                        <span class="section-tag">Al día</span>
+                        <h2 id="ultimo-title" class="section-title">Lo último</h2>
+                    </div>
+                    <a href="actualidad.html" class="ultimo-vertodo">Ver toda la actualidad →</a>
+                </div>
+
+                <div class="ultimo-grid">
+                    <article class="ultimo-principal">
+                        <div class="ultimo-principal-foto">
+                            <img src="img/portada-desfile-jueves-santo.jpg" alt="La Agrupación Musical Jesús Caído desfilando por las calles de Montoro" width="1062" height="705" loading="lazy" decoding="async">
+                        </div>
+                        <div class="ultimo-principal-texto">
+                            <span class="ultimo-etiqueta">{noticiaDestacada.tag} · {noticiaDestacada.dateLabel}</span>
+                            <h3>{noticiaDestacada.title}</h3>
+                            <p>{textoPlano(noticiaDestacada.excerpt)}</p>
+                            <a href="actualidad.html" class="ultimo-enlace">Leer la noticia →</a>
+                        </div>
                     </article>
-                    <article class="card">
-                        <h3>Conciertos y Certámenes</h3>
-                        <p>Del I Congreso Nacional de Bandas al certamen de la Rosa de Oro. Escenarios de dentro y fuera de Andalucía y el concierto de Cuaresma en casa.</p>
-                        <a href="conciertos.html" class="card-link">Ver trayectoria →</a>
-                    </article>
-                    <article class="card">
-                        <h3>Uniformidad</h3>
-                        <p>Marino noche, canutillo de plata y una tirilla roja que nos distingue. Un uniforme cuidado al detalle y reconocible en cualquier calle.</p>
-                        <a href="uniformidad.html" class="card-link">Ver detalles →</a>
-                    </article>
-                    <article class="card">
-                        <h3>Actualidad</h3>
-                        <p>Manuela De La Rosa abrió una etapa nueva en 2022 y Juan José De La Rosa Simón preside la agrupación desde 2026. Hoy seguimos creciendo con más de 50 marchas y la misma ilusión.</p>
-                        <a href="actualidad.html" class="card-link">Saber más sobre la actualidad →</a>
-                    </article>
-                    <article class="card">
-                        <h3>Semana Santa</h3>
-                        <p>Cinco hermandades en Montoro durante la Semana Santa de 2027 y el Domingo de Ramos en Pedro Abad. Música para acompañar la fe.</p>
-                        <a href="acompanamientos.html" class="card-link">Ver la lista de Semana Santa →</a>
-                    </article>
-                    <article class="card">
-                        <h3>Repertorio</h3>
-                        <p>Composiciones propias, clásicas recuperadas y más de 50 piezas en activo. Música con firma de Montoro y mirada a la tradición.</p>
-                        <a href="repertorio.html" class="card-link">Ver repertorio →</a>
-                    </article>
+
+                    <div class="ultimo-lateral">
+                        <a class="ultimo-mini" href="uniformidad.html#trajes-title">
+                            <span class="ultimo-mini-tag">Historia</span>
+                            <strong>La historia del traje</strong>
+                            <span>Siete etapas, de 1963 a un nuevo capítulo →</span>
+                        </a>
+                        <a class="ultimo-mini" href="acompanamientos.html">
+                            <span class="ultimo-mini-tag">Semana Santa 2027</span>
+                            <strong>Seis citas en la calle</strong>
+                            <span>Cinco hermandades en Montoro y el Domingo de Ramos en Pedro Abad →</span>
+                        </a>
+                    </div>
                 </div>
             </div>
         </section>
