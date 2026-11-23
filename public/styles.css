@@ -1209,3 +1209,34 @@ body.cookie-banner-open { padding-bottom: 7rem; }
     .ultimo-principal-foto { flex-basis: 190px; }
     .ultimo-principal-texto { padding: 0.2rem 1.5rem 1.6rem; }
 }
+
+/* Semana Santa: hermandades */
+.ss-list { display: flex; flex-direction: column; gap: 4rem; max-width: 1080px; margin: 0 auto; }
+.ss-row { display: grid; grid-template-columns: 1.12fr 1fr; align-items: center; }
+.ss-foto { margin: 0; position: relative; }
+.ss-foto img { display: block; width: 100%; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 16px; border: 1px solid rgba(201,168,76,0.25); box-shadow: 0 24px 48px rgba(0,0,0,0.4); }
+.ss-card { position: relative; z-index: 1; margin-left: -3rem; padding: 2.6rem 2.2rem; text-align: center; border-radius: 16px; border: 1px solid rgba(201,168,76,0.22); background: linear-gradient(150deg, var(--azul-medio), var(--azul-oscuro) 70%); box-shadow: 0 26px 50px rgba(0,0,0,0.5); }
+.ss-row:nth-child(even) { grid-template-columns: 1fr 1.12fr; }
+.ss-row:nth-child(even) .ss-foto { order: 2; }
+.ss-row:nth-child(even) .ss-card { order: 1; margin-left: 0; margin-right: -3rem; }
+.ss-dia { display: block; font-family: var(--fuente-ui); font-size: 0.76rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--rojo-texto); margin-bottom: 0.8rem; }
+.ss-nombre { font-family: var(--fuente-titulos); font-size: clamp(1.35rem, 2.2vw, 1.8rem); font-weight: 500; line-height: 1.25; color: var(--blanco); margin-bottom: 1.1rem; }
+.ss-sep { display: block; width: 70px; height: 1px; margin: 0 auto 1.2rem; background: linear-gradient(90deg, transparent, var(--dorado), transparent); }
+.ss-escudo { display: block; width: 96px; height: 96px; object-fit: contain; margin: 0 auto 1.1rem; filter: drop-shadow(0 8px 16px rgba(0,0,0,0.35)); }
+.ss-salida { font-family: var(--fuente-ui); font-size: 0.86rem; line-height: 1.6; color: var(--gris-claro); margin: 0; text-align: center; }
+.ss-nota { max-width: 760px; margin: 3.5rem auto 0; text-align: center; color: var(--gris-claro); line-height: 1.8; }
+
+@media (max-width: 860px) {
+    .ss-list { gap: 2.5rem; }
+    .ss-row, .ss-row:nth-child(even) { grid-template-columns: 1fr; }
+    .ss-row .ss-foto, .ss-row:nth-child(even) .ss-foto { order: 0; }
+    .ss-row .ss-card, .ss-row:nth-child(even) .ss-card { order: 1; margin: -2.5rem 1rem 0; padding: 1.7rem 1.3rem; }
+    .ss-foto img { aspect-ratio: 4 / 3; }
+    .ss-nombre { font-size: 1.3rem; }
+}
+
+/* Semana Santa: fila con dos imagenes */
+.ss-foto--doble { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+.ss-foto--doble img { aspect-ratio: 3 / 4; }
+
+@media (max-width: 860px) { .ss-foto--doble { gap: 0.5rem; } .ss-foto--doble img { aspect-ratio: 3 / 4; } }

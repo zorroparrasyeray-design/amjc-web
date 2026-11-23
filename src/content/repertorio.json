@@ -659,6 +659,30 @@
       "recuperada": false,
       "nota": "",
       "descripcion": ""
+    },
+    {
+      "n": 56,
+      "title": "Alma Humilde",
+      "author": "José Manuel Sánchez Crespillo",
+      "video": "",
+      "href": "",
+      "estreno": true,
+      "propia": false,
+      "recuperada": false,
+      "nota": "",
+      "descripcion": "Nueva incorporación al repertorio de la agrupación."
+    },
+    {
+      "n": 57,
+      "title": "Contigo",
+      "author": "Javier Cebrero",
+      "video": "",
+      "href": "",
+      "estreno": true,
+      "propia": false,
+      "recuperada": false,
+      "nota": "",
+      "descripcion": "Nueva incorporación al repertorio de la agrupación."
     }
   ]
 }
